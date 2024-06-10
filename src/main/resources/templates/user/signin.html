@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>MySpring</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/signin">Login</a></li>
+        <li><a href="/signup" role="button">Sign Up</a></li>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>Sign Up</h2>
+                <h3>Create your account</h3>
+            </hgroup>
+            <form action="/signin" method="post">
+                <label for="id">User ID:</label>
+                <input type="text" id="id" name="id" placeholder="Enter your user ID" required>
+
+                <label for="pw">Password:</label>
+                <input type="password" id="pw" name="pw" placeholder="Enter your password" required>
+
+                <button type="submit">Sign In</button>
+            </form>
+        </section>
+    </div>
+</main>
+
+<footer class="container">
+    <small>
+        <a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a>
+    </small>
+</footer>
+</body>
+</html>

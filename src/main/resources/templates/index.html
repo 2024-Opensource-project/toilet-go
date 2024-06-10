@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>쇼핑몰</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>쇼핑몰</strong></li>
+    </ul>
+    <ul>
+        <li><a href="#">홈</a></li>
+        <li><a href="#">상품</a></li>
+        <li><a href="#">문의</a></li>
+        <!--<th:block th:if="${userId}">
+            <span th:text="${userId}"></span>
+        </th:block>-->
+        <th:block th:if="${userId}">
+            <li><a href="signout" role="button">로그아웃</a></li>
+        </th:block>
+        <th:block th:unless="${userId}">
+            <li><a href="signin" role="button">로그인</a></li>
+        </th:block>
+    </ul>
+</nav>
+
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>최신 상품</h2>
+                <h3>지금 바로 만나보세요!</h3>
+            </hgroup>
+            <p>최신 상품을 할인된 가격에 만나보세요.</p>
+            <figure>
+                <img src="IMAGE_URL" alt="최신 상품 이미지" />
+                <figcaption><a href="#" target="_blank">더 알아보기</a></figcaption>
+            </figure>
+            <h3>특가 상품</h3>
+            <p>한정된 시간 동안만 제공되는 특별한 상품들을 놓치지 마세요.</p>
+            <h3>베스트셀러</h3>
+            <p>고객들이 가장 많이 선택한 인기 상품을 만나보세요.</p>
+        </section>
+    </div>
+</main>
+
+<section aria-label="Subscribe example">
+    <div class="container">
+        <article>
+            <hgroup>
+                <h2>뉴스레터 구독</h2>
+                <h3>최신 소식을 이메일로 받아보세요.</h3>
+            </hgroup>
+            <form class="grid">
+                <input type="text" id="firstname" name="firstname" placeholder="이름" aria-label="이름" required />
+                <input type="email" id="email" name="email" placeholder="이메일" aria-label="이메일" required />
+                <button type="submit" onclick="event.preventDefault()">구독</button>
+            </form>
+        </article>
+    </div>
+</section>
+
+<footer class="container">
+    <small><a href="#">이용약관</a> • <a href="#">개인정보 처리방침</a></small>
+</footer>
+</body>
+</html>
