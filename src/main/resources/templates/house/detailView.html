@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>행복주택 상세 정보</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>행복주택</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/">홈</a></li>
+        <li><a href="/list">리스트</a></li>
+        <li><a href="#" role="button">문의하기</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2 th:text="${house.name}">주택 이름</h2>
+                <img th:src="${house.imageUrl}" alt="행복주택 이미지"/>
+            </hgroup>
+            <p th:text="'주소: ' + ${house.address}">주소</p>
+            <p th:text="'상태: ' + ${house.status}">상태</p>
+            <p th:text="'공모가: ' + ${house.price} + '원'">가격</p>
+            <p th:text="'공모신청 날짜: ' + ${house.subMissionDate}">공모신청 날짜</p>
+            <p th:text="'입주 날짜: ' + ${house.movingDate}">입주 날짜</p>
+            <figure>
+                <figcaption th:text="${house.description}">주택 설명</figcaption>
+            </figure>
+            <h3>기타 정보</h3>
+            <p th:text="${house.description}">상세 설명</p>
+        </section>
+    </div>
+</main>
+<footer class="container">
+    <small><a href="/terms">이용약관</a> • <a href="/privacy">개인정보처리방침</a></small>
+</footer>
+</body>
+</html>
