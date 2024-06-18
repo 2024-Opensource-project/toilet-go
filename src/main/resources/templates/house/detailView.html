@@ -26,14 +26,11 @@
             </hgroup>
             <p th:text="'주소: ' + ${house.address}">주소</p>
             <p th:text="'상태: ' + ${house.status}">상태</p>
-            <p th:text="'공모가: ' + ${house.price} + '원'">가격</p>
-            <p th:text="'공모신청 날짜: ' + ${house.subMissionDate}">공모신청 날짜</p>
+            <p th:text="'공모가: ' + ${house.price}">가격</p>
+            <p th:text="'공모신청 날짜: ' + ${house.submissionDate}">공모신청 날짜</p>
             <p th:text="'입주 날짜: ' + ${house.movingDate}">입주 날짜</p>
-            <figure>
-                <figcaption th:text="${house.description}">주택 설명</figcaption>
-            </figure>
             <h3>기타 정보</h3>
-            <p th:text="${house.description}">상세 설명</p>
+            <p th:utext="${house.description}">상세 설명</p>
         </section>
     </div>
 </main>
