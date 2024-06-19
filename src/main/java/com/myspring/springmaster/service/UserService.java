@@ -23,4 +23,11 @@ public class UserService {
         userDAO.save(user);
         return "가입에 성공했습니다";
     }
+
+    public boolean isAdmin(HttpSession session){
+        if(session.getAttribute("user").equals("admin")){
+            return true;
+        }
+        return false;
+    }
 }

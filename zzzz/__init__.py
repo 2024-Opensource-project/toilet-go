@@ -1,18 +1,20 @@
 import getLH
-import requests
-import json
-from dataclasses import asdict
+import get_gh
+from local_server import Local
 
-list = getLH.get_house_list(30)
-list_of_house = getLH.get_house_info(list[0])
+local = Local()
 
-url = "http://localhost:8080/house/add"
+def uplooad_lh():
+    all_list = getLH.get_house_list(30)
+    for list in all_list:
+        list_of_house = getLH.get_house_info(list)
+        print(local.upload_houses(list_of_house))
 
-for house in list_of_house:
-    body = asdict(house)
-    rs = requests.post(url, json=body)
-    print(body)
-    print(rs)
+def upload_gh():
+    gh_all_list = get_gh.get_house_list()[:5]
+    for list in gh_all_list:
+        list_of_house = get_gh.get_house_info(list)
+        print(local.upload_houses(list_of_house))
 
-#for house in list:
-#    getLH.get_house_info(house)
+uplooad_lh()
+upload_gh()

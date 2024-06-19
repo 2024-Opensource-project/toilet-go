@@ -51,6 +51,17 @@ public class HouseDAO {
         return typeCast.resultSetToDtoList(rs, HouseDTO.class);
     }
 
+    public boolean isAlreadyUploadedHouse(HouseDTO house) throws SQLException, ClassNotFoundException {
+        Connection conn = MysqlConnector.connect();
+        PreparedStatement ps = conn.prepareStatement
+                ("select * from house where name = ? and address = ? and submissionDate = ?");
+        ps.setString(1, house.getName());
+        ps.setString(2, house.getAddress());
+        ps.setString(3, house.getSubmissionDate());
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
+
+    }
     public boolean addHouse(HouseDTO house) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
         PreparedStatement ps = conn.prepareStatement(

@@ -11,12 +11,12 @@ def get_house_list(days: int) -> List[BeautifulSoup]:
     body = {
         'panId': '', 'ccrCnntSysDsCd': '', 'srchUppAisTpCd': '06', 'uppAisTpCd': '06', 'aisTpCd': '10', 'srchAisTpCd': '10',
         'prevListCo': '', 'mi': '1026', 'currPage': '1', 'srchY': 'Y', 'indVal': 'N', 'viewType': '',
-        'srchFilter': 'N', 'mvinQf': '0', 'cnpCd': '41', 'panSs': '', 'schTy': '0',
+        'srchFilter': 'N', 'mvinQf': '0', 'cnpCd': '41', 'panSs': '공고중', 'schTy': '0',
         'startDt': str(today - search_len), 'endDt': str(today), 'panNm': '', 'listCo': '50'
     }
 
-    # rs = requests.post(url, data=body).text
-    rs = open("./html_text.txt", mode="r", encoding="utf-8")
+    rs = requests.post(url, data=body).text
+    #rs = open("./html_text.txt", mode="r", encoding="utf-8")
 
     soup = BeautifulSoup(rs, "html.parser")
     list = soup.find_all("a", "wrtancInfoBtn")
@@ -31,8 +31,8 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
         'mvinQf': '0', 'cnpCd': '41', 'panSs': '공고중', 'schTy': '0', 'startDt': '2024-04-18', 'endDt': '2024-06-18', 'panNm': '', 'listCo': '50'
     }
 
-    # rs = requests.post(url, data=body).text
-    rs = open("./house_info.txt", mode="r", encoding="utf-8").read()
+    rs = requests.post(url, data=body).text
+    #rs = open("./house_info.txt", mode="r", encoding="utf-8").read()
     soup = BeautifulSoup(rs, "html.parser")
 
     address_list = soup.find_all("li", "w100")[:-1]  # 주소들

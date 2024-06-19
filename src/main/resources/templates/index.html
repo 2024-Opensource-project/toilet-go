@@ -15,7 +15,7 @@
         }
 
         .house-list::-webkit-scrollbar{
-            display: none;
+            /* display: none; */
         }
 
         .house-item {
@@ -80,7 +80,7 @@
                     <img th:src="${house.imageUrl}" alt=""/>
                     <p th:text="|이름 : ${house.name}|">주택 이름</p>
                     <p th:text="|주소 : ${house.address}|">주소</p>
-                    <p th:text="|공모가 : ${house.price}원|">가격</p>
+                    <p th:text="|공모가 : ${house.price}|">가격</p>
                     <figure>
                         <figcaption><a th:href="|/house/${house.idx}|" target="_blank">자세히 보기</a></figcaption>
                     </figure>

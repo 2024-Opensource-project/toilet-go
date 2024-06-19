@@ -43,7 +43,10 @@ public class HouseService {
 
     public boolean addHouse(HouseDTO house) throws SQLException, ClassNotFoundException {
         HouseDAO houseDAO = new HouseDAO();
-        return houseDAO.addHouse(house);
+        if(!houseDAO.isAlreadyUploadedHouse(house)){
+            return houseDAO.addHouse(house);
+        }
+        return false;
     }
 
 
