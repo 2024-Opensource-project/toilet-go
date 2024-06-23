@@ -12,6 +12,8 @@ public class HouseDTO {
     private String name;
     private String description;
     private String price;
+    private String latitude;
+    private String longitude;
     private String count;
     private String address;
     private String imageUrl;

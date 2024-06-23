@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLException;
 
@@ -20,12 +21,22 @@ public class HouseController {
         return "house/detailView";
     }
 
+    @GetMapping("house/add")
+    public String addHouse(Model model, HttpSession session, RedirectAttributes redirectAttributes){
+        UserService userService = new UserService();
+        if(userService.isAdmin(session)){
+            return "house/addHouse";
+        }
+        redirectAttributes.addFlashAttribute("message", "You are not admin");
+        return "redirect:/";
+    }
+
     @ResponseBody
     @PostMapping("house/add")
     public String addHouse(@RequestBody HouseDTO house, HttpSession session) throws ClassNotFoundException, SQLException {
         UserService userService = new UserService();
-        System.out.println(session.getAttribute("user"));
         if(userService.isAdmin(session)){
+            System.out.println(house.toString());
             HouseService houseService = new HouseService();
             houseService.addHouse(house);
             return "success";

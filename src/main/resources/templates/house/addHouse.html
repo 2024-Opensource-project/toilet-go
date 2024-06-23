@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Submission</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Form Submission</strong></li>
+    </ul>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#" role="button">Contact</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>Submit Your Details</h2>
+                <h3>Please fill out the form below</h3>
+            </hgroup>
+            <form id="submissionForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name">
+
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" placeholder="Enter a description"></textarea>
+
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" placeholder="Enter the price">
+
+                <label for="count">Count:</label>
+                <input type="number" id="count" name="count" placeholder="Enter the count">
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter the address">
+
+                <label for="imageUrl">Image URL:</label>
+                <input type="text" id="imageUrl" name="imageUrl" placeholder="Enter the image URL">
+
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" placeholder="Enter the status">
+
+                <label for="movingDate">Moving Date:</label>
+                <input type="date" id="movingDate" name="movingDate">
+
+                <label for="submissionDate">Submission Date:</label>
+                <input type="date" id="submissionDate" name="submissionDate">
+
+                <button type="button" onclick="submitForm()">Submit</button>
+            </form>
+        </section>
+    </div>
+</main>
+<footer class="container">
+    <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+<script>
+    function submitForm() {
+        const form = document.getElementById('submissionForm');
+        const formData = new FormData(form);
+        const jsonData = {};
+
+        formData.forEach((value, key) => {
+            jsonData[key] = value || ''; // Assign empty string if the value is empty
+        });
+
+        fetch('/house/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+</body>
+</html>

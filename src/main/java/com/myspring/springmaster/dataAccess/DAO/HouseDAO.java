@@ -66,17 +66,19 @@ public class HouseDAO {
         Connection conn = MysqlConnector.connect();
         PreparedStatement ps = conn.prepareStatement(
                 "insert into house(`name`, `description`, `price`, `count`," +
-                        "`address`, `imageUrl`, `status`, `movingDate`, `submissionDate`) " +
-                        "values(?,?,?,?,?,?,?,?,?)");
+                        "`address`, `latitude`, `longitude`, `imageUrl`, `status`, `movingDate`, `submissionDate`) " +
+                        "values(?,?,?,?,?,?,?,?,?,?,?)");
         ps.setString(1, house.getName());
         ps.setString(2, house.getDescription());
         ps.setString(3, house.getPrice());
         ps.setString(4, house.getCount());
         ps.setString(5, house.getAddress());
-        ps.setString(6, house.getImageUrl());
-        ps.setString(7, house.getStatus());
-        ps.setString(8, house.getMovingDate());
-        ps.setString(9, house.getSubmissionDate());
+        ps.setString(6, house.getLatitude());
+        ps.setString(7, house.getLongitude());
+        ps.setString(8, house.getImageUrl());
+        ps.setString(9, house.getStatus());
+        ps.setString(10, house.getMovingDate());
+        ps.setString(11, house.getSubmissionDate());
         return ps.executeUpdate() > 0;
     }
 
