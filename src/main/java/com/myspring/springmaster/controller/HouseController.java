@@ -21,6 +21,20 @@ public class HouseController {
         return "house/detailView";
     }
 
+    @GetMapping("house/list")
+    public String showHouseList(Model model) throws SQLException, ClassNotFoundException {
+        HouseService houseService = new HouseService();
+        model.addAttribute("houses", houseService.getAllActiveHousesList());
+        return "house/listView";
+    }
+
+    @GetMapping("house/near")
+    public String showHouseNear(Model model, @RequestParam String address) throws SQLException, ClassNotFoundException {
+        HouseService houseService = new HouseService();
+        model.addAttribute("houses", houseService.getNearHouseList(address));
+        return "house/listView";
+    }
+
     @GetMapping("house/add")
     public String addHouse(Model model, HttpSession session, RedirectAttributes redirectAttributes){
         UserService userService = new UserService();

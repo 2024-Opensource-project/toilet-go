@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>행복주택 리스트</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>행복주택 리스트</strong></li>
+    </ul>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#" role="button">Contact</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>행복주택 검색</h2>
+                <h3>원하는 정보를 입력하세요</h3>
+            </hgroup>
+            <form method="get" action="/search">
+                <input type="text" id="name" name="name" placeholder="주택이름" aria-label="주택이름">
+                <input type="text" id="address" name="address" placeholder="주택주소" aria-label="주택주소">
+                <input type="date" id="applyDate" name="applyDate" placeholder="청약신청일" aria-label="청약신청일">
+                <input type="date" id="moveInDate" name="moveInDate" placeholder="입주일" aria-label="입주일">
+                <select id="announcement" name="announcement">
+                    <option value="">공고여부</option>
+                    <option value="true">공고</option>
+                    <option value="false">비공고</option>
+                </select>
+                <button type="submit">검색</button>
+            </form>
+            <h3>행복주택 리스트</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>주택이름</th>
+                    <th>주택주소</th>
+                    <th>청약신청일</th>
+                    <th>입주일</th>
+                    <th>공고여부</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="house : ${houses}">
+                    <td th:text="${house.name}">주택이름</td>
+                    <td th:text="${house.address}">주택주소</td>
+                    <td th:text="${house.submissionDate}">청약신청일</td>
+                    <td th:text="${house.movingDate}">입주일</td>
+                    <td th:text="${house.status}">공고여부</td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+<section aria-label="Subscribe example">
+    <div class="container">
+        <article>
+            <hgroup>
+                <h2>Subscribe</h2>
+                <h3>Stay updated with the latest information</h3>
+            </hgroup>
+            <form class="grid">
+                <input type="text" id="firstname" name="firstname" placeholder="First Name" aria-label="First Name" required />
+                <input type="email" id="email" name="email" placeholder="Email" aria-label="Email" required />
+                <button type="submit" onclick="event.preventDefault()">Subscribe</button>
+            </form>
+        </article>
+    </div>
+</section>
+<footer class="container">
+    <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+</body>
+</html>
