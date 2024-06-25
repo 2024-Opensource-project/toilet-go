@@ -28,6 +28,13 @@ public class HouseController {
         return "house/listView";
     }
 
+    @PostMapping("house/list")
+    public String showHouseList(Model model, @RequestParam HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
+        HouseService houseService = new HouseService();
+        model.addAttribute("houses", houseService.getAllActiveHousesList());
+        return "house/listView";
+    }
+
     @GetMapping("house/near")
     public String showHouseNear(Model model, @RequestParam String address) throws SQLException, ClassNotFoundException {
         HouseService houseService = new HouseService();
@@ -50,7 +57,6 @@ public class HouseController {
     public String addHouse(@RequestBody HouseDTO house, HttpSession session) throws ClassNotFoundException, SQLException {
         UserService userService = new UserService();
         if(userService.isAdmin(session)){
-            System.out.println(house.toString());
             HouseService houseService = new HouseService();
             houseService.addHouse(house);
             return "success";

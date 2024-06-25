@@ -36,6 +36,11 @@ public class HouseService {
                             .toList();
         return houses;
     }
+
+    public ArrayList<HouseDTO> getHousesListBySearch(HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
+        HouseDAO houseDAO = new HouseDAO();
+
+    }
 /*
     public List<HouseDTO> getHouseList(String areaName) throws SQLException, ClassNotFoundException {
         HouseDAO houseDAO = new HouseDAO();
