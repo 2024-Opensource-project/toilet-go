@@ -55,6 +55,7 @@ public class HouseDAO {
         Connection conn = MysqlConnector.connect();
         TypeCast typeCast = new TypeCast();
         PreparedStatement ps = conn.prepareStatement("select * from house where name like ? AND address like ? ");
+        return null; //여기 고치기
     }
 
     public boolean isAlreadyUploadedHouse(HouseDTO house) throws SQLException, ClassNotFoundException {

@@ -39,7 +39,7 @@ public class HouseService {
 
     public ArrayList<HouseDTO> getHousesListBySearch(HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
         HouseDAO houseDAO = new HouseDAO();
-
+        return null; //여기 고치기
     }
 /*
     public List<HouseDTO> getHouseList(String areaName) throws SQLException, ClassNotFoundException {

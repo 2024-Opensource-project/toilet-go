@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 @Controller
 public class HouseController {
-    @GetMapping("/house/{idx}")
+    @GetMapping("/house/detailView/{idx}")
     public String showHouse(Model model, @PathVariable int idx) throws SQLException, ClassNotFoundException {
         HouseService houseService = new HouseService();
         model.addAttribute("house", houseService.getHouse(idx));
