@@ -1,7 +1,9 @@
 package com.myspring.springmaster;
 
+import com.myspring.springmaster.dataAccess.repository.HouseRepository;
 import com.myspring.springmaster.service.HouseService;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
@@ -9,12 +11,18 @@ import java.util.Arrays;
 @SpringBootTest
 class SpringMasterApplicationTests {
 
+    private final HouseService houseService;
+
+    @Autowired
+    SpringMasterApplicationTests(HouseService houseService) {
+        this.houseService = houseService;
+    }
+
     @Test
     void contextLoads() {
         System.out.println("Test Start\n\n\n");
-        HouseService houseService = new HouseService();
-        //String[] test = houseService.getLatitudeAndLongitude("경기도 화성시 비봉면 새비봉동로 17");
-        //System.out.println(Arrays.toString(test));
+
+
         System.out.println("Test End\n\n\n");
     }
 

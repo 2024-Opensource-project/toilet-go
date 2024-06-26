@@ -4,20 +4,24 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class HouseDTO {
-    private int idx;
+
+    private int id;
     private String name;
-    private String description;
-    private String price;
-    private String latitude;
-    private String longitude;
-    private String count;
     private String address;
-    private String imageUrl;
+    private double latitude;
+    private double longitude;
     private String status;
-    private String movingDate;
-    private String submissionDate;
+    private Date moveInDate;
+    private Date applyStartDate;
+    private Date applyEndDate;
+    private List<HouseDetailDTO> houseDetails;
+
+    // Getters and setters
 }

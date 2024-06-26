@@ -10,7 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class HouseDAO {
+public class HouseDAO {/*
     public ArrayList<HouseDTO> getHousesInfo(int num) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
         TypeCast typeCast = new TypeCast();
@@ -88,5 +88,6 @@ public class HouseDAO {
         ps.setString(11, house.getSubmissionDate());
         return ps.executeUpdate() > 0;
     }
-
+*/
 }
+

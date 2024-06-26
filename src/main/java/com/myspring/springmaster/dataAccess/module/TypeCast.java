@@ -1,6 +1,9 @@
 package com.myspring.springmaster.dataAccess.module;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.myspring.springmaster.dataAccess.DTO.HouseDetailTypeAdapter;
+import com.myspring.springmaster.dataAccess.entity.HouseDetail;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -11,7 +14,6 @@ import java.util.HashMap;
 public class TypeCast {
     public <E> ArrayList<E> resultSetToDtoList(ResultSet rs, Class<E> dto) throws SQLException, ClassNotFoundException {
         ResultSetMetaData data = rs.getMetaData();
-        ArrayList<HashMap<String, Object>> listOfMaps = new ArrayList<>();
         ArrayList<E> rtnValue =  new ArrayList<>();
         Gson gson = new Gson();
         while (rs.next()) {
@@ -23,5 +25,10 @@ public class TypeCast {
             rtnValue.add(gson.fromJson(gson.toJson(map), dto));
         }
         return rtnValue;
+    }
+
+    public <E> E entityToDto(Object entity, Class<E> dto){
+        Gson gson = new GsonBuilder().registerTypeAdapter(HouseDetail.class, new HouseDetailTypeAdapter()).create();
+        return gson.fromJson(gson.toJson(entity), dto);
     }
 }

@@ -1,5 +1,6 @@
 package com.myspring.springmaster.dataAccess.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -39,6 +40,7 @@ public class House {
     @Column(name = "apply_end_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date applyEndDate;
+
 
     @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<HouseDetail> houseDetails;

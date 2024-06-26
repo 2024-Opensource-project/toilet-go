@@ -22,15 +22,16 @@
         <section>
             <hgroup>
                 <h2 th:text="${house.name}">주택 이름</h2>
-                <img th:src="${house.imageUrl}" alt="행복주택 이미지"/>
+                <img th:src="${house.houseDetails}" alt="행복주택 이미지"/>
             </hgroup>
             <p th:text="'주소: ' + ${house.address}">주소</p>
             <p th:text="'상태: ' + ${house.status}">상태</p>
+            <!--
             <p th:text="'공모가: ' + ${house.price}">가격</p>
             <p th:text="'공모신청 날짜: ' + ${house.submissionDate}">공모신청 날짜</p>
             <p th:text="'입주 날짜: ' + ${house.movingDate}">입주 날짜</p>
             <h3>기타 정보</h3>
-            <p th:utext="${house.description}">상세 설명</p>
+            <p th:utext="${house.description}">상세 설명</p>!-->
         </section>
     </div>
 </main>
