@@ -13,8 +13,8 @@ public class HouseDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "house_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "house_id")
     private House house;
 
     @Column(name = "type", length = 10)

@@ -22,7 +22,7 @@
         <section>
             <hgroup>
                 <h2 th:text="${house.name}">주택 이름</h2>
-                <img th:src="${house.houseDetails}" alt="행복주택 이미지"/>
+                <img th:src="${house.houseDetails.get(0).imageUrl}" alt="행복주택 이미지"/>
             </hgroup>
             <p th:text="'주소: ' + ${house.address}">주소</p>
             <p th:text="'상태: ' + ${house.status}">상태</p>

@@ -3,8 +3,10 @@ package com.myspring.springmaster.service;
 import com.myspring.springmaster.dataAccess.DAO.HouseDAO;
 import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.entity.House;
+import com.myspring.springmaster.dataAccess.mapper.HouseMapper;
 import com.myspring.springmaster.dataAccess.module.TypeCast;
 import com.myspring.springmaster.dataAccess.repository.HouseRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,8 +34,7 @@ public class HouseService {
 */
     public HouseDTO getHouse(int id) {
         House house = houseRepository.findById((long) id).orElseThrow();
-        TypeCast typeCast = new TypeCast();
-        return typeCast.entityToDto(house, HouseDTO.class);
+        return HouseMapper.Instance.toHouseDTO(house);
     }
 /*
     public ArrayList<HouseDTO> getAllActiveHousesList() throws SQLException, ClassNotFoundException {

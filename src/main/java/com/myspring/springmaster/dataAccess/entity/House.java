@@ -2,10 +2,11 @@ package com.myspring.springmaster.dataAccess.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.Getter;
 
 import java.util.Date;
 import java.util.List;
-
+@Getter
 @Entity
 @Table(name = "houses")
 public class House {
@@ -42,8 +43,8 @@ public class House {
     private Date applyEndDate;
 
 
-    @OneToMany(mappedBy = "house", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<HouseDetail> houseDetails;
+    @OneToMany(mappedBy = "house", fetch = FetchType.EAGER)
+    public List<HouseDetail> houseDetails;
 
     // Getters and setters
 }

@@ -25,7 +25,8 @@ public class HouseController {
 
     @GetMapping("/house/detail/{id}")
     public String showHouse(Model model, @PathVariable int id) {
-        System.out.println(houseService.getHouse(id).getHouseDetails().size());
+        HouseDTO houseDTO = houseService.getHouse(id);
+        System.out.println(houseDTO.getHouseDetails().size());
         model.addAttribute("house", houseService.getHouse(id));
         return "house/detailView";
     }
