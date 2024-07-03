@@ -1,12 +1,13 @@
 package com.myspring.springmaster.dataAccess.DTO;
 
+import com.myspring.springmaster.dataAccess.entity.House;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class HouseDTO {
@@ -22,5 +23,4 @@ public class HouseDTO {
     private Date applyEndDate;
     private List<HouseDetailDTO> houseDetails;
 
-    // Getters and setters
 }

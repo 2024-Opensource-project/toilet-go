@@ -26,34 +26,30 @@
             </hgroup>
             <form id="submissionForm">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" placeholder="Enter your name">
-
-                <label for="description">Description:</label>
-                <textarea id="description" name="description" placeholder="Enter a description"></textarea>
-
-                <label for="price">Price:</label>
-                <input type="text" id="price" name="price" placeholder="Enter the price">
-
-                <label for="count">Count:</label>
-                <input type="number" id="count" name="count" placeholder="Enter the count">
+                <input type="text" id="name" name="name" placeholder="Enter name">
 
                 <label for="address">Address:</label>
                 <input type="text" id="address" name="address" placeholder="Enter the address">
 
-                <label for="imageUrl">Image URL:</label>
-                <input type="text" id="imageUrl" name="imageUrl" placeholder="Enter the image URL">
-
                 <label for="status">Status:</label>
                 <input type="text" id="status" name="status" placeholder="Enter the status">
 
-                <label for="movingDate">Moving Date:</label>
-                <input type="date" id="movingDate" name="movingDate">
+                <label for="moveInDate">Moving Date:</label>
+                <input type="date" id="moveInDate" name="moveInDate">
 
-                <label for="submissionDate">Submission Date:</label>
-                <input type="date" id="submissionDate" name="submissionDate">
+                <label for="applyStartDate">Submission Date:</label>
+                <input type="date" id="applyStartDate" name="applyStartDate">
 
-                <button type="button" onclick="submitForm()">Submit</button>
+                <label for="applyEndDate">Submission Date:</label>
+                <input type="date" id="applyEndDate" name="applyEndDate">
+
             </form>
+
+            <div id="details"></div>
+
+            <button type="button" onclick="addDetailsInput()">Add Details</button>
+            <button type="button" onclick="submitForm()">Submit</button>
+
         </section>
     </div>
 </main>
@@ -61,14 +57,25 @@
     <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
 </footer>
 <script>
+    let detailsNum = 0;
     function submitForm() {
-        const form = document.getElementById('submissionForm');
-        const formData = new FormData(form);
+        const houseData = new FormData(document.getElementById('submissionForm'));
+        const houseDetailsData = [];
         const jsonData = {};
 
-        formData.forEach((value, key) => {
+        houseData.forEach((value, key) => {
             jsonData[key] = value || ''; // Assign empty string if the value is empty
         });
+
+        for(let i=0; i<detailsNum; i++){
+            const detailData = new FormData(document.getElementById("detail"+i));
+            const input = {};
+            detailData.forEach((value, key) =>{
+                input[key] = value || '';
+            })
+            houseDetailsData.push(input);
+        }
+        jsonData["houseDetails"] = houseDetailsData;
 
         fetch('/house/add', {
             method: 'POST',
@@ -84,6 +91,24 @@
             .catch(error => {
                 console.error('Error:', error);
             });
+    }
+
+    function addDetailsInput() {
+        const types = ["text", "text", "number", "number", "number", "text"]
+        const ids = ["type", "size", "supplyCount", "deposit", "monthlyRent", "imageUrl"]
+
+        const detailsDiv = document.getElementById("details");
+
+        const child = document.createElement("form");
+        child.id = "detail"+detailsNum;
+        for(let i=0; i<types.length; i++){
+            const input = document.createElement("input");
+            input.type = types[i];
+            input.name = ids[i];
+            child.appendChild(input)
+        }
+        detailsDiv.append(child);
+        detailsNum++;
     }
 </script>
 </body>

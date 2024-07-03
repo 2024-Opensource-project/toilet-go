@@ -1,14 +1,17 @@
 package com.myspring.springmaster.dataAccess.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.ToString;
 
 import java.util.Date;
 import java.util.List;
 @Getter
 @Entity
 @Table(name = "houses")
+@ToString
 public class House {
 
     @Id
@@ -43,8 +46,27 @@ public class House {
     private Date applyEndDate;
 
 
-    @OneToMany(mappedBy = "house", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "house", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     public List<HouseDetail> houseDetails;
+
+    @Builder
+    public House(HouseDTO dto) {
+        this.id = dto.getId();
+        this.name = dto.getName();
+        this.address = dto.getAddress();
+        this.latitude = dto.getLatitude();
+        this.longitude = dto.getLongitude();
+        this.status = dto.getStatus();
+        this.moveInDate = dto.getMoveInDate();
+        this.applyStartDate = dto.getApplyStartDate();
+        this.applyEndDate = dto.getApplyEndDate();
+        this.houseDetails = new HouseDetail().toEntity(dto.getHouseDetails());
+    }
+
+    public House() {
+
+    }
+
 
     // Getters and setters
 }

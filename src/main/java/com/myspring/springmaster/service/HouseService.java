@@ -36,6 +36,19 @@ public class HouseService {
         House house = houseRepository.findById((long) id).orElseThrow();
         return HouseMapper.Instance.toHouseDTO(house);
     }
+
+    public boolean addHouse(HouseDTO house) {
+        removeUselessWord(house);
+        /*double[] latiAndLong = this.getLatitudeAndLongitude(house.getAddress());
+        if(latiAndLong != null) {
+            house.setLatitude(latiAndLong[0]);
+            house.setLongitude(latiAndLong[1]);
+        }*/
+        House test = new House(house);
+        System.out.println(test.toString());
+        houseRepository.save(test);
+        return true;
+    }
 /*
     public ArrayList<HouseDTO> getAllActiveHousesList() throws SQLException, ClassNotFoundException {
         HouseDAO houseDAO = new HouseDAO();
@@ -72,19 +85,7 @@ public class HouseService {
         return houseDAO.getSameAreaHouses(address);
     }
 
-    public boolean addHouse(HouseDTO house) throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        removeUselessWord(house);
-        String[] latiAndLong = this.getLatitudeAndLongitude(house.getAddress());
-        if(latiAndLong != null) {
-            house.setLatitude(latiAndLong[0]);
-            house.setLongitude(latiAndLong[1]);
-        }
-        if(!houseDAO.isAlreadyUploadedHouse(house)){
-            return houseDAO.addHouse(house);
-        }
-        return false;
-    }
+
 */
     private void removeUselessWord(HouseDTO house) {
         String[] uselessWords = {"소재지 :", "지도보기"};
@@ -95,8 +96,8 @@ public class HouseService {
         house.setAddress(address.strip());
     }
 
-    private String[] getLatitudeAndLongitude(String address){
-        String[] results = new String[2];
+    private double[] getLatitudeAndLongitude(String address){
+        double[] rtnValue = new double[2];
         try {
             ProcessBuilder pb = new ProcessBuilder("C:\\Users\\guna\\Desktop\\springMaster\\venv\\Scripts\\python.exe",
                     "C:\\Users\\guna\\Desktop\\springMaster\\zzzz\\naver_map_api.py", address);
@@ -108,8 +109,9 @@ public class HouseService {
             if(result.equals("Not Found") || result == null){ //오류처리 해보기
                 return null;
             }
-            results = result.split(",");
-
+            String[] results = result.split(",");
+            rtnValue[0] = Double.parseDouble(results[0]);
+            rtnValue[1] = Double.parseDouble(results[1]);
 
             in.close();
             // 파이썬 스크립트의 종료 코드 확인
@@ -121,7 +123,7 @@ public class HouseService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return results;
+        return rtnValue;
     }
 
     /*

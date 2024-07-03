@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserDAO {
     public boolean isExistIdAndPw(String id, String pw) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
-        PreparedStatement ps = conn.prepareStatement("select * from user where id = ? and pw = ?");
+        PreparedStatement ps = conn.prepareStatement("select * from members where id = ? and pw = ?");
         ps.setString(1, id);
         ps.setString(2, pw);
         ResultSet rs = ps.executeQuery();
@@ -22,7 +22,7 @@ public class UserDAO {
 
     public boolean findById(String id) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
-        PreparedStatement ps = conn.prepareStatement("select * from user where id = ?");
+        PreparedStatement ps = conn.prepareStatement("select * from members where id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         return rs.next();

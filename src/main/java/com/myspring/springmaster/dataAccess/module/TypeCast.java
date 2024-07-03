@@ -2,7 +2,6 @@ package com.myspring.springmaster.dataAccess.module;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.myspring.springmaster.dataAccess.DTO.HouseDetailTypeAdapter;
 import com.myspring.springmaster.dataAccess.entity.HouseDetail;
 
 import java.sql.ResultSet;
@@ -27,8 +26,4 @@ public class TypeCast {
         return rtnValue;
     }
 
-    public <E> E entityToDto(Object entity, Class<E> dto){
-        Gson gson = new GsonBuilder().registerTypeAdapter(HouseDetail.class, new HouseDetailTypeAdapter()).create();
-        return gson.fromJson(gson.toJson(entity), dto);
-    }
 }
