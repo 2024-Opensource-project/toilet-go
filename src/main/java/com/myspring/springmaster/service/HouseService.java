@@ -1,21 +1,15 @@
 package com.myspring.springmaster.service;
 
-import com.myspring.springmaster.dataAccess.DAO.HouseDAO;
 import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.dataAccess.mapper.HouseMapper;
-import com.myspring.springmaster.dataAccess.module.TypeCast;
 import com.myspring.springmaster.dataAccess.repository.HouseRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 @Service
 public class HouseService {
@@ -34,19 +28,19 @@ public class HouseService {
 */
     public HouseDTO getHouse(int id) {
         House house = houseRepository.findById((long) id).orElseThrow();
-        return HouseMapper.Instance.toHouseDTO(house);
+        return HouseMapper.Instance.toDTO(house);
     }
 
-    public boolean addHouse(HouseDTO house) {
-        removeUselessWord(house);
+    public boolean addHouse(HouseDTO houseDTO) {
+        removeUselessWord(houseDTO);
         /*double[] latiAndLong = this.getLatitudeAndLongitude(house.getAddress());
         if(latiAndLong != null) {
             house.setLatitude(latiAndLong[0]);
             house.setLongitude(latiAndLong[1]);
         }*/
-        House test = new House(house);
-        System.out.println(test.toString());
-        houseRepository.save(test);
+        House house = HouseMapper.Instance.toEntity(houseDTO);
+        houseRepository.save(house);
+
         return true;
     }
 /*

@@ -7,13 +7,14 @@ import com.myspring.springmaster.dataAccess.DTO.HouseDetailDTO;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.ToString;
+import lombok.experimental.SuperBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "house_details")
-@ToString
+@SuperBuilder
 public class HouseDetail {
 
     @Id
@@ -22,6 +23,7 @@ public class HouseDetail {
 
     @ManyToOne
     @JoinColumn(name = "house_id")
+    @JsonBackReference
     private House house;
 
     @Column(name = "type", length = 10)
@@ -42,12 +44,33 @@ public class HouseDetail {
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
-    public List<HouseDetail> toEntity(List<HouseDetailDTO> dtos) {
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public HouseDetail(int id, House house, String type, String size, int supplyCount, int deposit, int monthlyRent, String imageUrl) {
+        this.id = id;
+        this.house = house;
+        this.type = type;
+        this.size = size;
+        this.supplyCount = supplyCount;
+        this.deposit = deposit;
+        this.monthlyRent = monthlyRent;
+        this.imageUrl = imageUrl;
+    }
+
+    public HouseDetail() {
+
+    }
+
+/*
+    public List<HouseDetail> toEntity(List<HouseDetailDTO> dtos, House it) {
         List<HouseDetail> houseDetails = new ArrayList<>();
         for(HouseDetailDTO dto : dtos) {
             HouseDetail houseDetail = new HouseDetail();
             houseDetail.id = dto.getId();
-            houseDetail.house = dto.getHouse();
+            //houseDetail.house = it;
             houseDetail.type = dto.getType();
             houseDetail.size = dto.getSize();
             houseDetail.supplyCount = dto.getSupplyCount();
@@ -57,5 +80,5 @@ public class HouseDetail {
             houseDetails.add(houseDetail);
         }
         return houseDetails;
-    }
+    }*/
 }
