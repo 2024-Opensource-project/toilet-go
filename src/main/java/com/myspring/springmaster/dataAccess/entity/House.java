@@ -14,12 +14,11 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "houses")
-@ToString
 public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "name", length = 100)
     private String name;
@@ -28,10 +27,10 @@ public class House {
     private String address;
 
     @Column(name = "latitude")
-    private double latitude;
+    private Double latitude;
 
     @Column(name = "longitude")
-    private double longitude;
+    private Double longitude;
 
     @Column(name = "status", length = 50)
     private String status;
@@ -49,12 +48,12 @@ public class House {
     private Date applyEndDate;
 
 
-    @OneToMany(mappedBy = "house", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    public List<HouseDetail> houseDetails;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "house_id", updatable = false, nullable = false)
+    private List<HouseDetail> houseDetails;
 
     @Builder
-    public House(int id, String name, String address, double latitude, double longitude, String status, Date moveInDate, Date applyStartDate, Date applyEndDate, List<HouseDetail> houseDetails){
+    public House(Integer id, String name, String address, Double latitude, Double longitude, String status, Date moveInDate, Date applyStartDate, Date applyEndDate, List<HouseDetail> houseDetails){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -67,33 +66,8 @@ public class House {
         this.houseDetails = houseDetails;
     }
 
+
     public House() {
 
     }
-
-    public House toEntity(HouseDTO houseDTO) {
-        List<HouseDetail> list = new ArrayList<>();
-        for(HouseDetailDTO dto : houseDTO.getHouseDetails()){
-            list.add(dto.toEntity(this));
-        }
-        this.id = houseDTO.getId();
-        this.name = houseDTO.getName();
-        this.address = houseDTO.getAddress();
-        this.latitude = houseDTO.getLatitude();
-        this.longitude = houseDTO.getLongitude();
-        this.status = houseDTO.getStatus();
-        this.moveInDate = houseDTO.getMoveInDate();
-        this.applyStartDate = houseDTO.getApplyStartDate();
-        this.applyEndDate = houseDTO.getApplyEndDate();
-        this.houseDetails = list;
-        return this;
-    }
-
-    public void setHouseDetailsParent(){
-        for(HouseDetail houseDetail : houseDetails){
-            houseDetail.setHouse(this);
-        }
-    }
-
-    // Getters and setters
 }

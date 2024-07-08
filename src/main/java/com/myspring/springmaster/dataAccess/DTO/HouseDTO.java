@@ -23,25 +23,4 @@ public class HouseDTO {
     private Date applyStartDate;
     private Date applyEndDate;
     private List<HouseDetailDTO> houseDetails;
-
-    public House toEntity(){
-        List<HouseDetail> list = new ArrayList<>();
-        House.HouseBuilder houseBuilder = House.builder();
-        houseBuilder.id(id);
-        houseBuilder.name(name);
-        houseBuilder.address(address);
-        houseBuilder.latitude(latitude);
-        houseBuilder.longitude(longitude);
-        houseBuilder.status(status);
-        houseBuilder.moveInDate(moveInDate);
-        houseBuilder.applyStartDate(applyStartDate);
-        houseBuilder.applyEndDate(applyEndDate);
-
-        House house = houseBuilder.build();
-        for(HouseDetailDTO dto : houseDetails){
-            list.add(dto.toEntity(house));
-        }
-        house.builder().houseDetails(list).build();
-        return house;
-    }
 }

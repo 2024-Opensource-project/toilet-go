@@ -40,7 +40,6 @@ public class HouseService {
         }*/
         House house = HouseMapper.Instance.toEntity(houseDTO);
         houseRepository.save(house);
-
         return true;
     }
 /*

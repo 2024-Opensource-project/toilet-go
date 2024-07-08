@@ -21,18 +21,4 @@ public class HouseDetailDTO {
     private int deposit;
     private int monthlyRent;
     private String imageUrl;
-
-    public HouseDetail toEntity(House houseEntity){
-        HouseDetail houseDetail = HouseDetail.builder()
-                .id(id)
-                .house(houseEntity)
-                .type(type)
-                .size(size)
-                .supplyCount(supplyCount)
-                .deposit(deposit)
-                .monthlyRent(monthlyRent)
-                .imageUrl(imageUrl)
-                .build();
-        return houseDetail;
-    }
 }
