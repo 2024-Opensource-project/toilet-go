@@ -10,14 +10,14 @@ public class UserService {
     final UserDAO userDAO = new UserDAO();
 
     public boolean loginCheckAndGetSession(UserDTO userDTO, HttpSession session) throws SQLException, ClassNotFoundException {
-        if(userDAO.isExistIdAndPw(userDTO.getId(), userDTO.getPw())){
+        if(userDAO.isExistIdAndPw(userDTO.getUserId(), userDTO.getPw())){
             session.setAttribute("user", userDTO.getId());
             return true;
         }
         return false;
     }
     public String signUp(UserDTO user) throws SQLException, ClassNotFoundException {
-        if(userDAO.findById(user.getId())){
+        if(userDAO.findById(user.getUserId())){
             return "이미 생성된 Id 입니다.";
         }
         userDAO.save(user);
@@ -25,8 +25,9 @@ public class UserService {
     }
 
     public boolean isAdmin(HttpSession session){
-        if(session.getAttribute("user").equals("admin")){
-            return true;
+        String role = (String) session.getAttribute("user");
+        if(role != null){
+            return role.equals("admin") || role.equals("super_admin");
         }
         return false;
     }

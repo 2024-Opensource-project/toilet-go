@@ -1,7 +1,7 @@
 import requests
 from datetime import date, timedelta
 from bs4 import BeautifulSoup
-from dto import HouseDTO
+from dto import HouseDTO, HouseDetailDTO
 from typing import List
 
 
@@ -47,21 +47,29 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
     #rs = open("./gh_house_info.txt", mode="r", encoding="utf-8").read()
     soup = BeautifulSoup(rs, "html.parser")
 
-    house_list = soup.find_all("table", "mt20")
-    submissionDate = soup.find_all("ul", "bul_list mt10")[1].text.strip()
-    index = 0
+    house_info = soup.find("table", "mt20")
+    applyDate = soup.find_all("ul", "bul_list mt10")[1].text
+    data_list = house_info.find_all("td", "txt_l")
+    house = HouseDTO(
+        name = data_list[0].text.strip(),
+        address = data_list[1].text.strip(),
+        moveInDate = data_list[5].text.strip(),
+        applyStartDate = applyDate[11:21],
+        applyEndDate = applyDate[30:40]
+    )
 
-    houses_info: List[HouseDTO] = []
-    for house_info in house_list:
-        data_list = house_info.find_all("td", "txt_l")
-        house = HouseDTO(
-            name = data_list[0].text.strip(),
-            address = data_list[1].text.strip(),
-            count = data_list[3].text.strip(),
-            movingDate = data_list[5].text.strip(),
-            submissionDate = submissionDate,
-            description=str(soup.find("div", "tbl_scroll mt10"))
+    house_detail_list = soup.find_all("tr", "tb_house_con")
+    houseDetail_info : List[HouseDetailDTO] = []
+    for text in house_detail_list:
+        detail_data = text.find_all("td")
+        house_detail = HouseDetailDTO(
+            type = detail_data[0].text.strip(),
+            size = detail_data[1].text.strip(),
+            supplyCount = detail_data[2].text.strip(),
+            deposit = detail_data[3].text.strip(),
+            monthlyRent = detail_data[4].text.strip()
         )
-        houses_info.append(house)
-        index += 1
-    return houses_info
+        houseDetail_info.append(house_detail)
+
+    house.houseDetails = houseDetail_info
+    return house

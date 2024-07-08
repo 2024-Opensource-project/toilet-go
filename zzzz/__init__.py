@@ -11,10 +11,10 @@ def uplooad_lh():
         print(local.upload_houses(list_of_house))
 
 def upload_gh():
-    gh_all_list = get_gh.get_house_list()[:5]
+    gh_all_list = get_gh.get_house_list()
     for list in gh_all_list:
         list_of_house = get_gh.get_house_info(list)
         print(local.upload_houses(list_of_house))
 
-uplooad_lh()
+#uplooad_lh()
 upload_gh()

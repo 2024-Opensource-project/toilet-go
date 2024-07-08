@@ -4,6 +4,7 @@ import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.dataAccess.entity.HouseDetail;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,11 +17,11 @@ public class HouseDTO {
     private int id;
     private String name;
     private String address;
-    private double latitude;
-    private double longitude;
+    private BigDecimal latitude;
+    private BigDecimal longitude;
     private String status;
-    private Date moveInDate;
-    private Date applyStartDate;
-    private Date applyEndDate;
+    private String moveInDate;
+    private String applyStartDate;
+    private String applyEndDate;
     private List<HouseDetailDTO> houseDetails;
 }

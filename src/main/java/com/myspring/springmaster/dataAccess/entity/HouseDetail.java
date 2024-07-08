@@ -31,16 +31,16 @@ public class HouseDetail {
     private Integer supplyCount;
 
     @Column(name = "deposit")
-    private Integer deposit;
+    private String deposit;
 
     @Column(name = "monthly_rent")
-    private Integer monthlyRent;
+    private String monthlyRent;
 
     @Column(name = "image_url", length = 255)
     private String imageUrl;
 
 
-    public HouseDetail(int id, String type, String size, int supplyCount, int deposit, int monthlyRent, String imageUrl) {
+    public HouseDetail(int id, String type, String size, Integer supplyCount, String deposit, String monthlyRent, String imageUrl) {
         this.id = id;
         this.type = type;
         this.size = size;

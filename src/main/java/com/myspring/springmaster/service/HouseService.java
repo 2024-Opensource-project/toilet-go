@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 @Service
@@ -33,11 +34,11 @@ public class HouseService {
 
     public boolean addHouse(HouseDTO houseDTO) {
         removeUselessWord(houseDTO);
-        /*double[] latiAndLong = this.getLatitudeAndLongitude(house.getAddress());
+        BigDecimal[] latiAndLong = this.getLatitudeAndLongitude(houseDTO.getAddress());
         if(latiAndLong != null) {
-            house.setLatitude(latiAndLong[0]);
-            house.setLongitude(latiAndLong[1]);
-        }*/
+            houseDTO.setLatitude(latiAndLong[0]);
+            houseDTO.setLongitude(latiAndLong[1]);
+        }
         House house = HouseMapper.Instance.toEntity(houseDTO);
         houseRepository.save(house);
         return true;
@@ -89,10 +90,10 @@ public class HouseService {
         house.setAddress(address.strip());
     }
 
-    private double[] getLatitudeAndLongitude(String address){
-        double[] rtnValue = new double[2];
+    private BigDecimal[] getLatitudeAndLongitude(String address){
+        BigDecimal[] rtnValue = new BigDecimal[2];
         try {
-            ProcessBuilder pb = new ProcessBuilder("C:\\Users\\guna\\Desktop\\springMaster\\venv\\Scripts\\python.exe",
+            ProcessBuilder pb = new ProcessBuilder("python",
                     "C:\\Users\\guna\\Desktop\\springMaster\\zzzz\\naver_map_api.py", address);
             Process p = pb.start();
 
@@ -103,8 +104,8 @@ public class HouseService {
                 return null;
             }
             String[] results = result.split(",");
-            rtnValue[0] = Double.parseDouble(results[0]);
-            rtnValue[1] = Double.parseDouble(results[1]);
+            rtnValue[0] = BigDecimal.valueOf(Double.parseDouble(results[0]));
+            rtnValue[1] = BigDecimal.valueOf(Double.parseDouble(results[1]));
 
             in.close();
             // 파이썬 스크립트의 종료 코드 확인

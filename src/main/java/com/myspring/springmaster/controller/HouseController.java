@@ -50,22 +50,22 @@ public class HouseController {
     @GetMapping("house/add")
     public String addHouse(Model model, HttpSession session, RedirectAttributes redirectAttributes){
         UserService userService = new UserService();
-        //if(userService.isAdmin(session)){
+        if(userService.isAdmin(session)){
             return "house/addHouse";
-        //}
-        //redirectAttributes.addFlashAttribute("message", "You are not admin");
-        //return "redirect:/";
+        }
+        redirectAttributes.addFlashAttribute("message", "You are not admin");
+        return "redirect:/";
     }
 
     @ResponseBody
     @PostMapping("house/add")
     public String addHouse(@RequestBody HouseDTO house, HttpSession session) throws ClassNotFoundException, SQLException {
         UserService userService = new UserService();
-        //if(userService.isAdmin(session)){
+        if(userService.isAdmin(session)){
         System.out.println(house.toString());
             houseService.addHouse(house);
             return "success";
-        //}
-        //return "Allowed only admin!";
+        }
+        return "Allowed only admin!";
     }
 }

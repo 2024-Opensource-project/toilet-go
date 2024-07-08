@@ -1,7 +1,6 @@
 # save this as naver_map_api.py
 import sys
 import requests
-import json
 
 class NaverMapAPI:
     def __init__(self):

@@ -17,12 +17,11 @@ class Local:
         body = {"id": id, "pw": pw}
         self.rq.post(url=url, data=body)
 
-    def upload_houses(self, list_of_house):
+    def upload_houses(self, house):
         url = self.server_url + "/house/add"
-        for house in list_of_house:
-            body = asdict(house)
-            ps = self.rq.post(url, json=body)
-            status = ps.status_code
-            if status != 200:
-                return "Error"
+        body = asdict(house)
+        ps = self.rq.post(url, json=body)
+        status = ps.status_code
+        if status != 200:
+            return "Error"
         return "success!"

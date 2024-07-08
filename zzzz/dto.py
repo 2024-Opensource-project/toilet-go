@@ -2,13 +2,20 @@ from dataclasses import dataclass
 from typing import Optional
 
 @dataclass
+class HouseDetailDTO:
+    type: Optional[str] = ""
+    size: Optional[str] = ""
+    supplyCount: Optional[int] = ""
+    deposit: Optional[int] = ""
+    monthlyRent: Optional[int] = ""
+    imageUrl: Optional[str] = ""
+
+@dataclass
 class HouseDTO:
-    name: Optional[str] = "미정"
-    description: Optional[str] = "미정"
-    price: Optional[str] = "미정"
-    count: Optional[str] = "미정"
-    address: Optional[str] = "미정"
-    imageUrl: Optional[str] = "미정"
-    status: Optional[str] = "미정"
-    movingDate: Optional[str] = "미정"
-    submissionDate: Optional[str] = "미정"
+    name: Optional[str] = ""
+    address: Optional[str] = ""
+    status = "공고중"
+    moveInDate: Optional[str] = ""
+    applyStartDate: Optional[str] = ""
+    applyEndDate: Optional[str] = ""
+    houseDetails: Optional[list[HouseDetailDTO]] = ""

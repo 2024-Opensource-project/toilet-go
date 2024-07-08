@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,25 +28,25 @@ public class House {
     private String address;
 
     @Column(name = "latitude")
-    private Double latitude;
+    public BigDecimal latitude;
 
     @Column(name = "longitude")
-    private Double longitude;
+    private BigDecimal longitude;
 
     @Column(name = "status", length = 50)
     private String status;
 
     @Column(name = "move_in_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date moveInDate;
+    private String  moveInDate;
 
     @Column(name = "apply_start_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date applyStartDate;
+    private String applyStartDate;
 
     @Column(name = "apply_end_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date applyEndDate;
+    private String applyEndDate;
 
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -53,7 +54,7 @@ public class House {
     private List<HouseDetail> houseDetails;
 
     @Builder
-    public House(Integer id, String name, String address, Double latitude, Double longitude, String status, Date moveInDate, Date applyStartDate, Date applyEndDate, List<HouseDetail> houseDetails){
+    public House(Integer id, String name, String address, BigDecimal latitude, BigDecimal longitude, String status, String moveInDate, String applyStartDate, String applyEndDate, List<HouseDetail> houseDetails){
         this.id = id;
         this.name = name;
         this.address = address;

@@ -18,7 +18,7 @@ public class HouseDetailDTO {
     private String type;
     private String size;
     private int supplyCount;
-    private int deposit;
-    private int monthlyRent;
+    private String deposit;
+    private String monthlyRent;
     private String imageUrl;
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class UserDAO {
     public boolean isExistIdAndPw(String id, String pw) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
-        PreparedStatement ps = conn.prepareStatement("select * from members where id = ? and pw = ?");
+        PreparedStatement ps = conn.prepareStatement("select * from members where user_id = ? and pw = ?");
         ps.setString(1, id);
         ps.setString(2, pw);
         ResultSet rs = ps.executeQuery();
@@ -22,7 +22,7 @@ public class UserDAO {
 
     public boolean findById(String id) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
-        PreparedStatement ps = conn.prepareStatement("select * from members where id = ?");
+        PreparedStatement ps = conn.prepareStatement("select * from members where user_id = ?");
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
         return rs.next();
@@ -30,8 +30,8 @@ public class UserDAO {
 
     public void save(UserDTO user) throws SQLException, ClassNotFoundException {
         Connection conn = MysqlConnector.connect();
-        PreparedStatement ps = conn.prepareStatement("INSERT INTO user(id, pw, name, email) VALUES (?, ?, ?, ?)");
-        ps.setString(1, user.getId());
+        PreparedStatement ps = conn.prepareStatement("INSERT INTO members(user_id, pw, name, email) VALUES (?, ?, ?, ?)");
+        ps.setString(1, user.getUserId());
         ps.setString(2, user.getPw());
         ps.setString(3, user.getName());
         ps.setString(4, user.getEmail());
