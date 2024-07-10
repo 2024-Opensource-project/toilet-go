@@ -62,7 +62,6 @@ public class HouseController {
     public String addHouse(@RequestBody HouseDTO house, HttpSession session) throws ClassNotFoundException, SQLException {
         UserService userService = new UserService();
         if(userService.isAdmin(session)){
-        System.out.println(house.toString());
             houseService.addHouse(house);
             return "success";
         }

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -21,13 +22,14 @@ public class IndexController {
     public IndexController(HouseService houseService) {
         this.houseService = houseService;
     }
-/*
+
     @GetMapping("/")
     public String indexController(Model model, HttpSession session) throws SQLException, ClassNotFoundException {
-        ArrayList<HouseDTO> houseList = houseService.getHouseList();
+        final int HOUSE_COUNT = 10;
+        List<HouseDTO> houseList = houseService.getHouses(HOUSE_COUNT);
         model.addAttribute("houseList", houseList);
         return "index";
     }
 
- */
+
 }

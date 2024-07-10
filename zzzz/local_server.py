@@ -14,14 +14,13 @@ class Local:
         id = "admin"
         pw = "test"
         url = self.server_url + "/signin"
-        body = {"id": id, "pw": pw}
+        body = {"userId": id, "pw": pw}
         self.rq.post(url=url, data=body)
 
-    def upload_houses(self, house):
+    def upload_houses(self, house_list):
         url = self.server_url + "/house/add"
-        body = asdict(house)
-        ps = self.rq.post(url, json=body)
-        status = ps.status_code
-        if status != 200:
-            return "Error"
-        return "success!"
+        for house in house_list:
+            #print(house)
+            body = asdict(house)
+            ps = self.rq.post(url, json=body)
+            print(ps.status_code)

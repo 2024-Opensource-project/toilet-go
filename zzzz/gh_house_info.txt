@@ -160,7 +160,7 @@
 
 <li class="menuLv1">
 	<a href="javascript:$net.href('');" id="menu854">청약 서비스</a>
-	<div class="gnb_wrap" style="display: none;">
+	<div class="gnb_wrap">
 		<div class="gnb_box guide">
 			<p>청약정보</p>
 			<ul>
@@ -242,7 +242,7 @@
 </li>
 <li class="menuLv1">
 	<a href="javascript:$net.href('');" id="menu855">계약서비스</a>
-	<div class="gnb_wrap" style="display: none;">
+	<div class="gnb_wrap">
 		<div class="gnb_box guide">
 			<p>계약정보조회/변경</p>
 			<ul>
@@ -296,7 +296,7 @@
 </li>
 <li class="menuLv1">
 	<a href="javascript:$net.href('');" id="menu856">입주/퇴거 지원</a>
-	<div class="gnb_wrap" style="display: none;">
+	<div class="gnb_wrap">
 		<div class="gnb_box guide">
 			<p>입주/퇴거</p>
 			<ul>
@@ -317,7 +317,7 @@
 </li>
 <li class="menuLv1">
 	<a href="javascript:$net.href('');" id="menu857">고객지원</a>
-	<div class="gnb_wrap" style="display: none;">
+	<div class="gnb_wrap">
 		<div class="gnb_box guide">
 			<p>증명서발급</p>
 			<ul>
@@ -385,7 +385,7 @@
 		<!-- ///// GNB -->
 
 		<!-- floating MENU ///// -->
-		<div class="float_menu">
+		<div class="float_menu" style="top: 250px;">
 			<p class="float_tit">Quick<br>Menu</p>
 			<ul>
 				<li><a href="javascript:$net.href('/sb/sr/sr7270/selectSbscAplyHouse.do');"><img src="/images/main/mo_link_01.png" alt="청약신청 아이콘"><p>임대주택<br>청약신청</p></a></li>
@@ -403,7 +403,7 @@
 <!-- HEADER END -->
 
 <!-- BODY CONTENT BEGIN -->
-<div id="content" class="">
+<div id="content">
 
 	<!-- MENU NAVI BEGIN-->
 
@@ -476,7 +476,7 @@
 					<tbody>
 						<tr>
 							<th scope="row">공고명</th>
-							<td colspan="3" class="txt_l"><b>경기행복주택 서해안권역(화성진안1, 2, 동탄호수공원,  안산스마트허브, 평택BIX, 오산가장, 평택고덕) 예비입주자 추가모집 공고</b></td>
+							<td colspan="3" class="txt_l"><b>경기행복주택 동부권역, 경의권역(다산역, 가평청사, 다산지금A5, 파주병원복합) 예비입주자 추가모집 공고</b></td>
 						</tr>
 
 							<tr>
@@ -496,15 +496,15 @@
 							<td colspan="3" class="txt_l">
 
 									<p>
-									  <a href="/sr/sr7150/selectFileDown.do?pbancNo=636&amp;atchFileSn=1262199&amp;atchFileDtlSn=7&amp;mode=1">
-									  경기행복주택 서해안권역(화성진안1, 2, 동탄호수공원,  안산스마트허브, 평택BIX, 오산가장, 평택고덕) 예비입주자 추가모집 공고.hwp (1451008 Byte)
+									  <a href="/sr/sr7150/selectFileDown.do?pbancNo=635&amp;atchFileSn=1262198&amp;atchFileDtlSn=11&amp;mode=1">
+									  경기행복주택 동부권역, 경의권역(다산역, 가평청사, 다산지금A5, 파주병원복합) 예비입주자 추가모집 공고(수정).hwp (1797120 Byte)
 									  <img src="/images/sub/hwp.png" alt="hwp 파일" class="file_ic">
 									  </a>
 									</p>
 
 									<p>
-									  <a href="/sr/sr7150/selectFileDown.do?pbancNo=636&amp;atchFileSn=1262199&amp;atchFileDtlSn=9&amp;mode=1">
-									  경기행복주택 서해안권역(화성진안1, 2, 동탄호수공원,  안산스마트허브, 평택BIX, 오산가장, 평택고덕) 예비입주자 추가모집 공고.pdf (1124198 Byte)
+									  <a href="/sr/sr7150/selectFileDown.do?pbancNo=635&amp;atchFileSn=1262198&amp;atchFileDtlSn=13&amp;mode=1">
+									  경기행복주택 동부권역, 경의권역(다산역, 가평청사, 다산지금A5, 파주병원복합) 예비입주자 추가모집 공고(수정).pdf (1164150 Byte)
 									  <img src="/images/sub/pdf.png" alt="pdf 파일" class="file_ic">
 									  </a>
 									</p>
@@ -524,7 +524,7 @@
 
 
 
-							<li id="li1" class="active pbancTab"><a href="javascript:tab_move('suply',1)">화성진안1 경기행복주택</a></li>
+							<li id="li1" class="active pbancTab"><a href="javascript:tab_move('suply',1)">남양주 다산역A2 경기행복주택</a></li>
 
 
 
@@ -532,7 +532,7 @@
 
 
 
-							<li id="li2" class=" pbancTab"><a href="javascript:tab_move('suply',2)">화성진안2 경기행복주택</a></li>
+							<li id="li2" class=" pbancTab"><a href="javascript:tab_move('suply',2)">파주 병원복합 경기행복주택</a></li>
 
 
 
@@ -540,7 +540,7 @@
 
 
 
-							<li id="li3" class=" pbancTab"><a href="javascript:tab_move('suply',3)">동탄호수공원(A76-1) 경기행복주택</a></li>
+							<li id="li3" class=" pbancTab"><a href="javascript:tab_move('suply',3)">가평청사복합 경기행복주택</a></li>
 
 
 
@@ -548,31 +548,7 @@
 
 
 
-							<li id="li4" class=" pbancTab"><a href="javascript:tab_move('suply',4)">안산스마트허브 경기행복주택</a></li>
-
-
-
-
-
-
-
-							<li id="li5" class=" pbancTab"><a href="javascript:tab_move('suply',5)">평택BIX 경기행복주택</a></li>
-
-
-
-
-
-
-
-							<li id="li6" class=" pbancTab"><a href="javascript:tab_move('suply',6)">오산가장 경기행복주택</a></li>
-
-
-
-
-
-
-
-							<li id="li7" class=" pbancTab"><a href="javascript:tab_move('suply',7)">평택고덕 경기행복주택</a></li>
+							<li id="li4" class=" pbancTab"><a href="javascript:tab_move('suply',4)">다산지금A5 경기행복주택</a></li>
 
 					</ul>
 
@@ -594,22 +570,24 @@
 								<tbody>
 									<tr>
 										<th scope="row">지구명</th>
-										<td class="txt_l">화성진안1 경기행복주택</td>
+										<td class="txt_l">남양주 다산역A2 경기행복주택</td>
 										<th scope="row">소재지</th>
 										<td class="txt_l">
-											<span>경기도 화성시 진안동 938 경기행복주택</span>
+											<span>경기도 남양주시 다산동 6027 다산역 경기행복주택 </span>
+
+												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','http://naver.me/GKOjBLop')">지도보기</button>
 
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">20 ~ 20</td>
+										<td class="txt_l">24.97 ~ 44.97</td>
 										<th scope="row">총 세대수</th>
-										<td class="txt_l">9</td>
+										<td class="txt_l">412</td>
 									</tr>
 									<tr>
 										<th scope="row">난방방식</th>
-										<td class="txt_l">개별난방</td>
+										<td class="txt_l">지역난방</td>
 										<th scope="row">입주예정월</th>
 										<td class="txt_l">2026.12</td>
 									</tr>
@@ -637,7 +615,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015151','976','2')" data-show="img1tab1" class="active">조감도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1058','2')" data-show="img1tab1" class="active">조감도</button>
 											</li>
 
 
@@ -647,7 +625,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015151','977','1')" data-show="img2tab1" class="">호실배치도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1160','1')" data-show="img2tab1" class="">배치도</button>
 											</li>
 
 
@@ -657,7 +635,57 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015151','1241667','1')" data-show="img3tab1" class="">20타입 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1161','1')" data-show="img3tab1" class="">동호수표</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1162','1')" data-show="img4tab1" class="">위치도</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1241676','1')" data-show="img5tab1" class="">24타입</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1241677','1')" data-show="img6tab1" class="">33타입</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1241678','1')" data-show="img7tab1" class="">36타입</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2015023','1241679','1')" data-show="img8tab1" class="">44타입</button>
 											</li>
 
 									</ul>
@@ -665,15 +693,35 @@
 								<div class="ltab_content">
 
 										<div id="img1tab1">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015151&amp;rcritNmtm=12&amp;atchFileSn=976&amp;atchFlag=main" alt="조감도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1058&amp;atchFlag=main" alt="조감도">
 										</div>
 
 										<div id="img2tab1">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015151&amp;rcritNmtm=12&amp;atchFileSn=977&amp;atchFlag=main" alt="호실배치도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1160&amp;atchFlag=main" alt="배치도">
 										</div>
 
 										<div id="img3tab1">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015151&amp;rcritNmtm=12&amp;atchFileSn=1241667&amp;atchFlag=main" alt="20타입 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1161&amp;atchFlag=main" alt="동호수표">
+										</div>
+
+										<div id="img4tab1">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1162&amp;atchFlag=main" alt="위치도">
+										</div>
+
+										<div id="img5tab1">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1241676&amp;atchFlag=main" alt="24타입">
+										</div>
+
+										<div id="img6tab1">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1241677&amp;atchFlag=main" alt="33타입">
+										</div>
+
+										<div id="img7tab1">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1241678&amp;atchFlag=main" alt="36타입">
+										</div>
+
+										<div id="img8tab1">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015023&amp;rcritNmtm=15&amp;atchFileSn=1241679&amp;atchFlag=main" alt="44타입">
 										</div>
 
 								</div>
@@ -711,12 +759,168 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2015151" data-rcritnmtm="12" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="20A" class="color_blue">
-													20A 청년
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30040" data-housetycd="24A" class="color_blue">
+													24A 대학생
 												</button>
 											</td>
-											<td>20</td>
-											<td>9</td>
+											<td>24.97</td>
+											<td>12</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="24A,B,C" class="color_blue">
+													24A,B,C 청년
+												</button>
+											</td>
+											<td>24.97</td>
+											<td>49</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="24B" class="color_blue">
+													24B 주거급여수급자
+												</button>
+											</td>
+											<td>24.97</td>
+											<td>2</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="24C" class="color_blue">
+													24C 고령자
+												</button>
+											</td>
+											<td>24.97</td>
+											<td>2</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="33A" class="color_blue">
+													33A 주거급여수급자
+												</button>
+											</td>
+											<td>33.97</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="33A,B" class="color_blue">
+													33A,B 청년
+												</button>
+											</td>
+											<td>33.97</td>
+											<td>22</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="33B" class="color_blue">
+													33B 고령자
+												</button>
+											</td>
+											<td>33.97</td>
+											<td>1</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="36A" class="color_blue">
+													36A 신혼부부, 한부모가족
+												</button>
+											</td>
+											<td>36.95</td>
+											<td>73</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="36A,B,C" class="color_blue">
+													36A,B,C 청년
+												</button>
+											</td>
+											<td>36.95</td>
+											<td>157</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="36B" class="color_blue">
+													36B 주거급여수급자
+												</button>
+											</td>
+											<td>36.95</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="36C" class="color_blue">
+													36C 고령자
+												</button>
+											</td>
+											<td>36.95</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="44A" class="color_blue">
+													44A 신혼부부, 한부모가족
+												</button>
+											</td>
+											<td>44.97</td>
+											<td>76</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2015023" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="44B" class="color_blue">
+													44B 고령자
+												</button>
+											</td>
+											<td>44.97</td>
+											<td>3</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -730,7 +934,7 @@
 								<span>
 
 
-										화성진안1 경기행복주택 임대센터 문의: 031-8012-7572
+										다산역A2 경기행복주택 임대센터 문의: 031-510-0036
 
 								</span>
 							</div>
@@ -783,18 +987,20 @@
 								<tbody>
 									<tr>
 										<th scope="row">지구명</th>
-										<td class="txt_l">화성진안2 경기행복주택</td>
+										<td class="txt_l">파주 병원복합 경기행복주택</td>
 										<th scope="row">소재지</th>
 										<td class="txt_l">
-											<span>경기도 화성시 진안동 882-1 </span>
+											<span>경기도 파주시 금촌동 799-4 </span>
+
+												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','http://naver.me/FA6WqO1x')">지도보기</button>
 
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">20.02 ~ 20.02</td>
+										<td class="txt_l">26.79 ~ 35.02</td>
 										<th scope="row">총 세대수</th>
-										<td class="txt_l">7</td>
+										<td class="txt_l">29</td>
 									</tr>
 									<tr>
 										<th scope="row">난방방식</th>
@@ -826,7 +1032,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','554','2')" data-show="img1tab2" class="active">조감도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','400','2')" data-show="img1tab2" class="active">조감도</button>
 											</li>
 
 
@@ -836,7 +1042,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','555','1')" data-show="img2tab2" class="">호실배치도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','402','1')" data-show="img2tab2" class="">위치도</button>
 											</li>
 
 
@@ -846,7 +1052,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','1241680','1')" data-show="img3tab2" class="">17A 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','432','2')" data-show="img3tab2" class="">배치도</button>
 											</li>
 
 
@@ -856,7 +1062,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','1241681','1')" data-show="img4tab2" class="">17B 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','433','1')" data-show="img4tab2" class="">호실 배치표</button>
 											</li>
 
 
@@ -866,7 +1072,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','1241682','1')" data-show="img5tab2" class="">18타입 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','1241686','1')" data-show="img5tab2" class="">26타입 평면도</button>
 											</li>
 
 
@@ -876,7 +1082,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','1241684','1')" data-show="img6tab2" class="">20타입 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','1241687','1')" data-show="img6tab2" class="">35A타입 평면도</button>
 											</li>
 
 
@@ -886,7 +1092,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2015152','1241685','1')" data-show="img7tab2" class="">22타입 평면도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016016','1241688','1')" data-show="img7tab2" class="">36B타입 평면도</button>
 											</li>
 
 									</ul>
@@ -894,31 +1100,31 @@
 								<div class="ltab_content">
 
 										<div id="img1tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=554&amp;atchFlag=main" alt="조감도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=400&amp;atchFlag=main" alt="조감도">
 										</div>
 
 										<div id="img2tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=555&amp;atchFlag=main" alt="호실배치도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=402&amp;atchFlag=main" alt="위치도">
 										</div>
 
 										<div id="img3tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=1241680&amp;atchFlag=main" alt="17A 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=432&amp;atchFlag=main" alt="배치도">
 										</div>
 
 										<div id="img4tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=1241681&amp;atchFlag=main" alt="17B 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=433&amp;atchFlag=main" alt="호실 배치표">
 										</div>
 
 										<div id="img5tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=1241682&amp;atchFlag=main" alt="18타입 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=1241686&amp;atchFlag=main" alt="26타입 평면도">
 										</div>
 
 										<div id="img6tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=1241684&amp;atchFlag=main" alt="20타입 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=1241687&amp;atchFlag=main" alt="35A타입 평면도">
 										</div>
 
 										<div id="img7tab2">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2015152&amp;rcritNmtm=12&amp;atchFileSn=1241685&amp;atchFlag=main" alt="22타입 평면도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016016&amp;rcritNmtm=14&amp;atchFileSn=1241688&amp;atchFlag=main" alt="36B타입 평면도">
 										</div>
 
 								</div>
@@ -956,12 +1162,51 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2015152" data-rcritnmtm="12" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="20A" class="color_blue">
-													20A 청년
+												<button type="button" data-bizcd="2016016" data-rcritnmtm="14" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30040" data-housetycd="26A" class="color_blue">
+													26A 대학생
 												</button>
 											</td>
-											<td>20.02</td>
-											<td>7</td>
+											<td>26.79</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2016016" data-rcritnmtm="14" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26A1" class="color_blue">
+													26A1 청년
+												</button>
+											</td>
+											<td>26.79</td>
+											<td>12</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2016016" data-rcritnmtm="14" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="35A,B" class="color_blue">
+													35A,B 고령자
+												</button>
+											</td>
+											<td>35.02</td>
+											<td>2</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2016016" data-rcritnmtm="14" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="35A1,B1" class="color_blue">
+													35A1,B1 청년
+												</button>
+											</td>
+											<td>35.02</td>
+											<td>10</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -975,7 +1220,7 @@
 								<span>
 
 
-										화성진안2 경기행복주택 임대센터 문의: 031-8012-7572
+										파주병원복합 경기행복주택 임대센터 문의: 031-372-8518
 
 								</span>
 							</div>
@@ -1028,24 +1273,22 @@
 								<tbody>
 									<tr>
 										<th scope="row">지구명</th>
-										<td class="txt_l">동탄호수공원(A76-1) 경기행복주택</td>
+										<td class="txt_l">가평청사복합 경기행복주택</td>
 										<th scope="row">소재지</th>
 										<td class="txt_l">
-											<span>경기도 화성시 산척동 750 </span>
-
-												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','https://naver.me/GRyA4kSQ')">지도보기</button>
+											<span>경기도 가평군 가평읍 읍내리 608-5 가평군 2청사 </span>
 
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">18.4624 ~ 44.1269</td>
+										<td class="txt_l">34.17 ~ 44.88</td>
 										<th scope="row">총 세대수</th>
-										<td class="txt_l">641</td>
+										<td class="txt_l">44</td>
 									</tr>
 									<tr>
 										<th scope="row">난방방식</th>
-										<td class="txt_l">지역난방</td>
+										<td class="txt_l">개별난방</td>
 										<th scope="row">입주예정월</th>
 										<td class="txt_l">2026.12</td>
 									</tr>
@@ -1073,7 +1316,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','7267','2')" data-show="img1tab3" class="active">조감도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','397','2')" data-show="img1tab3" class="active">조감도</button>
 											</li>
 
 
@@ -1083,7 +1326,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','7811','2')" data-show="img2tab3" class="">배치도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','399','1')" data-show="img2tab3" class="">위치도</button>
 											</li>
 
 
@@ -1093,7 +1336,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','7268','2')" data-show="img3tab3" class="">동호수표</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','426','2')" data-show="img3tab3" class="">배치도</button>
 											</li>
 
 
@@ -1103,7 +1346,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','8933','1')" data-show="img4tab3" class="">세대평면도[44ABC_신혼부부,한부모가족]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','427','1')" data-show="img4tab3" class="">호실 배치표</button>
 											</li>
 
 
@@ -1113,7 +1356,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13586','1')" data-show="img5tab3" class="">세대평면도[44ABC2_산업단지근로자]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','1241689','1')" data-show="img5tab3" class="">34A타입 평면도</button>
 											</li>
 
 
@@ -1123,7 +1366,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13587','1')" data-show="img6tab3" class="">세대평면도[36AB_신혼부부,한부모가족]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','1241690','1')" data-show="img6tab3" class="">34B타입 평면도</button>
 											</li>
 
 
@@ -1133,7 +1376,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13588','1')" data-show="img7tab3" class="">세대평면도[36A_산업단지근로자]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','1241691','1')" data-show="img7tab3" class="">44A타입 평면도</button>
 											</li>
 
 
@@ -1143,87 +1386,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13589','1')" data-show="img8tab3" class="">세대평면도[26AB_고령자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13590','1')" data-show="img9tab3" class="">세대평면도[26B_청년(장애인)]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13591','1')" data-show="img10tab3" class="">세대평면도[26A_산업단지근로자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13592','1')" data-show="img11tab3" class="">세대평면도[18A4_주거급여수급자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13593','1')" data-show="img12tab3" class="">세대평면도[18A3_고령자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13594','1')" data-show="img13tab3" class="">세대평면도[18A2_청년]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','13595','1')" data-show="img14tab3" class="">세대평면도[18A1_산업단지근로자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','14432','1')" data-show="img15tab3" class="">위치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017004','41011','1')" data-show="img16tab3" class="">세대평면도[44ABC1_청년]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2016018','1241692','1')" data-show="img8tab3" class="">44B타입 평면도</button>
 											</li>
 
 									</ul>
@@ -1231,67 +1394,35 @@
 								<div class="ltab_content">
 
 										<div id="img1tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=7267&amp;atchFlag=main" alt="조감도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=397&amp;atchFlag=main" alt="조감도">
 										</div>
 
 										<div id="img2tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=7811&amp;atchFlag=main" alt="배치도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=399&amp;atchFlag=main" alt="위치도">
 										</div>
 
 										<div id="img3tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=7268&amp;atchFlag=main" alt="동호수표">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=426&amp;atchFlag=main" alt="배치도">
 										</div>
 
 										<div id="img4tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=8933&amp;atchFlag=main" alt="세대평면도[44ABC_신혼부부,한부모가족]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=427&amp;atchFlag=main" alt="호실 배치표">
 										</div>
 
 										<div id="img5tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13586&amp;atchFlag=main" alt="세대평면도[44ABC2_산업단지근로자]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=1241689&amp;atchFlag=main" alt="34A타입 평면도">
 										</div>
 
 										<div id="img6tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13587&amp;atchFlag=main" alt="세대평면도[36AB_신혼부부,한부모가족]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=1241690&amp;atchFlag=main" alt="34B타입 평면도">
 										</div>
 
 										<div id="img7tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13588&amp;atchFlag=main" alt="세대평면도[36A_산업단지근로자]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=1241691&amp;atchFlag=main" alt="44A타입 평면도">
 										</div>
 
 										<div id="img8tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13589&amp;atchFlag=main" alt="세대평면도[26AB_고령자]">
-										</div>
-
-										<div id="img9tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13590&amp;atchFlag=main" alt="세대평면도[26B_청년(장애인)]">
-										</div>
-
-										<div id="img10tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13591&amp;atchFlag=main" alt="세대평면도[26A_산업단지근로자]">
-										</div>
-
-										<div id="img11tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13592&amp;atchFlag=main" alt="세대평면도[18A4_주거급여수급자]">
-										</div>
-
-										<div id="img12tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13593&amp;atchFlag=main" alt="세대평면도[18A3_고령자]">
-										</div>
-
-										<div id="img13tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13594&amp;atchFlag=main" alt="세대평면도[18A2_청년]">
-										</div>
-
-										<div id="img14tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=13595&amp;atchFlag=main" alt="세대평면도[18A1_산업단지근로자]">
-										</div>
-
-										<div id="img15tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=14432&amp;atchFlag=main" alt="위치도">
-										</div>
-
-										<div id="img16tab3">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017004&amp;rcritNmtm=22&amp;atchFileSn=41011&amp;atchFlag=main" alt="세대평면도[44ABC1_청년]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2016018&amp;rcritNmtm=15&amp;atchFileSn=1241692&amp;atchFlag=main" alt="44B타입 평면도">
 										</div>
 
 								</div>
@@ -1329,12 +1460,12 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30090" data-housetycd="18A1" class="color_blue">
-													18A1 산업단지근로자
+												<button type="button" data-bizcd="2016018" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="34A" class="color_blue">
+													34A 청년
 												</button>
 											</td>
-											<td>18.4624</td>
-											<td>5</td>
+											<td>34.17</td>
+											<td>20</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -1342,37 +1473,11 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="18A2" class="color_blue">
-													18A2 청년
+												<button type="button" data-bizcd="2016018" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="34B" class="color_blue">
+													34B 고령자
 												</button>
 											</td>
-											<td>18.4624</td>
-											<td>74</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="18A3" class="color_blue">
-													18A3 고령자
-												</button>
-											</td>
-											<td>18.4624</td>
-											<td>2</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="18A4" class="color_blue">
-													18A4 주거급여수급자
-												</button>
-											</td>
-											<td>18.4624</td>
+											<td>34.17</td>
 											<td>3</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
@@ -1381,12 +1486,12 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30090" data-housetycd="26A" class="color_blue">
-													26A 산업단지근로자
+												<button type="button" data-bizcd="2016018" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="44A" class="color_blue">
+													44A 신혼부부, 한부모가족
 												</button>
 											</td>
-											<td>26.4422</td>
-											<td>13</td>
+											<td>44.14</td>
+											<td>5</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -1394,103 +1499,12 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="26AB" class="color_blue">
-													26AB 고령자
+												<button type="button" data-bizcd="2016018" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="44B" class="color_blue">
+													44B 청년
 												</button>
 											</td>
-											<td>26.4422</td>
-											<td>10</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26B" class="color_blue">
-													26B 청년
-												</button>
-											</td>
-											<td>26.5761</td>
-											<td>65</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30090" data-housetycd="36A" class="color_blue">
-													36A 산업단지근로자
-												</button>
-											</td>
-											<td>36.1396</td>
-											<td>36</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="36AB" class="color_blue">
-													36AB 신혼부부, 한부모가족
-												</button>
-											</td>
-											<td>36.1396</td>
-											<td>30</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="36AB1" class="color_blue">
-													36AB1 청년
-												</button>
-											</td>
-											<td>36.1396</td>
-											<td>173</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="44ABC" class="color_blue">
-													44ABC 신혼부부, 한부모가족
-												</button>
-											</td>
-											<td>44.1269</td>
-											<td>54</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="44ABC1" class="color_blue">
-													44ABC1 청년
-												</button>
-											</td>
-											<td>44.1269</td>
-											<td>133</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017004" data-rcritnmtm="22" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30090" data-housetycd="44ABC2" class="color_blue">
-													44ABC2 산업단지근로자
-												</button>
-											</td>
-											<td>44.1269</td>
-											<td>43</td>
+											<td>44.88</td>
+											<td>16</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -1504,7 +1518,7 @@
 								<span>
 
 
-										동탄호수공원 경기행복주택 임대센터 문의: 031-372-8515, 8518
+										가평청사복합 임대센터 문의: 031-217-7857
 
 								</span>
 							</div>
@@ -1557,24 +1571,24 @@
 								<tbody>
 									<tr>
 										<th scope="row">지구명</th>
-										<td class="txt_l">안산스마트허브 경기행복주택</td>
+										<td class="txt_l">다산지금A5 경기행복주택</td>
 										<th scope="row">소재지</th>
 										<td class="txt_l">
-											<span>경기도 안산시 단원구 원시동 850 안산스마트허브 경기행복주택 </span>
+											<span>경기도 남양주시 다산동 6110 </span>
 
-												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','https://naver.me/535pjsKY')">지도보기</button>
+												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','http://naver.me/Gyj4jAVX')">지도보기</button>
 
 										</td>
 									</tr>
 									<tr>
 										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">16.74 ~ 21.8</td>
+										<td class="txt_l">18.9415 ~ 36.9923</td>
 										<th scope="row">총 세대수</th>
-										<td class="txt_l">252</td>
+										<td class="txt_l">626</td>
 									</tr>
 									<tr>
 										<th scope="row">난방방식</th>
-										<td class="txt_l">개별난방</td>
+										<td class="txt_l">지역난방</td>
 										<th scope="row">입주예정월</th>
 										<td class="txt_l">2026.12</td>
 									</tr>
@@ -1602,7 +1616,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59383','2')" data-show="img1tab4" class="active">조감도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120330','2')" data-show="img1tab4" class="active">조감도</button>
 											</li>
 
 
@@ -1612,7 +1626,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59385','2')" data-show="img2tab4" class="">위치도</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120331','2')" data-show="img2tab4" class="">배치도</button>
 											</li>
 
 
@@ -1622,7 +1636,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59387','1')" data-show="img3tab4" class="">세대평면도[16A1 기숙사]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120332','1')" data-show="img3tab4" class="">위치도</button>
 											</li>
 
 
@@ -1632,7 +1646,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59388','1')" data-show="img4tab4" class="">세대평면도[16A2 산단근로자]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120351','2')" data-show="img4tab4" class="">동호수표</button>
 											</li>
 
 
@@ -1642,7 +1656,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59389','1')" data-show="img5tab4" class="">세대평면도[21A 산단근로자]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120352','1')" data-show="img5tab4" class="">세대평면도(18A1 고령자)</button>
 											</li>
 
 
@@ -1652,7 +1666,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','59390','1')" data-show="img6tab4" class="">세대평면도[21B 고령자]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120353','1')" data-show="img6tab4" class="">세대평면도(18A2 주거급여수급자)</button>
 											</li>
 
 
@@ -1662,7 +1676,7 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','87219','1')" data-show="img7tab4" class="">세대평면도[16A3 청년]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120354','1')" data-show="img7tab4" class="">세대평면도(18A3 청년)</button>
 											</li>
 
 
@@ -1672,7 +1686,147 @@
 
 
 											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017011','87220','1')" data-show="img8tab4" class="">세대평면도[21A1 청년]</button>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120355','1')" data-show="img8tab4" class="">세대평면도(26A5 고령자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120356','1')" data-show="img9tab4" class="">세대평면도(26B 고령자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120357','1')" data-show="img10tab4" class="">세대평면도(26A6 주거급여수급자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120358','1')" data-show="img11tab4" class="">세대평면도(26B1 주거급여수급자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120359','1')" data-show="img12tab4" class="">세대평면도(26A1 벤처기업 핵심인재 우선공급)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120360','1')" data-show="img13tab4" class="">세대평면도(26B2 청년)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120361','1')" data-show="img14tab4" class="">세대평면도(26A2, 26A3, 26A4 창업인 우선공급)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120362','1')" data-show="img15tab4" class="">세대평면도(36A 신혼부부,한부모가족)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120363','1')" data-show="img16tab4" class="">세대평면도(36A1 고령자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120364','1')" data-show="img17tab4" class="">세대평면도(36A2 주거급여수급자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120365','1')" data-show="img18tab4" class="">세대평면도(44A 신혼부부,한부모가족)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','120366','1')" data-show="img19tab4" class="">세대평면도(44A1 고령자)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','266997','1')" data-show="img20tab4" class="">세대평면도(26A7 청년)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','266998','1')" data-show="img21tab4" class="">세대평면도(36A3 청년)</button>
+											</li>
+
+
+
+
+
+
+
+											<li>
+												<button type="button" onclick="javascript:fn_chgSn('2017003','266999','1')" data-show="img22tab4" class="">세대평면도(44A2 청년)</button>
 											</li>
 
 									</ul>
@@ -1680,35 +1834,91 @@
 								<div class="ltab_content">
 
 										<div id="img1tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59383&amp;atchFlag=main" alt="조감도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120330&amp;atchFlag=main" alt="조감도">
 										</div>
 
 										<div id="img2tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59385&amp;atchFlag=main" alt="위치도">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120331&amp;atchFlag=main" alt="배치도">
 										</div>
 
 										<div id="img3tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59387&amp;atchFlag=main" alt="세대평면도[16A1 기숙사]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120332&amp;atchFlag=main" alt="위치도">
 										</div>
 
 										<div id="img4tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59388&amp;atchFlag=main" alt="세대평면도[16A2 산단근로자]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120351&amp;atchFlag=main" alt="동호수표">
 										</div>
 
 										<div id="img5tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59389&amp;atchFlag=main" alt="세대평면도[21A 산단근로자]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120352&amp;atchFlag=main" alt="세대평면도(18A1 고령자)">
 										</div>
 
 										<div id="img6tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=59390&amp;atchFlag=main" alt="세대평면도[21B 고령자]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120353&amp;atchFlag=main" alt="세대평면도(18A2 주거급여수급자)">
 										</div>
 
 										<div id="img7tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=87219&amp;atchFlag=main" alt="세대평면도[16A3 청년]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120354&amp;atchFlag=main" alt="세대평면도(18A3 청년)">
 										</div>
 
 										<div id="img8tab4">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017011&amp;rcritNmtm=20&amp;atchFileSn=87220&amp;atchFlag=main" alt="세대평면도[21A1 청년]">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120355&amp;atchFlag=main" alt="세대평면도(26A5 고령자)">
+										</div>
+
+										<div id="img9tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120356&amp;atchFlag=main" alt="세대평면도(26B 고령자)">
+										</div>
+
+										<div id="img10tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120357&amp;atchFlag=main" alt="세대평면도(26A6 주거급여수급자)">
+										</div>
+
+										<div id="img11tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120358&amp;atchFlag=main" alt="세대평면도(26B1 주거급여수급자)">
+										</div>
+
+										<div id="img12tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120359&amp;atchFlag=main" alt="세대평면도(26A1 벤처기업 핵심인재 우선공급)">
+										</div>
+
+										<div id="img13tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120360&amp;atchFlag=main" alt="세대평면도(26B2 청년)">
+										</div>
+
+										<div id="img14tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120361&amp;atchFlag=main" alt="세대평면도(26A2, 26A3, 26A4 창업인 우선공급)">
+										</div>
+
+										<div id="img15tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120362&amp;atchFlag=main" alt="세대평면도(36A 신혼부부,한부모가족)">
+										</div>
+
+										<div id="img16tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120363&amp;atchFlag=main" alt="세대평면도(36A1 고령자)">
+										</div>
+
+										<div id="img17tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120364&amp;atchFlag=main" alt="세대평면도(36A2 주거급여수급자)">
+										</div>
+
+										<div id="img18tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120365&amp;atchFlag=main" alt="세대평면도(44A 신혼부부,한부모가족)">
+										</div>
+
+										<div id="img19tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=120366&amp;atchFlag=main" alt="세대평면도(44A1 고령자)">
+										</div>
+
+										<div id="img20tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=266997&amp;atchFlag=main" alt="세대평면도(26A7 청년)">
+										</div>
+
+										<div id="img21tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=266998&amp;atchFlag=main" alt="세대평면도(36A3 청년)">
+										</div>
+
+										<div id="img22tab4">
+	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017003&amp;rcritNmtm=10&amp;atchFileSn=266999&amp;atchFlag=main" alt="세대평면도(44A2 청년)">
 										</div>
 
 								</div>
@@ -1746,368 +1956,141 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017011" data-rcritnmtm="20" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="16A3" class="color_blue">
-													16A3 청년
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="18A2" class="color_blue">
+													18A2 주거급여수급자
 												</button>
 											</td>
-											<td>16.74</td>
-											<td>140</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017011" data-rcritnmtm="20" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="21A1" class="color_blue">
-													21A1 청년
-												</button>
-											</td>
-											<td>21.8</td>
-											<td>110</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017011" data-rcritnmtm="20" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="21B" class="color_blue">
-													21B 고령자
-												</button>
-											</td>
-											<td>21.8</td>
+											<td>18.9415</td>
 											<td>2</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
 										</tr>
 
-									</tbody>
-								</table>
-							</div>
-							<h5 class="subcont_title refer_title color_blue"><i class="xi-error-o color_blue"></i> 안내사항</h5>
-							<div class="bg_box">
-								<span>
-
-
-										안산스마트허브 경기행복주택 임대센터 문의: 031-365-4608
-
-								</span>
-							</div>
-
-							<h5 class="subcont_title">공급일정</h5>
-							<ul class="bul_list mt10">
-
-
-
-									<li class="mt5"><span><b>온라인접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-									<li class="mt5"><span><b>현장접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-
-
-
-
-
-
-
-
-									<li class="mt5"><span><b>당첨자발표일 : </b>2024.06.07 17:00</span></li>
-
-
-
-
-
-							</ul>
-						</div>
-
-
-
-
-
-
-
-						<div id="tab5" class="hide">
-							<table class="mt20">
-								<caption>사업지구별 공급정보</caption>
-								<colgroup>
-									<col style="width:15%">
-									<col style="width:35%">
-									<col style="width:15%">
-									<col style="width:35%">
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row">지구명</th>
-										<td class="txt_l">평택BIX 경기행복주택</td>
-										<th scope="row">소재지</th>
-										<td class="txt_l">
-											<span>경기도 평택시 포승읍 희곡리 908 평택BIX 경기행복주택 </span>
-
-												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','naver.me/xncmY35Y')">지도보기</button>
-
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">16.61 ~ 36.05</td>
-										<th scope="row">총 세대수</th>
-										<td class="txt_l">125</td>
-									</tr>
-									<tr>
-										<th scope="row">난방방식</th>
-										<td class="txt_l">개별난방</td>
-										<th scope="row">입주예정월</th>
-										<td class="txt_l">2026.12</td>
-									</tr>
-								</tbody>
-							</table>
-
-
-							<h5 class="subcont_title">단지 관련 이미지 정보</h5>
-
-							<ul class="bul_list depth2_box">
-								<li class="fz14">다운로드 버튼을 클릭하여 이미지 파일 다운로드가 가능합니다.</li>
-							</ul>
-							<div class="caption_tbl mt txt_r">
-								<button type="button" class="down_btn" onclick="javascript:fn_imgDown()">다운로드 <i class="xi-download color_blue"></i></button>
-							</div>
-
-							<div class="left_tab_box">
-								<div class="ltab_box">
-									<ul>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59006','2')" data-show="img1tab5" class="active">조감도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59020','2')" data-show="img2tab5" class="">배치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59021','1')" data-show="img3tab5" class="">위치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59022','1')" data-show="img4tab5" class="">동호수표</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59023','1')" data-show="img5tab5" class="">세대평면도[16A1 기숙사]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59024','1')" data-show="img6tab5" class="">세대평면도[16A2 산단근로자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59025','1')" data-show="img7tab5" class="">세대평면도[21A 산단근로자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59026','1')" data-show="img8tab5" class="">세대평면도[21B 고령자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','59027','1')" data-show="img9tab5" class="">세대평면도[36ABC 산단근로자]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','82348','1')" data-show="img10tab5" class="">세대평면도[16A3 청년]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','82349','1')" data-show="img11tab5" class="">세대평면도[21A1 청년]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','82350','1')" data-show="img12tab5" class="">세대평면도[36ABC1 청년]</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017012','82351','1')" data-show="img13tab5" class="">세대평면도[36ABC2 신혼부부,한부모가족]</button>
-											</li>
-
-									</ul>
-								</div>
-								<div class="ltab_content">
-
-										<div id="img1tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59006&amp;atchFlag=main" alt="조감도">
-										</div>
-
-										<div id="img2tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59020&amp;atchFlag=main" alt="배치도">
-										</div>
-
-										<div id="img3tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59021&amp;atchFlag=main" alt="위치도">
-										</div>
-
-										<div id="img4tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59022&amp;atchFlag=main" alt="동호수표">
-										</div>
-
-										<div id="img5tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59023&amp;atchFlag=main" alt="세대평면도[16A1 기숙사]">
-										</div>
-
-										<div id="img6tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59024&amp;atchFlag=main" alt="세대평면도[16A2 산단근로자]">
-										</div>
-
-										<div id="img7tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59025&amp;atchFlag=main" alt="세대평면도[21A 산단근로자]">
-										</div>
-
-										<div id="img8tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59026&amp;atchFlag=main" alt="세대평면도[21B 고령자]">
-										</div>
-
-										<div id="img9tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=59027&amp;atchFlag=main" alt="세대평면도[36ABC 산단근로자]">
-										</div>
-
-										<div id="img10tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=82348&amp;atchFlag=main" alt="세대평면도[16A3 청년]">
-										</div>
-
-										<div id="img11tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=82349&amp;atchFlag=main" alt="세대평면도[21A1 청년]">
-										</div>
-
-										<div id="img12tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=82350&amp;atchFlag=main" alt="세대평면도[36ABC1 청년]">
-										</div>
-
-										<div id="img13tab5">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017012&amp;rcritNmtm=15&amp;atchFileSn=82351&amp;atchFlag=main" alt="세대평면도[36ABC2 신혼부부,한부모가족]">
-										</div>
-
-								</div>
-							</div>
-							<p class="tbl_after">※ 상기 이미지는 소비자의 이해를 돕기위해 제작된 것으로 실제와 다를 수 있습니다.</p>
-
-
-							<h5 class="subcont_title">주택형 안내</h5>
-
-							<ul class="bul_list mt10">
-								<li class="fz14">상세공급정보를 확인하시려면 표에서 주택형을 클릭해주세요.</li>
-								<li class="fz14">인터넷청약신청 가능 여부는 공고문을 확인하시기 바랍니다. 현장신청만 가능한 경우에는 신청장소를 방문하여 신청하시기 바랍니다.</li>
-							</ul>
-
-							<div class="tbl_scroll mt10">
-								<table>
-									<caption>주택형 입력, 전용면적(m²), 금회공급 세대수, 임대보증금(원), 월임대료(원), 인터넷청약</caption>
-									<colgroup>
-										<col style="width:30%">
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-									</colgroup>
-									<tbody class="tb_house">
-										<tr>
-											<th scope="col">주택형</th>
-											<th scope="col">전용면적(m²)</th>
-											<th scope="col">금회공급 세대수</th>
-											<th scope="col">임대보증금(원)</th>
-											<th scope="col">월임대료(원)</th>
-											<th scope="col">인터넷청약</th>
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="18A3" class="color_blue">
+													18A3 청년
+												</button>
+											</td>
+											<td>18.9415</td>
+											<td>147</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
 										</tr>
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017012" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="16A3" class="color_blue">
-													16A3 청년
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30160" data-housetycd="26A1" class="color_blue">
+													26A1 청년(벤처기업 인재)
 												</button>
 											</td>
-											<td>16.61</td>
+											<td>26.9625</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30170" data-housetycd="26A2" class="color_blue">
+													26A2 청년(자유창업인)
+												</button>
+											</td>
+											<td>26.9625</td>
+											<td>8</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30210" data-housetycd="26A4" class="color_blue">
+													26A4 청년(온라인창업인)
+												</button>
+											</td>
+											<td>26.9625</td>
+											<td>5</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="26A5" class="color_blue">
+													26A5 고령자
+												</button>
+											</td>
+											<td>26.9625</td>
+											<td>3</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26A7" class="color_blue">
+													26A7 청년
+												</button>
+											</td>
+											<td>26.9625</td>
+											<td>36</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30070" data-housetycd="26B" class="color_blue">
+													26B 고령자
+												</button>
+											</td>
+											<td>26.7959</td>
+											<td>2</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26B2" class="color_blue">
+													26B2 청년
+												</button>
+											</td>
+											<td>26.7959</td>
+											<td>8</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30060" data-housetycd="36A" class="color_blue">
+													36A 신혼부부, 한부모가족
+												</button>
+											</td>
+											<td>36.9618</td>
+											<td>11</td>
+											<td>공고문 확인</td>
+											<td>공고문 확인</td>
+											<td>접수마감</td>
+										</tr>
+
+										<tr class="tb_house_con">
+											<td>
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30080" data-housetycd="36A2" class="color_blue">
+													36A2 주거급여수급자
+												</button>
+											</td>
+											<td>36.9923</td>
 											<td>25</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
@@ -2116,25 +2099,12 @@
 
 										<tr class="tb_house_con">
 											<td>
-												<button type="button" data-bizcd="2017012" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="21A1" class="color_blue">
-													21A1 청년
+												<button type="button" data-bizcd="2017003" data-rcritnmtm="10" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="36A3" class="color_blue">
+													36A3 청년
 												</button>
 											</td>
-											<td>21.84</td>
-											<td>50</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017012" data-rcritnmtm="15" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="36ABC1" class="color_blue">
-													36ABC1 청년
-												</button>
-											</td>
-											<td>36.05</td>
-											<td>50</td>
+											<td>36.9618</td>
+											<td>374</td>
 											<td>공고문 확인</td>
 											<td>공고문 확인</td>
 											<td>접수마감</td>
@@ -2148,7 +2118,7 @@
 								<span>
 
 
-										평택BIX 경기행복주택 임대센터 문의: 031-684-0810
+										다산지금A5 경기행복주택 임대센터 문의: 031-510-6078
 
 								</span>
 							</div>
@@ -2162,484 +2132,7 @@
 
 
 
-									<li class="mt5"><span><b>현장접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-
-
-
-
-
-
-
-
-									<li class="mt5"><span><b>당첨자발표일 : </b>2024.06.07 17:00</span></li>
-
-
-
-
-
-							</ul>
-						</div>
-
-
-
-
-
-
-
-						<div id="tab6" class="hide">
-							<table class="mt20">
-								<caption>사업지구별 공급정보</caption>
-								<colgroup>
-									<col style="width:15%">
-									<col style="width:35%">
-									<col style="width:15%">
-									<col style="width:35%">
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row">지구명</th>
-										<td class="txt_l">오산가장 경기행복주택</td>
-										<th scope="row">소재지</th>
-										<td class="txt_l">
-											<span>경기도 오산시 가장동 375-3 </span>
-
-												<button type="button" class="btn_normal" onclick="javascript:open_map('map01','http://naver.me/FVfu5KKJ')">지도보기</button>
-
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">21.5 ~ 21.5</td>
-										<th scope="row">총 세대수</th>
-										<td class="txt_l">20</td>
-									</tr>
-									<tr>
-										<th scope="row">난방방식</th>
-										<td class="txt_l">개별난방</td>
-										<th scope="row">입주예정월</th>
-										<td class="txt_l">2026.12</td>
-									</tr>
-								</tbody>
-							</table>
-
-
-							<h5 class="subcont_title">단지 관련 이미지 정보</h5>
-
-							<ul class="bul_list depth2_box">
-								<li class="fz14">다운로드 버튼을 클릭하여 이미지 파일 다운로드가 가능합니다.</li>
-							</ul>
-							<div class="caption_tbl mt txt_r">
-								<button type="button" class="down_btn" onclick="javascript:fn_imgDown()">다운로드 <i class="xi-download color_blue"></i></button>
-							</div>
-
-							<div class="left_tab_box">
-								<div class="ltab_box">
-									<ul>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017013','1167','2')" data-show="img1tab6" class="active">조감도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017013','1168','1')" data-show="img2tab6" class="">배치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017013','1170','1')" data-show="img3tab6" class="">위치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017013','1241668','1')" data-show="img4tab6" class="">세대평면도(21타입)</button>
-											</li>
-
-									</ul>
-								</div>
-								<div class="ltab_content">
-
-										<div id="img1tab6">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017013&amp;rcritNmtm=14&amp;atchFileSn=1167&amp;atchFlag=main" alt="조감도">
-										</div>
-
-										<div id="img2tab6">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017013&amp;rcritNmtm=14&amp;atchFileSn=1168&amp;atchFlag=main" alt="배치도">
-										</div>
-
-										<div id="img3tab6">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017013&amp;rcritNmtm=14&amp;atchFileSn=1170&amp;atchFlag=main" alt="위치도">
-										</div>
-
-										<div id="img4tab6">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017013&amp;rcritNmtm=14&amp;atchFileSn=1241668&amp;atchFlag=main" alt="세대평면도(21타입)">
-										</div>
-
-								</div>
-							</div>
-							<p class="tbl_after">※ 상기 이미지는 소비자의 이해를 돕기위해 제작된 것으로 실제와 다를 수 있습니다.</p>
-
-
-							<h5 class="subcont_title">주택형 안내</h5>
-
-							<ul class="bul_list mt10">
-								<li class="fz14">상세공급정보를 확인하시려면 표에서 주택형을 클릭해주세요.</li>
-								<li class="fz14">인터넷청약신청 가능 여부는 공고문을 확인하시기 바랍니다. 현장신청만 가능한 경우에는 신청장소를 방문하여 신청하시기 바랍니다.</li>
-							</ul>
-
-							<div class="tbl_scroll mt10">
-								<table>
-									<caption>주택형 입력, 전용면적(m²), 금회공급 세대수, 임대보증금(원), 월임대료(원), 인터넷청약</caption>
-									<colgroup>
-										<col style="width:30%">
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-									</colgroup>
-									<tbody class="tb_house">
-										<tr>
-											<th scope="col">주택형</th>
-											<th scope="col">전용면적(m²)</th>
-											<th scope="col">금회공급 세대수</th>
-											<th scope="col">임대보증금(원)</th>
-											<th scope="col">월임대료(원)</th>
-											<th scope="col">인터넷청약</th>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017013" data-rcritnmtm="14" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="21A,B" class="color_blue">
-													21A,B 청년
-												</button>
-											</td>
-											<td>21.5</td>
-											<td>20</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-									</tbody>
-								</table>
-							</div>
-							<h5 class="subcont_title refer_title color_blue"><i class="xi-error-o color_blue"></i> 안내사항</h5>
-							<div class="bg_box">
-								<span>
-
-
-										오산가장 경기행복주택 임대센터 문의: 031-684-0810
-
-								</span>
-							</div>
-
-							<h5 class="subcont_title">공급일정</h5>
-							<ul class="bul_list mt10">
-
-
-
-									<li class="mt5"><span><b>온라인접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-									<li class="mt5"><span><b>현장접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-
-
-
-
-
-
-
-
-									<li class="mt5"><span><b>당첨자발표일 : </b>2024.06.07 17:00</span></li>
-
-
-
-
-
-							</ul>
-						</div>
-
-
-
-
-
-
-
-						<div id="tab7" class="hide">
-							<table class="mt20">
-								<caption>사업지구별 공급정보</caption>
-								<colgroup>
-									<col style="width:15%">
-									<col style="width:35%">
-									<col style="width:15%">
-									<col style="width:35%">
-								</colgroup>
-								<tbody>
-									<tr>
-										<th scope="row">지구명</th>
-										<td class="txt_l">평택고덕 경기행복주택</td>
-										<th scope="row">소재지</th>
-										<td class="txt_l">
-											<span>경기도 평택시 고덕동 1856-1 평택고덕 경기행복주택</span>
-
-										</td>
-									</tr>
-									<tr>
-										<th scope="row">전용면적(m²)</th>
-										<td class="txt_l">26.73 ~ 26.73</td>
-										<th scope="row">총 세대수</th>
-										<td class="txt_l">95</td>
-									</tr>
-									<tr>
-										<th scope="row">난방방식</th>
-										<td class="txt_l"></td>
-										<th scope="row">입주예정월</th>
-										<td class="txt_l">2026.12</td>
-									</tr>
-								</tbody>
-							</table>
-
-
-							<h5 class="subcont_title">단지 관련 이미지 정보</h5>
-
-							<ul class="bul_list depth2_box">
-								<li class="fz14">다운로드 버튼을 클릭하여 이미지 파일 다운로드가 가능합니다.</li>
-							</ul>
-							<div class="caption_tbl mt txt_r">
-								<button type="button" class="down_btn" onclick="javascript:fn_imgDown()">다운로드 <i class="xi-download color_blue"></i></button>
-							</div>
-
-							<div class="left_tab_box">
-								<div class="ltab_box">
-									<ul>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','299235','2')" data-show="img1tab7" class="active">조감도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','299277','1')" data-show="img2tab7" class="">위치도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264442','1')" data-show="img3tab7" class="">18A 평면도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264443','1')" data-show="img4tab7" class="">26A 평면도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264444','1')" data-show="img5tab7" class="">26B 평면도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264445','1')" data-show="img6tab7" class="">36A 평면도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264446','1')" data-show="img7tab7" class="">36B 평면도</button>
-											</li>
-
-
-
-
-
-
-
-											<li>
-												<button type="button" onclick="javascript:fn_chgSn('2017030','1264447','1')" data-show="img8tab7" class="">44A 평면도</button>
-											</li>
-
-									</ul>
-								</div>
-								<div class="ltab_content">
-
-										<div id="img1tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=299235&amp;atchFlag=main" alt="조감도">
-										</div>
-
-										<div id="img2tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=299277&amp;atchFlag=main" alt="위치도">
-										</div>
-
-										<div id="img3tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264442&amp;atchFlag=main" alt="18A 평면도">
-										</div>
-
-										<div id="img4tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264443&amp;atchFlag=main" alt="26A 평면도">
-										</div>
-
-										<div id="img5tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264444&amp;atchFlag=main" alt="26B 평면도">
-										</div>
-
-										<div id="img6tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264445&amp;atchFlag=main" alt="36A 평면도">
-										</div>
-
-										<div id="img7tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264446&amp;atchFlag=main" alt="36B 평면도">
-										</div>
-
-										<div id="img8tab7">
-	                                        <img src="/sb/sr/sr7150/selectAtchImage.do?bizCd=2017030&amp;rcritNmtm=6&amp;atchFileSn=1264447&amp;atchFlag=main" alt="44A 평면도">
-										</div>
-
-								</div>
-							</div>
-							<p class="tbl_after">※ 상기 이미지는 소비자의 이해를 돕기위해 제작된 것으로 실제와 다를 수 있습니다.</p>
-
-
-							<h5 class="subcont_title">주택형 안내</h5>
-
-							<ul class="bul_list mt10">
-								<li class="fz14">상세공급정보를 확인하시려면 표에서 주택형을 클릭해주세요.</li>
-								<li class="fz14">인터넷청약신청 가능 여부는 공고문을 확인하시기 바랍니다. 현장신청만 가능한 경우에는 신청장소를 방문하여 신청하시기 바랍니다.</li>
-							</ul>
-
-							<div class="tbl_scroll mt10">
-								<table>
-									<caption>주택형 입력, 전용면적(m²), 금회공급 세대수, 임대보증금(원), 월임대료(원), 인터넷청약</caption>
-									<colgroup>
-										<col style="width:30%">
-										<col>
-										<col>
-										<col>
-										<col>
-										<col>
-									</colgroup>
-									<tbody class="tb_house">
-										<tr>
-											<th scope="col">주택형</th>
-											<th scope="col">전용면적(m²)</th>
-											<th scope="col">금회공급 세대수</th>
-											<th scope="col">임대보증금(원)</th>
-											<th scope="col">월임대료(원)</th>
-											<th scope="col">인터넷청약</th>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017030" data-rcritnmtm="6" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26A1" class="color_blue">
-													26A1 청년
-												</button>
-											</td>
-											<td>26.73</td>
-											<td>85</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-										<tr class="tb_house_con">
-											<td>
-												<button type="button" data-bizcd="2017030" data-rcritnmtm="6" data-biztycd="01" data-gnrldrwtyn="" data-priordrwtyn="" data-gnrldrwtgrouptycd="" data-priordrwtgrouptycd="" data-splyslsrtcd="30050" data-housetycd="26B" class="color_blue">
-													26B 청년
-												</button>
-											</td>
-											<td>26.73</td>
-											<td>10</td>
-											<td>공고문 확인</td>
-											<td>공고문 확인</td>
-											<td>접수마감</td>
-										</tr>
-
-									</tbody>
-								</table>
-							</div>
-							<h5 class="subcont_title refer_title color_blue"><i class="xi-error-o color_blue"></i> 안내사항</h5>
-							<div class="bg_box">
-								<span>
-
-
-										평택고덕 경기행복주택 임대센터 문의: 031-668-8707
-
-								</span>
-							</div>
-
-							<h5 class="subcont_title">공급일정</h5>
-							<ul class="bul_list mt10">
-
-
-
-									<li class="mt5"><span><b>온라인접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
-
-
-
-									<li class="mt5"><span><b>현장접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 17:00</span></li>
+									<li class="mt5"><span><b>현장접수기간 : </b>2024.05.22 10:00 ~ 2024.05.24 16:00</span></li>
 
 
 
@@ -2759,7 +2252,7 @@
                      <h3 class="mb-4 mt-6 lg:mt-0"><img src="/images/main/renew/footer-logo.png" alt="GH주택청약 임대센터"></h3>
                      <div class="foot_txt_box text-left">
                         <div class="foot_info">
-                           <p>(16556) 경기도 수원시 권선구 권중로 46 (권선동)</p>
+                           <p>(16508) 경기도 수원시 영통구 센트럴타운로 43 (이의동)</p>
                            <span class="hidden lg:inline-block sepwd"><p class="text-white font-bold">대표전화 <a class="text-white font-bold" href="tel:1588-0466">1588-0466</a></p></span>
                            <span class="block lg:hidden"><p class="">대표전화 <a href="tel:1588-0466">1588-0466</a></p></span>
                         </div>
@@ -2869,8 +2362,8 @@ $("#slider_filter012 > button").on('click', function(){
 </form>
 
 <form id="imgFrm" style="display:none;">
-	<input type="hidden" name="bizCd" id="bizCd2" value="2015151">
-	<input type="hidden" name="atchFileSn" id="atchFileSn" value="976">
+	<input type="hidden" name="bizCd" id="bizCd2" value="2015023">
+	<input type="hidden" name="atchFileSn" id="atchFileSn" value="1058">
 	<input type="hidden" name="atchFileDtlSn" id="atchFileDtlSn" value="2">
 </form>
 

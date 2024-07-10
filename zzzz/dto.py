@@ -14,7 +14,7 @@ class HouseDetailDTO:
 class HouseDTO:
     name: Optional[str] = ""
     address: Optional[str] = ""
-    status = "공고중"
+    status: str = "공고중"
     moveInDate: Optional[str] = ""
     applyStartDate: Optional[str] = ""
     applyEndDate: Optional[str] = ""

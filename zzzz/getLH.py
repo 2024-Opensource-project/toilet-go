@@ -1,10 +1,10 @@
 import requests
 from datetime import date, timedelta
 from bs4 import BeautifulSoup
-from dto import HouseDTO
+from dto import HouseDTO, HouseDetailDTO
 from typing import List
 
-def get_house_list(days: int) -> List[BeautifulSoup]:
+def get_house_list(days: int = 30) -> List[BeautifulSoup]:
     today = date.today()
     search_len = timedelta(days=days)
     url = "https://apply.lh.or.kr/lhapply/apply/wt/wrtanc/selectWrtancList.do"
@@ -35,17 +35,36 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
     #rs = open("./house_info.txt", mode="r", encoding="utf-8").read()
     soup = BeautifulSoup(rs, "html.parser")
 
-    address_list = soup.find_all("li", "w100")[:-1]  # 주소들
+    house_list = soup.find_all("ul", "list_st1 li_w25")
+    house_detail_list = soup.find_all("tbody")
     index = 0
 
+    name_list = soup.find_all("h4", "tit2")
+
     houses_info: List[HouseDTO] = []
-    for address in address_list:
+    for house in house_list:
+        apply_date = soup.find("label", id="sta_acpDt").text.split("~")
         house = HouseDTO(
-            address = address.text.strip(),
-            submissionDate=soup.find("label", id="sta_acpDt").text.strip() if soup.find("label", id="sta_acpDt") else None,  # 신청일
-            name=soup.find("a", id="tagA" + str(index)).text.strip() if soup.find("a", id="tagA" + str(index)) else None,  # 이름 / A0, A1... 증가
-            description=str(soup.find("div", "tbl_st tbl_rsp tyCross tymBtn tblmobToge")) if soup.find("div", "tbl_st tbl_rsp tyCross tymBtn tblmobToge") else None  # 설명
+            name = name_list[index*4].text.strip(),
+            address = house.find("li", "w100").text.replace("소재지 :", "").strip(),
+            moveInDate = house.find_all("li")[-1].text.replace("입주예정월 : ", "").strip(),
+            applyStartDate = apply_date[0].strip(),
+            applyEndDate = apply_date[1].strip()
         )
+
+        house_details: List[HouseDetailDTO] = []
+        for detail in house_detail_list[index].find_all("tr"):
+            data = detail.find_all("td")
+            house_detail = HouseDetailDTO(
+                type = detail.find("th").text.strip(),
+                size = data[0].text.strip(),
+                supplyCount = data[1].text.strip(),
+                deposit = data[2].text.strip(),
+                monthlyRent = data[3].text.strip()
+            )
+            house_details.append(house_detail)
+        house.houseDetails = house_details
         houses_info.append(house)
         index += 1
     return houses_info
+

@@ -29,6 +29,7 @@
         }
 
         .house-item p {
+            width: 300px;
             margin: 0 0 10px; /* 단락 간격 조절 */
         }
 
@@ -77,12 +78,11 @@
             </hgroup>
             <div class="house-list">
                 <div class="house-item" th:each="house : ${houseList}">
-                    <img th:src="${house.imageUrl}" alt=""/>
+                    <img th:src="이미지" alt=""/>
                     <p th:text="|이름 : ${house.name}|">주택 이름</p>
                     <p th:text="|주소 : ${house.address}|">주소</p>
-                    <p th:text="|공모가 : ${house.price}|">가격</p>
                     <figure>
-                        <figcaption><a th:href="|/house/${house.idx}|" target="_blank">자세히 보기</a></figcaption>
+                        <figcaption><a th:href="|/house/detail/${house.id}|" target="_blank">자세히 보기</a></figcaption>
                     </figure>
                 </div>
             </div>

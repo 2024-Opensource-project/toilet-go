@@ -12,6 +12,7 @@ public class UserService {
     public boolean loginCheckAndGetSession(UserDTO userDTO, HttpSession session) throws SQLException, ClassNotFoundException {
         if(userDAO.isExistIdAndPw(userDTO.getUserId(), userDTO.getPw())){
             session.setAttribute("user", userDTO.getId());
+            session.setAttribute("role", userDTO.getLevel());
             return true;
         }
         return false;
