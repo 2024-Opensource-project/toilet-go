@@ -51,8 +51,6 @@
                 <tr th:each="house : ${houses}">
                     <td th:text="${house.name}">주택이름</td>
                     <td th:text="${house.address}">주택주소</td>
-                    <td th:text="${house.submissionDate}">청약신청일</td>
-                    <td th:text="${house.movingDate}">입주일</td>
                     <td th:text="${house.status}">공고여부</td>
                 </tr>
                 </tbody>

@@ -2,6 +2,7 @@ package com.myspring.springmaster.controller;
 
 import com.myspring.springmaster.dataAccess.DAO.HouseDAO;
 import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
+import com.myspring.springmaster.dataAccess.DTO.HouseDetailDTO;
 import com.myspring.springmaster.service.HouseService;
 import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -28,25 +29,26 @@ public class HouseController {
         model.addAttribute("house", houseService.getHouse(id));
         return "house/detailView";
     }
-/*
+
     @GetMapping("house/list")
-    public String showHouseList(Model model) throws SQLException, ClassNotFoundException {
+    public String showHouseList(Model model) {
         model.addAttribute("houses", houseService.getAllActiveHousesList());
         return "house/listView";
     }
 
     @PostMapping("house/list")
-    public String showHouseList(Model model, @RequestParam HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
+    public String showHouseList(Model model, @RequestParam HouseDTO houseDTO) {
         model.addAttribute("houses", houseService.getAllActiveHousesList());
         return "house/listView";
     }
 
     @GetMapping("house/near")
-    public String showHouseNear(Model model, @RequestParam String address) throws SQLException, ClassNotFoundException {
+    public String showHouseNear(Model model, @RequestParam String address) {
         model.addAttribute("houses", houseService.getNearHouseList(address));
         return "house/listView";
     }
-*/
+
+
     @GetMapping("house/add")
     public String addHouse(Model model, HttpSession session, RedirectAttributes redirectAttributes){
         UserService userService = new UserService();

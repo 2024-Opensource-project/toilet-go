@@ -13,11 +13,10 @@ import lombok.ToString;
 @ToString
 public class HouseDetailDTO {
 
-    private int id;
-    private HouseDTO house;
+    private Integer id;
     private String type;
     private String size;
-    private int supplyCount;
+    private Integer supplyCount;
     private String deposit;
     private String monthlyRent;
     private String imageUrl;

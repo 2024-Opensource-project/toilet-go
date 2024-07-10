@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.myspring.springmaster.dataAccess.DTO.HouseDetailDTO;
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Getter
 @Table(name = "house_details")
 @SuperBuilder
 public class HouseDetail {

@@ -25,23 +25,20 @@
                 <h2 th:text="${house.name}">주택 이름</h2>
             </hgroup>
             <div id="map" style="width:50%;height:300px;"></div>
+            <br>
             <p th:text="'주소: ' + ${house.address}">주소</p>
             <p th:text="'상태: ' + ${house.status}">상태</p>
             <p th:text="'신청 기간: ' + ${house.applyStartDate} + '~' + ${house.applyEndDate}">신청 기간</p>
-            <p th:text="'거주일: ' + ${house.moveInDate}">거주일</p>
+            <p th:text="'입주예정월: ' + ${house.moveInDate}">입주예정월</p>
 
             <ul th:each="houseDetail :${house.houseDetails}">
                 <img th:src="${houseDetail.imageUrl}" alt="">
                 <li th:text="'유형: ' + ${houseDetail.type}">유형</li>
-                <li th:text="'크기: ' + ${houseDetail.type}">크기</li>
-                <li th:text="'공급 수: ' + ${houseDetail.type}">공급 수</li>
+                <li th:text="'크기: ' + ${houseDetail.size}">크기</li>
+                <li th:text="'공급 수: ' + ${houseDetail.supplyCount}">공급 수</li>
+                <li th:text="'보증금: ' + ${houseDetail.deposit}">보증금</li>
+                <li th:text="'월세: ' + ${houseDetail.monthlyRent}">월세</li>
             </ul>
-            <!--
-            <p th:text="'공모가: ' + ${house.price}">가격</p>
-            <p th:text="'공모신청 날짜: ' + ${house.submissionDate}">공모신청 날짜</p>
-            <p th:text="'입주 날짜: ' + ${house.movingDate}">입주 날짜</p>
-            <h3>기타 정보</h3>
-            <p th:utext="${house.description}">상세 설명</p>!-->
         </section>
     </div>
 </main>
@@ -53,13 +50,16 @@
 
     let latitude = [[${house.latitude}]]
     let longitude = [[${house.longitude}]]
+    let latAndLng = new naver.maps.LatLng(latitude, longitude);
 
-    let map = new naver.maps.Map(document.getElementById('map'));
-    let location = new naver.maps.LatLng(latitude, longitude);
+    let map = new naver.maps.Map(document.getElementById('map'),{
+        center: latAndLng,
+        zoom: 16
+    });
 
-    map.setCenter(location); // 중심 좌표 이동
-    map.setZoom(13);     // 줌 레벨 변경
-
-
+    let marker = new naver.maps.Marker({
+        position: latAndLng,
+        map: map
+    })
 </script>
 </html>

@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 public class HouseDTO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String address;
     private BigDecimal latitude;

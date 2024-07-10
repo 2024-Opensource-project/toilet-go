@@ -67,23 +67,30 @@ public class HouseService {
         houseRepository.save(house);
         return true;
     }
+
+    public List<HouseDTO> getAllActiveHousesList() {
+        final String ACTIVE_HOUSE_STRING = "공고중";
+        List<House> houseList = houseRepository.findAllByStatus(ACTIVE_HOUSE_STRING);
+        List<HouseDTO> housesDTO = new ArrayList<>();
+        for (House house : houseList) {
+            housesDTO.add(HouseMapper.Instance.toDTO(house));
+        }
+        return housesDTO;
+    }
+
+    public List<HouseDTO> getNearHouseList(String address) {
+        List<HouseDTO> houseDTOList = this.getAllHouses();
+        BigDecimal[] latAndLong = getLatitudeAndLongitude(address);
+        List<HouseDTO> nearHouseDTOList = new ArrayList<>();
+        if(latAndLong != null) {
+            nearHouseDTOList = houseDTOList.stream()
+                    .filter(house -> isNear(house, latAndLong))
+                    .toList();
+        }
+
+        return nearHouseDTOList;
+    }
 /*
-    public ArrayList<HouseDTO> getAllActiveHousesList() throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        ArrayList<HouseDTO> houseList = houseDAO.getAllActiveHousesInfo();
-        return houseList;
-    }
-
-    public List<HouseDTO> getNearHouseList(String address) throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        ArrayList<HouseDTO> houseList = houseDAO.getAllActiveHousesInfo();
-        String[] latAndLong = getLatitudeAndLongitude(address);
-        List<HouseDTO> houses = houseList.stream()
-                            .filter(house -> isNear(house, latAndLong))
-                            .toList();
-        return houses;
-    }
-
     public ArrayList<HouseDTO> getHousesListBySearch(HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
         HouseDAO houseDAO = new HouseDAO();
         return null; //여기 고치기
@@ -144,29 +151,24 @@ public class HouseService {
         return rtnValue;
     }
 
-    /*
+
     private boolean isNear(HouseDTO houseDTO, String address){
-        String[] latAndLon1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
-        String[] latAndLon2 = getLatitudeAndLongitude(address);
+        BigDecimal[] latAndLon1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
+        BigDecimal[] latAndLon2 = getLatitudeAndLongitude(address);
         double distance = calcDistance(latAndLon1, latAndLon2);
         System.out.println(distance);
         return distance<5;
     }
 
-    private boolean isNear(HouseDTO houseDTO, String[] latAndLon2){
-        String[] latAndLong1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
+    private boolean isNear(HouseDTO houseDTO, BigDecimal[] latAndLon2){
+        BigDecimal[] latAndLong1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
         double distance = calcDistance(latAndLong1, latAndLon2);
         System.out.println(Arrays.toString(latAndLong1) +","+Arrays.toString(latAndLon2));
         System.out.println(distance);
         System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
         return distance<5;
     }
-*/
-    private double[] convertToDoubleArray(String[] arr) throws NumberFormatException {
-        return Arrays.stream(arr)
-                .mapToDouble(Double::parseDouble)
-                .toArray();
-    }
+
 
     private double calcDistance(double[] latAndLon1, double[] latAndLon2){
         final double EARTH_RADIUS = 6371.0;
@@ -188,7 +190,9 @@ public class HouseService {
 
     }
 
-    private double calcDistance(String[] latAndLon1, String[] latAndLon2){
-        return this.calcDistance(convertToDoubleArray(latAndLon1), convertToDoubleArray(latAndLon2));
+    private double calcDistance(BigDecimal[] latAndLon1, BigDecimal[] latAndLon2){
+        return this.calcDistance(
+                Arrays.stream(latAndLon1).mapToDouble(BigDecimal::doubleValue).toArray(),
+                Arrays.stream(latAndLon2).mapToDouble(BigDecimal::doubleValue).toArray());
     }
 }
