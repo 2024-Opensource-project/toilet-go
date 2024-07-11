@@ -1,9 +1,9 @@
 package com.myspring.springmaster.controller;
 
-import ch.qos.logback.core.model.Model;
 import com.myspring.springmaster.dataAccess.DTO.UserDTO;
 import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,15 +14,20 @@ import java.sql.SQLException;
 
 @Controller
 public class UserController {
-    final UserService userService = new UserService();
+    private final UserService userService;
+
+    @Autowired
+    UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/signin")
     public String signin() {
         return "user/signin";
     }
     @PostMapping("signin")
-    public String signin(@ModelAttribute UserDTO user, HttpSession session, RedirectAttributes redirect) throws SQLException, ClassNotFoundException {
-        if(userService.loginCheckAndGetSession(user, session)){
+    public String signin(@ModelAttribute UserDTO user, HttpSession session, RedirectAttributes redirect) {
+        if(userService.login(user, session)){
             return "redirect:/";
         }
         redirect.addFlashAttribute("message", "Invalid username or password");
@@ -35,7 +40,7 @@ public class UserController {
         return "user/signup";
     }
     @PostMapping("/signup")
-    public String signUp(@ModelAttribute UserDTO user, RedirectAttributes redirect) throws SQLException, ClassNotFoundException {
+    public String signUp(@ModelAttribute UserDTO user, RedirectAttributes redirect){
         redirect.addFlashAttribute("message", userService.signUp(user));
         return "redirect:/";
     }

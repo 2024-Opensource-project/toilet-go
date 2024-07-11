@@ -24,10 +24,11 @@ public class IndexController {
     }
 
     @GetMapping("/")
-    public String indexController(Model model, HttpSession session) throws SQLException, ClassNotFoundException {
+    public String indexController(Model model, HttpSession session) {
         final int HOUSE_COUNT = 10;
         List<HouseDTO> houseList = houseService.getHouses(HOUSE_COUNT);
         model.addAttribute("houseList", houseList);
+        model.addAttribute("name", session.getAttribute("name"));
         return "index";
     }
 

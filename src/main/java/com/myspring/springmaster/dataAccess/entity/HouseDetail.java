@@ -21,7 +21,7 @@ public class HouseDetail {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "type", length = 10)
     private String type;
@@ -42,7 +42,7 @@ public class HouseDetail {
     private String imageUrl;
 
 
-    public HouseDetail(int id, String type, String size, Integer supplyCount, String deposit, String monthlyRent, String imageUrl) {
+    public HouseDetail(Long id, String type, String size, Integer supplyCount, String deposit, String monthlyRent, String imageUrl) {
         this.id = id;
         this.type = type;
         this.size = size;

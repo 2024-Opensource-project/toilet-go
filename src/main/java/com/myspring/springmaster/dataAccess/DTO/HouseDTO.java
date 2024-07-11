@@ -1,12 +1,7 @@
 package com.myspring.springmaster.dataAccess.DTO;
 
-import com.myspring.springmaster.dataAccess.entity.House;
-import com.myspring.springmaster.dataAccess.entity.HouseDetail;
 import lombok.*;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data

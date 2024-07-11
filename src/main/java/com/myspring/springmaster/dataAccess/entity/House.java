@@ -19,7 +19,7 @@ public class House {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "name", length = 100)
     private String name;
@@ -54,7 +54,7 @@ public class House {
     private List<HouseDetail> houseDetails;
 
     @Builder
-    public House(Integer id, String name, String address, BigDecimal latitude, BigDecimal longitude, String status, String moveInDate, String applyStartDate, String applyEndDate, List<HouseDetail> houseDetails){
+    public House(Long id, String name, String address, BigDecimal latitude, BigDecimal longitude, String status, String moveInDate, String applyStartDate, String applyEndDate, List<HouseDetail> houseDetails){
         this.id = id;
         this.name = name;
         this.address = address;

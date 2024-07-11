@@ -1,16 +1,18 @@
 package com.myspring.springmaster.dataAccess.DTO;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UserDTO {
-    private int id;
+    private Long id;
     private String userId;
-    private String pw;
+    private String password;
     private String name;
     private String email;
-    private String level;
-    private long money;
-    private CartDTO cart;
-    private int[] couponIdx;
+    private String phoneNumber;
+    private Integer roleId;
 }

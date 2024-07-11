@@ -46,6 +46,13 @@ public class HouseService {
         return housesDTO;
     }
 
+    public List<HouseDTO> getHousesByFilter(HouseDTO filter) {
+        List<HouseDTO> housesDTO = new ArrayList<>();
+
+        return housesDTO;
+    }
+
+
     public List<HouseDTO> getHouses(int limit) {
         Pageable pageable = PageRequest.of(0, limit);
         List<House> houses = houseRepository.findAll(pageable).getContent();

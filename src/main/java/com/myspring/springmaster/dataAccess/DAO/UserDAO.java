@@ -32,7 +32,7 @@ public class UserDAO {
         Connection conn = MysqlConnector.connect();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO members(user_id, pw, name, email) VALUES (?, ?, ?, ?)");
         ps.setString(1, user.getUserId());
-        ps.setString(2, user.getPw());
+        ps.setString(2, user.getPassword());
         ps.setString(3, user.getName());
         ps.setString(4, user.getEmail());
         ps.executeUpdate();
