@@ -4,6 +4,7 @@ import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.dataAccess.mapper.HouseMapper;
 import com.myspring.springmaster.dataAccess.repository.HouseRepository;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.myspring.springmaster.dataAccess.entity.QHouse.house;
+
 @Service
 public class HouseService {
 
@@ -26,29 +29,29 @@ public class HouseService {
     public HouseService(HouseRepository houseRepository) {
         this.houseRepository = houseRepository;
     }
-/*
-    public ArrayList<HouseDTO> getHouseList() throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        return houseDAO.getHousesInfo();
-    }
-*/
+
+
     public HouseDTO getHouse(int id) {
         House house = houseRepository.findById((long) id).orElseThrow();
         return HouseMapper.Instance.toDTO(house);
     }
 
-    public List<HouseDTO> getAllHouses() {
-        List<House> houses = houseRepository.findAll();
+    public List<HouseDTO> getAllActiveHousesList() {
+        final String ACTIVE_HOUSE_STRING = "공고중";
+        List<House> houseList = houseRepository.findAllByStatus(ACTIVE_HOUSE_STRING);
         List<HouseDTO> housesDTO = new ArrayList<>();
-        for (House house : houses) {
+        for (House house : houseList) {
             housesDTO.add(HouseMapper.Instance.toDTO(house));
         }
         return housesDTO;
     }
 
     public List<HouseDTO> getHousesByFilter(HouseDTO filter) {
+        List<House> houses = houseRepository.findAllByFilter(filter);
         List<HouseDTO> housesDTO = new ArrayList<>();
-
+        for (House house : houses) {
+            housesDTO.add(HouseMapper.Instance.toDTO(house));
+        }
         return housesDTO;
     }
 
@@ -75,18 +78,10 @@ public class HouseService {
         return true;
     }
 
-    public List<HouseDTO> getAllActiveHousesList() {
-        final String ACTIVE_HOUSE_STRING = "공고중";
-        List<House> houseList = houseRepository.findAllByStatus(ACTIVE_HOUSE_STRING);
-        List<HouseDTO> housesDTO = new ArrayList<>();
-        for (House house : houseList) {
-            housesDTO.add(HouseMapper.Instance.toDTO(house));
-        }
-        return housesDTO;
-    }
+
 
     public List<HouseDTO> getNearHouseList(String address) {
-        List<HouseDTO> houseDTOList = this.getAllHouses();
+        List<HouseDTO> houseDTOList = this.getAllActiveHousesList();
         BigDecimal[] latAndLong = getLatitudeAndLongitude(address);
         List<HouseDTO> nearHouseDTOList = new ArrayList<>();
         if(latAndLong != null) {
@@ -97,28 +92,7 @@ public class HouseService {
 
         return nearHouseDTOList;
     }
-/*
-    public ArrayList<HouseDTO> getHousesListBySearch(HouseDTO houseDTO) throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        return null; //여기 고치기
-    }
 
-    public List<HouseDTO> getHouseList(String areaName) throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        ArrayList<HouseDTO> houseList = houseDAO.getAllActiveHousesInfo();
-        List<HouseDTO> houses = houseList.stream()
-                .filter(x -> isNear(x.getAddress(), areaName))
-                .toList();
-        return houses;
-    }
-
-    public ArrayList<HouseDTO> getSameAreaHouses(String address) throws SQLException, ClassNotFoundException {
-        HouseDAO houseDAO = new HouseDAO();
-        return houseDAO.getSameAreaHouses(address);
-    }
-
-
-*/
     private void removeUselessWord(HouseDTO house) {
         String[] uselessWords = {"소재지 :", "지도보기"};
         String address = house.getAddress();

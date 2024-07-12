@@ -1,15 +1,93 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>행복주택 리스트</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <style>
+        .search-container {
+            display: inline-block;
+            flex-wrap: wrap;
+            gap: 10px; /* Adjust gap between items if needed */
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 0 .75rem;
+            background: #131325;
+            border: 1px solid #000410;
+        }
+
+
+        button {
+            width: auto;
+            height: 2.0rem;
+        }
+
+        #searchType {
+            width: 150px;
+            text
+        }
+
+        #searchKeyword {
+            width: 600px;
+            flex: 1;
+        }
+
+        .search-container > li {
+            display: inline-flex;
+            flex: 1 1 100%;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .search-container > li > strong {
+            margin-right: 10px;
+        }
+
+        .search-container > li > input,
+        .search-container > li > select {
+            height: 2.0rem;
+            flex: 1;
+        }
+
+        .search-container > li.search-keyword-row {
+            flex: 1 1 100%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-container > li.search-keyword-row select,
+        .search-container > li.search-keyword-row input,
+        .search-container > li.search-keyword-row button {
+            flex: none;
+        }
+
+
+
+        @media (max-width: 1200px) {
+            .search-container > li {
+                flex: 1 1 50%;
+            }
+
+            .search-container > li.search-keyword-row {
+                flex: 1 1 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .search-container > li {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 <nav class="container-fluid">
     <ul>
-        <li><strong>행복주택 리스트</strong></li>
+        <li><strong><a href="/" style="text-decoration: none;">행복주택</a></strong></li>
     </ul>
     <ul>
         <li><a href="#">Home</a></li>
@@ -24,18 +102,33 @@
                 <h2>행복주택 검색</h2>
                 <h3>원하는 정보를 입력하세요</h3>
             </hgroup>
-            <form method="get" action="/search">
-                <input type="text" id="name" name="name" placeholder="주택이름" aria-label="주택이름">
-                <input type="text" id="address" name="address" placeholder="주택주소" aria-label="주택주소">
-                <input type="date" id="applyDate" name="applyDate" placeholder="청약신청일" aria-label="청약신청일">
-                <input type="date" id="moveInDate" name="moveInDate" placeholder="입주일" aria-label="입주일">
-                <select id="announcement" name="announcement">
-                    <option value="">공고여부</option>
-                    <option value="true">공고</option>
-                    <option value="false">비공고</option>
-                </select>
-                <button type="submit">검색</button>
-            </form>
+            <ul class="search-container">
+                <li>
+                    <strong>상태</strong>
+                    <label for="status"></label>
+                    <select id="status" name="status">
+                        <option value="공고중">공고중</option>
+                        <option value="접수중">접수중</option>
+                        <option value="마감">마감</option>
+                    </select>
+                </li>
+                <li>
+                    <strong>기간</strong>
+                    <input type="date" id="applyStartDate" name="applyStartDate" placeholder="게시일" aria-label="게시일" th:value="${searchDTO != null ? searchDTO.applyStartDate : ''}">
+                    <span>~</span>
+                    <input type="date" id="applyEndDate" name="applyEndDate" placeholder="게시일" aria-label="게시일" th:value="${searchDTO != null ? searchDTO.applyEndDate : ''}">
+                </li>
+                <li class="search-keyword-row">
+                    <label for="searchType"></label>
+                    <select id="searchType" name="searchType" onchange="updateSearchKeyword()">
+                        <option value="name">주택이름</option>
+                        <option value="address">주택주소</option>
+                    </select>
+                    <label for="searchKeyword"></label>
+                    <input type="text" id="searchKeyword" name="name" placeholder="검색어를 입력하세요" th:value="${searchDTO != null ? searchDTO.searchKeyword : ''}">
+                    <button type="submit">검색</button>
+                </li>
+            </ul>
             <h3>행복주택 리스트</h3>
             <table>
                 <thead>
@@ -51,6 +144,8 @@
                 <tr th:each="house : ${houses}">
                     <td th:text="${house.name}">주택이름</td>
                     <td th:text="${house.address}">주택주소</td>
+                    <td th:text="|${house.applyStartDate} , ${house.applyEndDate}|">청약신청일</td>
+                    <td th:text="${house.moveInDate}">입주일</td>
                     <td th:text="${house.status}">공고여부</td>
                 </tr>
                 </tbody>
@@ -76,5 +171,16 @@
 <footer class="container">
     <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
 </footer>
+<script>
+    function updateSearchKeyword() {
+        const searchType = document.getElementById('searchType').value;
+        const searchKeyword = document.getElementById('searchKeyword');
+        if (searchType === 'name') {
+            searchKeyword.name = 'name';
+        } else {
+            searchKeyword.name = 'address';
+        }
+    }
+</script>
 </body>
 </html>

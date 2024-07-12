@@ -41,7 +41,7 @@ public class HouseController {
     }
 
     @PostMapping("house/list")
-    public String showHouseList(Model model, @RequestParam HouseDTO houseDTO) {
+    public String showHouseList(Model model, @ModelAttribute HouseDTO houseDTO) {
         List<HouseDTO> houseList = houseService.getHousesByFilter(houseDTO);
         model.addAttribute("houses", houseList);
         return "house/listView";
