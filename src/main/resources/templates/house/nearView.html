@@ -101,31 +101,13 @@
                 <h2>행복주택 검색</h2>
                 <h3>원하는 정보를 입력하세요</h3>
             </hgroup>
-            <form action="/house/list" method="POST">
+            <form action="/house/near" method="POST">
                 <ul class="search-container">
-                    <li>
-                        <strong>상태</strong>
-                        <label for="status"></label>
-                        <select id="status" name="status">
-                            <option value="공고중">공고중</option>
-                            <option value="접수중">접수중</option>
-                            <option value="마감">마감</option>
-                        </select>
-                    </li>
-                    <li>
-                        <strong>기간</strong>
-                        <input type="date" id="applyStartDate" name="applyStartDate" placeholder="게시일" aria-label="게시일" th:value="${searchDTO != null ? searchDTO.applyStartDate : ''}">
-                        <span>~</span>
-                        <input type="date" id="applyEndDate" name="applyEndDate" placeholder="게시일" aria-label="게시일" th:value="${searchDTO != null ? searchDTO.applyEndDate : ''}">
-                    </li>
                     <li class="search-keyword-row">
-                        <label for="searchType"></label>
-                        <select id="searchType" name="searchType" onchange="updateSearchKeyword()">
-                            <option value="name">주택이름</option>
-                            <option value="address">주택주소</option>
-                        </select>
-                        <label for="searchKeyword"></label>
-                        <input type="text" id="searchKeyword" name="name" placeholder="검색어를 입력하세요" th:value="${searchDTO != null ? searchDTO.searchKeyword : ''}">
+                        <label for="address"></label>
+                        <input type="text" id="address" name="address" placeholder="주소를 입력하세요" th:value="${searchDTO != null ? searchDTO.searchKeyword : ''}">
+                        <label for="distance"></label>
+                        <input type="number" id="distance" name="distance" placeholder="최대거리">
                         <button type="submit">검색</button>
                     </li>
                 </ul>
@@ -174,15 +156,6 @@
     <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
 </footer>
 <script>
-    function updateSearchKeyword() {
-        const searchType = document.getElementById('searchType').value;
-        const searchKeyword = document.getElementById('searchKeyword');
-        if (searchType === 'name') {
-            searchKeyword.name = 'name';
-        } else {
-            searchKeyword.name = 'address';
-        }
-    }
 </script>
 </body>
 </html>

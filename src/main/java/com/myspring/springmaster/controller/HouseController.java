@@ -48,9 +48,14 @@ public class HouseController {
     }
 
     @GetMapping("house/near")
-    public String showHouseNear(Model model, @RequestParam String address) {
-        model.addAttribute("houses", houseService.getNearHouseList(address));
-        return "house/listView";
+    public String showHouseNear(Model model) {
+        return "house/nearView";
+    }
+
+    @PostMapping("house/near")
+    public String showHouseNear(Model model, String address, int distance) {
+        model.addAttribute("houses", houseService.getNearHouseList(address, distance));
+        return "house/nearView";
     }
 
 

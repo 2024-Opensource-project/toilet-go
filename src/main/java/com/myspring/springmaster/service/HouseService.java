@@ -80,16 +80,15 @@ public class HouseService {
 
 
 
-    public List<HouseDTO> getNearHouseList(String address) {
+    public List<HouseDTO> getNearHouseList(String address, int distance) {
         List<HouseDTO> houseDTOList = this.getAllActiveHousesList();
         BigDecimal[] latAndLong = getLatitudeAndLongitude(address);
         List<HouseDTO> nearHouseDTOList = new ArrayList<>();
         if(latAndLong != null) {
             nearHouseDTOList = houseDTOList.stream()
-                    .filter(house -> isNear(house, latAndLong))
+                    .filter(house -> isNear(house, latAndLong, distance))
                     .toList();
         }
-
         return nearHouseDTOList;
     }
 
@@ -112,7 +111,7 @@ public class HouseService {
             // 파이썬 스크립트의 출력 읽기
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String result = in.readLine();
-            if(result.equals("Not Found") || result == null){ //오류처리 해보기
+            if(result == null || result.equals("Not Found")){ //오류처리 해보기
                 return null;
             }
             String[] results = result.split(",");
@@ -141,13 +140,9 @@ public class HouseService {
         return distance<5;
     }
 
-    private boolean isNear(HouseDTO houseDTO, BigDecimal[] latAndLon2){
+    private boolean isNear(HouseDTO houseDTO, BigDecimal[] latAndLon2, int wantedDistance){
         BigDecimal[] latAndLong1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
-        double distance = calcDistance(latAndLong1, latAndLon2);
-        System.out.println(Arrays.toString(latAndLong1) +","+Arrays.toString(latAndLon2));
-        System.out.println(distance);
-        System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-        return distance<5;
+        return calcDistance(latAndLong1, latAndLon2) <= wantedDistance;
     }
 
 
