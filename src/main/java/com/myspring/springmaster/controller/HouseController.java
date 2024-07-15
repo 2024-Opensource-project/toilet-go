@@ -48,7 +48,7 @@ public class HouseController {
     }
 
     @GetMapping("house/near")
-    public String showHouseNear(Model model) {
+    public String showHouseNear() {
         return "house/nearView";
     }
 
