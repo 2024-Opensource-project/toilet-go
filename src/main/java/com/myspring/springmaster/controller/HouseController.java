@@ -58,9 +58,20 @@ public class HouseController {
         return "house/nearView";
     }
 
+    @GetMapping("house/mapview")
+    public String showHouseMapView() {
+        return "house/mapView";
+    }
+
+    @PostMapping("house/mapview")
+    @ResponseBody
+    public List<double[]> getAllHousesLocation() {
+        System.out.println("yes started");
+        return houseService.getAllHousesLocation();
+    }
 
     @GetMapping("house/add")
-    public String addHouse(Model model, HttpSession session, RedirectAttributes redirectAttributes){
+    public String addHouse(HttpSession session, RedirectAttributes redirectAttributes){
         if(userService.isAdmin(session)){
             return "house/addHouse";
         }

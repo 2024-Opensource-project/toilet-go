@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>행복주택 상세 정보</title>
+    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vq6oly1eb"></script>
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>행복주택</strong></li>
+    </ul>
+    <ul>
+        <li><a href="/">홈</a></li>
+        <li><a href="/list">리스트</a></li>
+        <li><a href="#" role="button">문의하기</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <div id="map" style="width:100%;height:600px;"></div>
+        </section>
+    </div>
+</main>
+<footer class="container">
+    <small><a href="/terms">이용약관</a> • <a href="/privacy">개인정보처리방침</a></small>
+</footer>
+</body>
+<script>
+
+
+    let map = new naver.maps.Map(document.getElementById('map'),{
+        zoom: 16
+    });
+
+    let scrollTimeout;
+
+    // 스크롤 끝났을 때 함수 실행
+    function handleScrollEnd() {
+        // 일정 시간 동안 추가 스크롤이 없을 때만 함수를 실행
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            getHousesLocation();
+        }, 500); // 500ms 대기 후 실행
+    }
+
+    map.addListener('dragend', function (){ getHousesLocation();})
+    map.addListener('mousewheel', function (){ handleScrollEnd();})
+
+    function getHousesLocation(){
+        let url = window.location.href;
+        fetch(url, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            }})
+            .then(response => response.json())
+            .then(json => {json.forEach(location => {makeMarker(location)});
+            });
+    }
+
+    function makeMarker(location){
+        let latAndLng = new naver.maps.LatLng(location[0], location[1]);
+        new naver.maps.Marker({
+            position: latAndLng,
+            map: map
+        });
+    }
+
+</script>
+</html>
+</title>
+</head>
+<body>
+
+</body>
+</html>

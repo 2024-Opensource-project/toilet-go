@@ -92,6 +92,16 @@ public class HouseService {
         return nearHouseDTOList;
     }
 
+    public List<double[]> getAllHousesLocation(){
+        List<double[]> locationList = new ArrayList<>();
+        List<HouseDTO> houses = this.getAllActiveHousesList();
+        houses.forEach(house -> {
+            double[] location = {house.getLatitude().doubleValue(), house.getLongitude().doubleValue()};
+            locationList.add(location);
+        });
+        return locationList;
+    }
+
     private void removeUselessWord(HouseDTO house) {
         String[] uselessWords = {"소재지 :", "지도보기"};
         String address = house.getAddress();
