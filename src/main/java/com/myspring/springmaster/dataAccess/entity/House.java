@@ -48,13 +48,20 @@ public class House {
     @Temporal(TemporalType.TIMESTAMP)
     private String applyEndDate;
 
+    @Column(name = "company")
+    private String company;
+
+    @Column(name = "redirect_url_form")
+    private String redirectUrlForm;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "house_id", updatable = false, nullable = false)
     private List<HouseDetail> houseDetails;
 
     @Builder
-    public House(Long id, String name, String address, BigDecimal latitude, BigDecimal longitude, String status, String moveInDate, String applyStartDate, String applyEndDate, List<HouseDetail> houseDetails){
+    public House(Long id, String name, String address, BigDecimal latitude, BigDecimal longitude,
+                 String status, String moveInDate, String applyStartDate, String applyEndDate,
+                 String company, String redirectUrlForm, List<HouseDetail> houseDetails){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -64,6 +71,8 @@ public class House {
         this.moveInDate = moveInDate;
         this.applyStartDate = applyStartDate;
         this.applyEndDate = applyEndDate;
+        this.company = company;
+        this.redirectUrlForm = redirectUrlForm;
         this.houseDetails = houseDetails;
     }
 

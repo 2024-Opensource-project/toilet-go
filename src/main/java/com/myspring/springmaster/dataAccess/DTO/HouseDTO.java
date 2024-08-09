@@ -18,5 +18,7 @@ public class HouseDTO {
     private String moveInDate;
     private String applyStartDate;
     private String applyEndDate;
+    private String company;
+    private String redirectUrlForm;
     private List<HouseDetailDTO> houseDetails;
 }
