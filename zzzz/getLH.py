@@ -3,6 +3,7 @@ from datetime import date, timedelta
 from bs4 import BeautifulSoup
 from dto import HouseDTO, HouseDetailDTO
 from typing import List
+import urllib.parse
 
 def get_house_list(days: int = 30) -> List[BeautifulSoup]:
     today = date.today()
@@ -49,7 +50,9 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
             address = house.find("li", "w100").text.replace("소재지 :", "").strip(),
             moveInDate = house.find_all("li")[-1].text.replace("입주예정월 : ", "").strip(),
             applyStartDate = apply_date[0].strip(),
-            applyEndDate = apply_date[1].strip()
+            applyEndDate = apply_date[1].strip(),
+            company = 'LH',
+            redirectUrlForm = urllib.parse.urlencode(body)
         )
 
         house_details: List[HouseDetailDTO] = []

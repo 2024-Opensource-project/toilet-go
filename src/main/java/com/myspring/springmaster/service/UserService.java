@@ -42,7 +42,7 @@ public class UserService {
     public boolean isAdmin(HttpSession session){
         Integer role = (Integer) session.getAttribute("role");
         if(role != null){
-            return role == 2 || role == 3;
+            return role.equals(2) || role.equals(3);
         }
         return false;
     }

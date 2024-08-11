@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2024-08-09T21:25:59+0900",
+    date = "2024-08-11T20:56:51+0900",
     comments = "version: 1.5.3.Final, compiler: IncrementalProcessingEnvironment from gradle-language-java-8.7.jar, environment: Java 21.0.2 (Eclipse Adoptium)"
 )
 @Component
@@ -36,6 +36,8 @@ public class HouseMapperImpl implements HouseMapper {
         houseDTO.setMoveInDate( house.getMoveInDate() );
         houseDTO.setApplyStartDate( house.getApplyStartDate() );
         houseDTO.setApplyEndDate( house.getApplyEndDate() );
+        houseDTO.setCompany( house.getCompany() );
+        houseDTO.setRedirectUrlForm( house.getRedirectUrlForm() );
         houseDTO.setHouseDetails( houseDetailListToHouseDetailDTOList( house.getHouseDetails() ) );
 
         return houseDTO;
@@ -60,6 +62,8 @@ public class HouseMapperImpl implements HouseMapper {
         house.moveInDate( houseDTO.getMoveInDate() );
         house.applyStartDate( houseDTO.getApplyStartDate() );
         house.applyEndDate( houseDTO.getApplyEndDate() );
+        house.company( houseDTO.getCompany() );
+        house.redirectUrlForm( houseDTO.getRedirectUrlForm() );
         house.houseDetails( houseDetailDTOListToHouseDetailList( houseDTO.getHouseDetails() ) );
 
         return house.build();

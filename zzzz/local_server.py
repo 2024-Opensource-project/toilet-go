@@ -14,7 +14,7 @@ class Local:
         id = "admin"
         pw = "test"
         url = self.server_url + "/signin"
-        body = {"userId": id, "pw": pw}
+        body = {"userId": id, "password": pw}
         self.rq.post(url=url, data=body)
 
     def upload_houses(self, house_list):
@@ -23,4 +23,4 @@ class Local:
             #print(house)
             body = asdict(house)
             ps = self.rq.post(url, json=body)
-            print(ps.status_code)
+            print(ps.text)

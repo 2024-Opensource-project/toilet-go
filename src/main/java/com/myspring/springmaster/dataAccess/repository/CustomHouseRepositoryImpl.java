@@ -61,6 +61,6 @@ public class CustomHouseRepositoryImpl implements CustomHouseRepository {
         }
         applyStartDate = applyStartDate.replace("-", ".");
         applyEndDate = applyEndDate.replace("-", ".");
-        return house.applyStartDate.after(applyStartDate).and(house.applyEndDate.before(applyEndDate));
+        return house.applyStartDate.between(applyStartDate, applyEndDate);
     }
 }

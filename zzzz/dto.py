@@ -18,4 +18,6 @@ class HouseDTO:
     moveInDate: Optional[str] = ""
     applyStartDate: Optional[str] = ""
     applyEndDate: Optional[str] = ""
+    company: Optional[str] = ""
+    redirectUrlForm: Optional[str] = ""
     houseDetails: Optional[list[HouseDetailDTO]] = ""

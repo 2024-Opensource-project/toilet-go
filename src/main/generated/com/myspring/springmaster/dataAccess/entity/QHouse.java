@@ -26,6 +26,8 @@ public class QHouse extends EntityPathBase<House> {
 
     public final DateTimePath<String> applyStartDate = createDateTime("applyStartDate", String.class);
 
+    public final StringPath company = createString("company");
+
     public final ListPath<HouseDetail, QHouseDetail> houseDetails = this.<HouseDetail, QHouseDetail>createList("houseDetails", HouseDetail.class, QHouseDetail.class, PathInits.DIRECT2);
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
@@ -37,6 +39,8 @@ public class QHouse extends EntityPathBase<House> {
     public final DateTimePath<String> moveInDate = createDateTime("moveInDate", String.class);
 
     public final StringPath name = createString("name");
+
+    public final StringPath redirectUrlForm = createString("redirectUrlForm");
 
     public final StringPath status = createString("status");
 

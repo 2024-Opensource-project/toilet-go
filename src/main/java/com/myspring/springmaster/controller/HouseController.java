@@ -30,7 +30,13 @@ public class HouseController {
 
     @GetMapping("/house/detail/{id}")
     public String showHouse(Model model, @PathVariable int id) {
-        model.addAttribute("house", houseService.getHouse(id));
+        HouseDTO houseDTO = houseService.getHouse(id);
+        if(houseDTO != null) {
+            model.addAttribute("house", houseDTO);
+        }
+        else{
+            return "error";
+        }
         return "house/detailView";
     }
 
@@ -66,7 +72,6 @@ public class HouseController {
     @PostMapping("house/mapview")
     @ResponseBody
     public List<double[]> getAllHousesLocation() {
-        System.out.println("yes started");
         return houseService.getAllHousesLocation();
     }
 

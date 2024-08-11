@@ -32,7 +32,7 @@ public class HouseService {
 
 
     public HouseDTO getHouse(int id) {
-        House house = houseRepository.findById((long) id).orElseThrow();
+        House house = houseRepository.findById((long) id).orElse(null);
         return HouseMapper.Instance.toDTO(house);
     }
 
