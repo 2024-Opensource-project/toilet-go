@@ -1,6 +1,7 @@
 package com.myspring.springmaster.controller;
 
 import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
+import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
 import com.myspring.springmaster.service.HouseService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class IndexController {
     @GetMapping("/")
     public String indexController(Model model, HttpSession session) {
         final int HOUSE_COUNT = 10;
-        List<HouseDTO> houseList = houseService.getHouses(HOUSE_COUNT);
+        List<PreviewHouseDTO> houseList = houseService.getPreviewHouses(HOUSE_COUNT);
         model.addAttribute("houseList", houseList);
         model.addAttribute("name", session.getAttribute("name"));
         return "index";

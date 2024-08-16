@@ -1,6 +1,7 @@
 package com.myspring.springmaster.service;
 
 import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
+import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
 import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.dataAccess.mapper.HouseMapper;
 import com.myspring.springmaster.dataAccess.repository.HouseRepository;
@@ -64,6 +65,21 @@ public class HouseService {
             housesDTO.add(HouseMapper.Instance.toDTO(house));
         }
         return housesDTO;
+    }
+
+    public List<PreviewHouseDTO> getPreviewHouses(int limit) {
+        Pageable pageable = PageRequest.of(0, limit);
+        List<House> houses = houseRepository.findAll(pageable).getContent();
+        List<PreviewHouseDTO> previewHouseDTOS = new ArrayList<>();
+        for (House house : houses) {
+            PreviewHouseDTO previewHouseDTO = new PreviewHouseDTO();
+            previewHouseDTO.setId(house.getId());
+            previewHouseDTO.setName(house.getName());
+            previewHouseDTO.setAddress(house.getAddress());
+            previewHouseDTO.setImageUrl(house.getHouseDetails().get(0).getImageUrl());
+            previewHouseDTOS.add(previewHouseDTO);
+        }
+        return previewHouseDTOS;
     }
 
     public boolean addHouse(HouseDTO houseDTO) {

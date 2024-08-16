@@ -1,7 +1,6 @@
-<html lang="ko">
-
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <link href="/style.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
     <title>MyHome | Home</title>
 </head>
 
@@ -75,7 +74,7 @@
                             </div>
                             <div class="sb-cta-wrapper sb-section-alienable">
                                     <span class="aos-init aos-animate">
-                                        <a class="sb-cta-wrapper__btn sb-button sb-button--primary" href="/#preview" rel=" " target="">View services</a>
+                                        <a class="sb-cta-wrapper__btn sb-button sb-button--primary" href="/#list" rel=" " target="">View services</a>
                                     </span>
                             </div>
                         </div>
@@ -166,8 +165,8 @@
                                 </div>
                             </div>
                             <div class="sb-text-image__image aos-init aos-animate">
-                                <figure class="option-image" style="background-image: url('/image/list.png')">
-                                    <img src="image/list.png" alt="Explore public housing">
+                                <figure class="option-image" style="background-image: url('/static/image/list.png')">
+                                    <img src="/static/image/list.png" alt="Explore public housing">
                                 </figure>
                                 <div class="sb-text-image__image-caption"></div>
                             </div>
@@ -186,8 +185,8 @@
                     <div class="sb-column-content">
                         <div class="sb-text-image sb-section-alienable">
                             <div class="sb-text-image__image aos-init aos-animate">
-                                <figure class="option-image" style="background-image: url('/image/mapview.png')">
-                                    <img src="/image/mapview.png" alt="Image error">
+                                <figure class="option-image" style="background-image: url('/static/image/mapview.png')">
+                                    <img src="/static/image/mapview.png" alt="Image error">
                                 </figure>
                                 <div class="sb-text-image__image-caption"></div>
                             </div>
@@ -386,15 +385,20 @@
 </div>
 </body>
 
-<script>
-    let house_images = [];
-    let house_names = [];
-    let house_descriptions = [];
+<script th:inline="javascript">
+    let list = [[${houseList}]]
+    let house_images = list.map(function (item){return makeImageUrl(item.imageUrl)})
+    let house_names = list.map(function(item){return item.name})
+    let house_descriptions = list.map(function(item){return item.address});
+    let house_url = list.map(function (item){return item.id});
 
     const houses = document.querySelectorAll('.sb-items-grid__items li');
     houses.forEach((house, index) => {
-        const img = house.querySelector('.items-grid__item-image img');
-        img.src = house_images[index];  // 이미지 경로 설정
+        const url = house.querySelector('.items-grid__item-body');
+        url.href = "/house/detail/"+house_url[index];
+
+        const img = house.querySelector('.option-image');
+        img.style.backgroundImage = house_images[index]; // 이미지 경로 설정
 
         const header = house.querySelector('.items-grid__header');
         header.textContent = house_names[index]; // 헤더 텍스트 설정
@@ -403,5 +407,11 @@
         description.textContent = house_descriptions[index];  // 설명 텍스트 설정
     });
 
+    function makeImageUrl(url){
+        if(url === null || url === ''){
+            return "url('/static/image/defaultHouse.png')";
+        }
+        return "url('" + url + "')";
+    }
 </script>
 </html>
