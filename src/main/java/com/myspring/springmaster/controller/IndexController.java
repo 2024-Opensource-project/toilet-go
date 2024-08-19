@@ -32,6 +32,4 @@ public class IndexController {
         model.addAttribute("name", session.getAttribute("name"));
         return "index";
     }
-
-
 }

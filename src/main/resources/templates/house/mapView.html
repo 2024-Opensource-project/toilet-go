@@ -1,33 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>행복주택 상세 정보</title>
-    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vq6oly1eb"></script>
+    <title>MyHome | MapView</title>
 </head>
+
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>행복주택</strong></li>
-    </ul>
-    <ul>
-        <li><a href="/">홈</a></li>
-        <li><a href="/list">리스트</a></li>
-        <li><a href="#" role="button">문의하기</a></li>
-    </ul>
-</nav>
-<main class="container">
-    <div class="grid">
+    <div th:insert="fragments/nav"></div>
+    <div class="sb-section option-align-center next-nav-bar">
+        <div class="sb-section-alignable sb-row">
+            <label for="addressInput"></label>
+            <input type="text" class="border-radius" id="addressInput" placeholder="도로명 주소를 입력하세요." style="width: 60%">
+            <button class="border-radius" onclick="getAddress()">검색하기</button>
+        </div>
+    </div>
+    <div class="sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-section option-align-center option-display-block">
         <section>
-            <div id="map" style="width:100%;height:600px;"></div>
+            <div class="sb-section-alignable" id="map" style="width:70%;height:80%;"></div>
         </section>
     </div>
-</main>
-<footer class="container">
-    <small><a href="/terms">이용약관</a> • <a href="/privacy">개인정보처리방침</a></small>
-</footer>
+    <div th:insert="fragments/footer"></div>
 </body>
+
 <script>
 
 
@@ -68,12 +62,5 @@
             map: map
         });
     }
-
 </script>
-</html>
-</title>
-</head>
-<body>
-
-</body>
 </html>
