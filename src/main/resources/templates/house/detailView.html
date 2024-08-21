@@ -1,23 +1,12 @@
-<!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>행복주택 상세 정보</title>
-    <link href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
     <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vq6oly1eb"></script>
+    <title>MyHome | MapView</title>
 </head>
+
 <body>
-<nav class="container-fluid">
-    <ul>
-        <li><strong>행복주택</strong></li>
-    </ul>
-    <ul>
-        <li><a href="/">홈</a></li>
-        <li><a href="/list">리스트</a></li>
-        <li><a href="#" role="button">문의하기</a></li>
-    </ul>
-</nav>
+<div th:insert="fragments/nav"></div>
 <main class="container">
     <div class="grid">
         <section>
