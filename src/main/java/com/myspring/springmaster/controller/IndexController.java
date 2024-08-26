@@ -1,6 +1,5 @@
 package com.myspring.springmaster.controller;
 
-import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
 import com.myspring.springmaster.service.HouseService;
 import jakarta.servlet.http.HttpSession;
@@ -10,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
