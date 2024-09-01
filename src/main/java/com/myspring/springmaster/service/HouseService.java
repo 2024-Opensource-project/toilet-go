@@ -128,42 +128,16 @@ public class HouseService {
     }
 
     private BigDecimal[] getLatitudeAndLongitude(String address){
-        BigDecimal[] rtnValue = new BigDecimal[2];
-        try {
-            ProcessBuilder pb = new ProcessBuilder("python",
-                    "C:\\Users\\guna\\Desktop\\springMaster\\zzzz\\naver_map_api.py", address);
-            Process p = pb.start();
-
-            // 파이썬 스크립트의 출력 읽기
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String result = in.readLine();
-            if(result == null || result.equals("Not Found")){ //오류처리 해보기
-                return null;
-            }
-            String[] results = result.split(",");
-            rtnValue[0] = BigDecimal.valueOf(Double.parseDouble(results[0]));
-            rtnValue[1] = BigDecimal.valueOf(Double.parseDouble(results[1]));
-
-            in.close();
-            // 파이썬 스크립트의 종료 코드 확인
-            int exitCode = p.waitFor();
-            if (exitCode != 0) {
-                System.out.println("파이썬 스크립트 실행 실패");
-                throw new Exception();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return rtnValue;
+        MapApiService mapApiService = new NaverMapApi();
+        return mapApiService.getLatAndLng(address);
     }
 
 
-    private boolean isNear(HouseDTO houseDTO, String address){
+    private boolean isNear(HouseDTO houseDTO, String address, int wantedDistance){
         BigDecimal[] latAndLon1 = {houseDTO.getLatitude(), houseDTO.getLongitude()};
         BigDecimal[] latAndLon2 = getLatitudeAndLongitude(address);
         double distance = calcDistance(latAndLon1, latAndLon2);
-        System.out.println(distance);
-        return distance<5;
+        return distance<wantedDistance;
     }
 
     private boolean isNear(HouseDTO houseDTO, BigDecimal[] latAndLon2, int wantedDistance){

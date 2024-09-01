@@ -25,14 +25,3 @@ class NaverMapAPI:
             location_x = response_json["addresses"][0]["x"]
             location_y = response_json["addresses"][0]["y"]
             return location_y, location_x
-
-if __name__ == "__main__":
-    address = sys.argv[1]
-
-    naver_map_api = NaverMapAPI()
-    latitude, longitude = naver_map_api.get_lat_lon(address)
-
-    if latitude is None:
-        print("Not Found")
-    else:
-        print(f"{latitude},{longitude}")

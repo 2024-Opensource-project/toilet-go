@@ -6,12 +6,12 @@ from typing import List
 import urllib.parse
 
 
-def get_house_list(num: int = 10) -> List[BeautifulSoup]:
+def get_house_list(num) -> List[BeautifulSoup]:
     url = "https://apply.gh.or.kr/sb/sr/sr7150/selectPbancRentHouseList.do"
     body = {
         'searchArea': '',
         'searchCate': '01', #행복주택
-        'searchState': '', #모집중인거 보려면 1 아니면 빈값
+        'searchState': '1', #모집중인거 보려면 1 아니면 빈값
         'searchTitle': '',
         'previewYn': '',
         'pbancNo': '',
@@ -34,7 +34,7 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
     body = {
         'searchArea': '',
         'searchCate': '01', #행복주택
-        'searchState': '', #모집중인거 보려면 1 아니면 빈값
+        'searchState': '1', #모집중인거 보려면 1 아니면 빈값
         'searchTitle': '',
         'previewYn': 'N',
         'pbancNo': data["data-pbancno"],
