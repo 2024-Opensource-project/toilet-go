@@ -43,7 +43,6 @@ public class NaverMapApi implements MapApiService {
         BigDecimal[] rtnValue = new BigDecimal[2];
         rtnValue[0] = BigDecimal.valueOf(Double.parseDouble(results[0]));
         rtnValue[1] = BigDecimal.valueOf(Double.parseDouble(results[1]));
-        System.out.println(Arrays.toString(results));
         return rtnValue;
     }
 }
