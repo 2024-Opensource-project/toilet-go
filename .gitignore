@@ -35,12 +35,14 @@ out/
 
 
 ### generated(Qclass) ###
-src/main/generated/*
-!src/main/generated/**/.gitkeep
+src/main/generated/com/myspring/springmaster/dataAccess/entity/*
+src/main/generated/com/myspring/springmaster/dataAccess/mapper/*
+!src/main/generated/com/myspring/springmaster/dataAccess/entity/.gitkeep
+!src/main/generated/com/myspring/springmaster/dataAccess/mapper/.gitkeep
 
 ### test folder ###
 src/test/*
-!src/test/**/.gitkeep
 
 ### naverMapAPI 삭제 가능할듯 ###
 src/main/resources/static/naverAPI/*
+
