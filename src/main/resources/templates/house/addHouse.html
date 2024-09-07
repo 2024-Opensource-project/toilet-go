@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Submission</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<nav class="container-fluid">
+    <ul>
+        <li><strong>Form Submission</strong></li>
+    </ul>
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#" role="button">Contact</a></li>
+    </ul>
+</nav>
+<main class="container">
+    <div class="grid">
+        <section>
+            <hgroup>
+                <h2>Submit Your Details</h2>
+                <h3>Please fill out the form below</h3>
+            </hgroup>
+            <form id="submissionForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" placeholder="Enter name">
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" placeholder="Enter the address">
+
+                <label for="status">Status:</label>
+                <input type="text" id="status" name="status" placeholder="Enter the status">
+
+                <label for="moveInDate">Moving Date:</label>
+                <input type="date" id="moveInDate" name="moveInDate">
+
+                <label for="applyStartDate">Submission Date:</label>
+                <input type="date" id="applyStartDate" name="applyStartDate">
+
+                <label for="applyEndDate">Submission Date:</label>
+                <input type="date" id="applyEndDate" name="applyEndDate">
+
+            </form>
+
+            <div id="details"></div>
+
+            <button type="button" onclick="addDetailsInput()">Add Details</button>
+            <button type="button" onclick="submitForm()">Submit</button>
+
+        </section>
+    </div>
+</main>
+<footer class="container">
+    <small><a href="#">Privacy Policy</a> • <a href="#">Terms of Service</a></small>
+</footer>
+<script>
+    let detailsNum = 0;
+    function submitForm() {
+        const houseData = new FormData(document.getElementById('submissionForm'));
+        const houseDetailsData = [];
+        const jsonData = {};
+
+        houseData.forEach((value, key) => {
+            jsonData[key] = value || ''; // Assign empty string if the value is empty
+        });
+
+        for(let i=0; i<detailsNum; i++){
+            const detailData = new FormData(document.getElementById("detail"+i));
+            const input = {};
+            detailData.forEach((value, key) =>{
+                input[key] = value || '';
+            })
+            houseDetailsData.push(input);
+        }
+        jsonData["houseDetails"] = houseDetailsData;
+
+        fetch('/house/add', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(jsonData)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
+    function addDetailsInput() {
+        const types = ["text", "text", "number", "number", "number", "text"]
+        const ids = ["type", "size", "supplyCount", "deposit", "monthlyRent", "imageUrl"]
+
+        const detailsDiv = document.getElementById("details");
+
+        const child = document.createElement("form");
+        child.id = "detail"+detailsNum;
+        for(let i=0; i<types.length; i++){
+            const input = document.createElement("input");
+            input.type = types[i];
+            input.name = ids[i];
+            child.appendChild(input)
+        }
+        detailsDiv.append(child);
+        detailsNum++;
+    }
+</script>
+</body>
+</html>

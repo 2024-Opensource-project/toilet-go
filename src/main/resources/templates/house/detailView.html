@@ -1,0 +1,66 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/static/style.css" rel="stylesheet">
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vq6oly1eb"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <title>MyHome | detailView</title>
+</head>
+
+<body>
+<div th:insert="fragments/nav"></div>
+<div class="container mt-5 next-nav-bar">
+    <h2 th:text="${house.name}">주택 이름</h2>
+    <div id="map" style="width:50%;height:30%;"></div>
+    <br>
+    <p th:text="'주소: ' + ${house.address}">주소</p>
+    <p th:text="'상태: ' + ${house.status}">상태</p>
+    <p th:text="'신청 기간: ' + ${house.applyStartDate} + '~' + ${house.applyEndDate}">신청 기간</p>
+    <p th:text="'입주예정월: ' + ${house.moveInDate}">입주예정월</p>
+    <div class="mt-5">
+        <table class="table table-bordered">
+            <thead class="table-light">
+            <tr>
+                <th scope="col">유형</th>
+                <th scope="col">크기</th>
+                <th scope="col">공급 수</th>
+                <th scope="col">보증금</th>
+                <th scope="col">월세</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Sample Data, should be dynamically populated -->
+            <tr th:each="houseDetail :${house.houseDetails}">
+                <img th:src="${houseDetail.imageUrl}" alt="이미지가 존재하지 않습니다.">
+                <td th:text="${houseDetail.type}">유형</td>
+                <td th:text="${houseDetail.size}">크기</td>
+                <td th:text="${houseDetail.supplyCount}">공급 수</td>
+                <td th:text="${houseDetail.deposit}">보증금</td>
+                <td th:text="${houseDetail.monthlyRent}">월세</td>
+            </tr>
+            <!-- 추가 데이터 행들 -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:insert="fragments/footer"></div>
+</body>
+<script th:inline="javascript">
+
+    let latitude = [[${house.latitude}]]
+    let longitude = [[${house.longitude}]]
+    let latAndLng = new naver.maps.LatLng(latitude, longitude);
+
+    let map = new naver.maps.Map(document.getElementById('map'),{
+        center: latAndLng,
+        zoom: 16
+    });
+
+    let marker = new naver.maps.Marker({
+        position: latAndLng,
+        map: map
+    })
+</script>
+</html>

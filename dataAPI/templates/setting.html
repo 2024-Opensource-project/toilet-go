@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>setting</title>
+    <style>
+        .upload-btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .upload-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>lh와 gh 값을 설정하세요</h1>
+    <form method="POST">
+        <label for="lh">lh(일 수):</label>
+        <input type="number" id="lh" name="lh" placeholder="현재 : {{ lh }}" step="1">
+        <br><br>
+        <label for="gh">gh(게시물 수):</label>
+        <input type="number" id="gh" name="gh" placeholder="현재 : {{ gh }}" step="1">
+        <br><br>
+        <input type="submit" value="제출">
+    </form>
+    <hr>
+    <hr>
+    <form action="/upload" method="POST">
+        <button type="submit" class="upload-btn">업로드</button>
+    </form>
+</body>
+</html>
