@@ -1,1 +1,0 @@
-nohup java -jar -Dserver.port=54080 ./build/libs/springMaster-0.0.1-SNAPSHOT.jar > /dev/null 2>&1 &
