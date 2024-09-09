@@ -46,3 +46,4 @@ src/test/*
 ### naverMapAPI 삭제 가능할듯 ###
 src/main/resources/static/naverAPI/*
 
+dataAPI/module/config.py

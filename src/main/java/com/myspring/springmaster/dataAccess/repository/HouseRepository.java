@@ -16,5 +16,5 @@ import java.util.List;
 public interface HouseRepository extends JpaRepository<House, Long>, CustomHouseRepository {
     @NotNull
     Page<House> findAll(@NotNull Pageable pageable);
-    List<House> findAllByStatus(@NotNull String status);
+    List<House> findAllByStatusOrderByIdDesc(@NotNull String status);
 }

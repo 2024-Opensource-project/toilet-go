@@ -14,7 +14,7 @@
             <div class="input-group">
                 <label class="form-label" for="addressInput"></label>
                 <input type="text" class="form-control" id="addressInput" placeholder="도로명 주소를 입력하세요.">
-                <button type="submit" class="btn btn-primary" onclick="getAddress()">Search</button>
+                <button type="submit" class="btn btn-primary" onclick="getLatAndLng()">Search</button>
             </div>
         </div>
         <hr>
@@ -57,6 +57,37 @@
             .then(response => response.json())
             .then(json => {json.forEach(location => {makeMarker(location)});
             });
+    }
+
+    function getLatAndLng(){
+        let address = document.getElementById('addressInput').value;
+        let url = '/house/latandlng';
+        fetch(url, {
+            method: 'POST',
+            headers:{
+                'Content-Type' : 'application/x-www-form-urlencoded'
+            },
+            body: `address=${encodeURIComponent(address)}`
+        })
+        .then(response => response.json())
+        .then(data => moveLocation(data));
+    }
+
+    function moveLocation(data){
+        if(data.length===0 || data[0] === 0){
+            invalidAddress();
+        }
+        else{
+            let latitude = data[0];
+            let longitude = data[1];
+            let latAndLng = new naver.maps.LatLng(latitude, longitude);
+            map.setCenter(latAndLng)
+            map.setZoom(16)
+        }
+    }
+
+    function invalidAddress(){
+        alert("잘못된 주소입니다.");
     }
 
     function makeMarker(location){

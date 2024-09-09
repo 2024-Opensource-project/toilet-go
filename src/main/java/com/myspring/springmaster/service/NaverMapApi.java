@@ -29,7 +29,6 @@ public class NaverMapApi implements MapApiService {
 
     @Override
     public BigDecimal[] getLatAndLng(String address){
-        System.out.println("address is "+address);
         WebClient webClient = WebClient.builder().baseUrl("http://localhost:45081/latandlng").build();
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("address", address);

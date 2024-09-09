@@ -5,6 +5,8 @@ import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.DTO.HouseDetailDTO;
 import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.service.HouseService;
+import com.myspring.springmaster.service.MapApiService;
+import com.myspring.springmaster.service.NaverMapApi;
 import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -54,7 +57,8 @@ public class HouseController {
     }
 
     @GetMapping("house/near")
-    public String showHouseNear() {
+    public String showHouseNear(Model model) {
+        model.addAttribute("houses", houseService.getAllActiveHousesList());
         return "house/nearView";
     }
 
@@ -73,6 +77,15 @@ public class HouseController {
     @ResponseBody
     public List<double[]> getAllHousesLocation() {
         return houseService.getAllHousesLocation();
+    }
+
+    @PostMapping("house/latandlng")
+    @ResponseBody
+    public double[] getLatAndLng(@RequestParam String address){
+        if(address==null || address.isEmpty() || address.equals("null")){
+            return new double[0];
+        }
+        return houseService.getLatitudeAndLongitudeAsDouble(address);
     }
 
     @GetMapping("house/add")

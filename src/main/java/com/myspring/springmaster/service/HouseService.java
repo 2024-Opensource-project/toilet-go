@@ -39,7 +39,7 @@ public class HouseService {
 
     public List<HouseDTO> getAllActiveHousesList() {
         final String ACTIVE_HOUSE_STRING = "공고중";
-        List<House> houseList = houseRepository.findAllByStatus(ACTIVE_HOUSE_STRING);
+        List<House> houseList = houseRepository.findAllByStatusOrderByIdDesc(ACTIVE_HOUSE_STRING);
         List<HouseDTO> housesDTO = new ArrayList<>();
         for (House house : houseList) {
             housesDTO.add(HouseMapper.Instance.toDTO(house));
@@ -116,6 +116,16 @@ public class HouseService {
             locationList.add(location);
         });
         return locationList;
+    }
+
+    public double[] getLatitudeAndLongitudeAsDouble(String address){
+        BigDecimal[] data = this.getLatitudeAndLongitude(address);
+        double[] rtnValue = new double[2];
+        if(data != null) {
+            rtnValue[0] = data[0].doubleValue();
+            rtnValue[1] = data[1].doubleValue();
+        }
+        return rtnValue;
     }
 
     private void removeUselessWord(HouseDTO house) {

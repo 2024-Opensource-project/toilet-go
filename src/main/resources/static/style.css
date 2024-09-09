@@ -2907,7 +2907,7 @@ select {
     color:#fff
 }
 .option-columns-3col.sb-column-content .items-grid .items-grid__item,.option-columns-3col .items-grid .items-grid__item {
-    flex:0 0 33.33333%
+    flex:0 0 30%
 }
 @media (max-width:767px) {
     .option-columns-3col.sb-column-content .items-grid .items-grid__item,.option-columns-3col .items-grid .items-grid__item {
