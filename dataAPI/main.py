@@ -1,14 +1,15 @@
 from flask import Flask, render_template, request, redirect
 from module.upload_house_info import upload_gh, upload_lh
 from module.naver_map_api import NaverMapAPI
+import os
 
 app = Flask(__name__)
 
 class MyServer:
-    def __init__(self, host='0.0.0.0', port=45081):
+    def __init__(self):
         self.app = Flask(__name__)
-        self.host = host
-        self.port = port
+        self.host = '0.0.0.0'
+        self.port = int(os.getenv('SERVER_PORT'))
         self.upload_lh_num = 30 #default 30
         self.upload_gh_num = 10 #default 10
         self.map_api = NaverMapAPI()

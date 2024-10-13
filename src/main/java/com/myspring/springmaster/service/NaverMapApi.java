@@ -1,6 +1,9 @@
 package com.myspring.springmaster.service;
 
 import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -18,6 +21,13 @@ import java.util.Arrays;
 @Component
 public class NaverMapApi implements MapApiService {
 
+    private final Environment environment;
+
+    @Autowired
+    public NaverMapApi(Environment environment) {
+        this.environment = environment;
+    }
+
     @PostConstruct
     private void init(){
 
@@ -29,7 +39,9 @@ public class NaverMapApi implements MapApiService {
 
     @Override
     public BigDecimal[] getLatAndLng(String address){
-        WebClient webClient = WebClient.builder().baseUrl("http://localhost:45081/latandlng").build();
+        String baseUrl = environment.getProperty("python.url");
+        assert baseUrl != null;
+        WebClient webClient = WebClient.builder().baseUrl(baseUrl).build();
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add("address", address);
 

@@ -25,10 +25,12 @@ import static com.myspring.springmaster.dataAccess.entity.QHouse.house;
 public class HouseService {
 
     private final HouseRepository houseRepository;
+    private final NaverMapApi naverMapApi;
 
     @Autowired
-    public HouseService(HouseRepository houseRepository) {
+    public HouseService(HouseRepository houseRepository, NaverMapApi naverMapApi) {
         this.houseRepository = houseRepository;
+        this.naverMapApi = naverMapApi;
     }
 
 
@@ -138,8 +140,7 @@ public class HouseService {
     }
 
     private BigDecimal[] getLatitudeAndLongitude(String address){
-        MapApiService mapApiService = new NaverMapApi();
-        return mapApiService.getLatAndLng(address);
+        return naverMapApi.getLatAndLng(address);
     }
 
 

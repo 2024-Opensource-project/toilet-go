@@ -1,12 +1,14 @@
+import os
 class db:
-    server = '34.47.105.3'
-    id = 'root'
-    pw = 'dmdlsldk2!'
-    name = 'spring_project_house'
+    server = os.getenv('DB_SERVER')
+    id = os.getenv('DB_USERNAME')
+    pw = os.getenv('DB_PASSWORD')
+    name = os.getenv('DB_NAME')
+
 
 class local:
-    server = "http://localhost:54080"
-    id = "admin"
-    pw = 'test'
-    login_url = '/signin'
-    upload_url = '/house/add'
+    server = os.getenv('LOCAL_SERVER')
+    id = os.getenv('LOCAL_ID')
+    pw = os.getenv('LOCAL_PASSWORD')
+    login_url = os.getenv('LOCAL_LOGIN_URL')
+    upload_url = os.getenv('LOCAL_UPLOAD_URL')

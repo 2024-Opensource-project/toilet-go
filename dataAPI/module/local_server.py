@@ -12,9 +12,6 @@ class Local:
     login_url = local.login_url
     upload_url = local.upload_url
 
-    def __init__(self):
-        self.get_admin_session()
-
     def get_admin_session(self):
         id = self.admin_id
         pw = self.admin_pw
@@ -23,6 +20,7 @@ class Local:
         self.rq.post(url=url,  data=body)
 
     def upload_houses(self, house_list):
+        self.get_admin_session()
         url = self.server_url + self.upload_url
         for house in house_list:
             #print(house)
