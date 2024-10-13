@@ -40,13 +40,20 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
     house_detail_list = soup.find_all("tbody")
     index = 0
 
-    name_list = soup.find_all("h4", "tit2")
+    name_list = []
+    for i in range(10):  # 예를 들어 0부터 9까지 ID가 있는 경우를 가정
+        div_id = f"wrtancSbdTab{i}"
+        div_element = soup.find(id=div_id)
+        if div_element:  # 해당 ID가 존재하는 경우에만 진행
+            titles = div_element.find('h4', class_='tit2')
+            for title in titles:
+                name_list.append(title.get_text())
 
     houses_info: List[HouseDTO] = []
     for house in house_list:
         apply_date = soup.find("label", id="sta_acpDt").text.split("~")
         house = HouseDTO(
-            name = name_list[index*4].text.strip(),
+            name = name_list[index].strip(),
             address = house.find("li", "w100").text.replace("소재지 :", "").strip(),
             moveInDate = house.find_all("li")[-1].text.replace("입주예정월 : ", "").strip(),
             applyStartDate = apply_date[0].strip(),
@@ -70,4 +77,3 @@ def get_house_info(data: BeautifulSoup) -> List[HouseDTO]:
         houses_info.append(house)
         index += 1
     return houses_info
-
