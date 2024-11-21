@@ -1,8 +1,5 @@
 package com.myspring.springmaster.dataAccess.repository;
 
-import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
-import com.myspring.springmaster.dataAccess.entity.House;
-import com.myspring.springmaster.dataAccess.entity.QHouse;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;

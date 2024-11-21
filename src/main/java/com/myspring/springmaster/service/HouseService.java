@@ -1,25 +1,16 @@
 package com.myspring.springmaster.service;
 
-import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
-import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
-import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.dataAccess.mapper.HouseMapper;
 import com.myspring.springmaster.dataAccess.repository.HouseRepository;
-import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.myspring.springmaster.dataAccess.entity.QHouse.house;
 
 @Service
 public class HouseService {

@@ -1,6 +1,5 @@
 package com.myspring.springmaster.controller;
 
-import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
 import com.myspring.springmaster.service.HouseService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;

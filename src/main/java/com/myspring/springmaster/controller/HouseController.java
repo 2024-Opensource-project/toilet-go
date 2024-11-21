@@ -1,12 +1,6 @@
 package com.myspring.springmaster.controller;
 
-import com.myspring.springmaster.dataAccess.DAO.HouseDAO;
-import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
-import com.myspring.springmaster.dataAccess.DTO.HouseDetailDTO;
-import com.myspring.springmaster.dataAccess.entity.House;
 import com.myspring.springmaster.service.HouseService;
-import com.myspring.springmaster.service.MapApiService;
-import com.myspring.springmaster.service.NaverMapApi;
 import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.List;
 
 @Controller
