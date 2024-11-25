@@ -91,6 +91,5 @@ public class Toilet {
         this.entrance_cctv_installed = entrance_cctv_installed;
         this.diaper_changing_station = diaper_changing_station;
         this.diaper_changing_station_location = diaper_changing_station_location;
-
     }
 }
