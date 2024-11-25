@@ -19,7 +19,7 @@ public class ToiletController {
     //화장실 리스트 조회
     @GetMapping("toilet/list")
     public String showToiletList(Model model){
-        model.addAttribute("toilets",toiletService.getAllToiletsLocation());
+        model.addAttribute("toilets",toiletService.getToilets(100));
         return "toilet/listView";
     }
 

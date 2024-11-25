@@ -4,6 +4,9 @@ import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
 import com.myspring.springmaster.dataAccess.mapper.ToiletMapper;
 import com.myspring.springmaster.dataAccess.repository.ToiletRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -25,6 +28,16 @@ public class ToiletService {
     public ToiletDTO getToilet(int id){
         Toilet toilet = toiletRepository.findById((long)id).orElse(null);
         return ToiletMapper.Instance.toDTO(toilet);
+    }
+
+    public List<ToiletDTO> getToilets(int num){
+        Pageable pageable = PageRequest.of(0, num);
+        List<Toilet> toilets = toiletRepository.findAll(pageable).getContent();
+        List<ToiletDTO> rtnValue = new ArrayList<>();
+        for(Toilet toilet : toilets){
+            rtnValue.add(ToiletMapper.Instance.toDTO(toilet));
+        }
+        return rtnValue;
     }
 
     //모든 화장실 위치 반환(리스트)

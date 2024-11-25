@@ -5,11 +5,10 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Getter
 @Entity
-@Table(name = "Toilets")
+@Table(name = "public_toilets")
 public class Toilet {
 
     @Id
@@ -91,5 +90,9 @@ public class Toilet {
         this.entrance_cctv_installed = entrance_cctv_installed;
         this.diaper_changing_station = diaper_changing_station;
         this.diaper_changing_station_location = diaper_changing_station_location;
+    }
+
+    public Toilet() {
+
     }
 }
