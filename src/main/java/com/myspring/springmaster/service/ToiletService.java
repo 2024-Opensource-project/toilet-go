@@ -4,6 +4,7 @@ import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
 import com.myspring.springmaster.dataAccess.mapper.ToiletMapper;
 import com.myspring.springmaster.dataAccess.repository.ToiletRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ public class ToiletService {
     private final ToiletRepository toiletRepository;
     private final NaverMapApi naverMapApi;
 
+    @Autowired
     public ToiletService(ToiletRepository toiletRepository, NaverMapApi naverMapApi) {
         this.toiletRepository = toiletRepository;
         this.naverMapApi = naverMapApi;
@@ -30,15 +32,43 @@ public class ToiletService {
         return ToiletMapper.Instance.toDTO(toilet);
     }
 
-    public List<ToiletDTO> getToilets(int num){
+    public List<ToiletDTO> getToiletsByFilter(ToiletDTO filter, int num) {
         Pageable pageable = PageRequest.of(0, num);
-        List<Toilet> toilets = toiletRepository.findAll(pageable).getContent();
+        List<Toilet> toilets = toiletRepository.findAllByFilter(filter);
+        List<ToiletDTO> toiletsDTO = new ArrayList<>();
+        for (Toilet toilet : toilets) {
+            toiletsDTO.add(ToiletMapper.Instance.toDTO(toilet));
+        }
+        return toiletsDTO;
+    }
+
+    public List<ToiletDTO> getToilets(int num) {
+        Pageable pageable = PageRequest.of(0, num); // 0번째 페이지에서 num개의 데이터
+        Page<Toilet> toilets = toiletRepository.findAll(pageable);
+
         List<ToiletDTO> rtnValue = new ArrayList<>();
-        for(Toilet toilet : toilets){
+        for (Toilet toilet : toilets.getContent()) { // 페이징된 데이터만 가져옴
             rtnValue.add(ToiletMapper.Instance.toDTO(toilet));
         }
         return rtnValue;
     }
+
+    public Page<ToiletDTO> getToiletsPage(Pageable pageable) {
+        Page<Toilet> toilets = toiletRepository.findAll(pageable);
+        return toilets.map(ToiletMapper.Instance::toDTO); // Page 객체에 DTO 매핑
+    }
+
+
+
+//    public List<ToiletDTO> getToilets(int num){
+//        Pageable pageable = PageRequest.of(0, num);
+//        List<Toilet> toilets = toiletRepository.findAll(pageable).getContent();
+//        List<ToiletDTO> rtnValue = new ArrayList<>();
+//        for(Toilet toilet : toilets){
+//            rtnValue.add(ToiletMapper.Instance.toDTO(toilet));
+//        }
+//        return rtnValue;
+//    }
 
     //모든 화장실 위치 반환(리스트)
     public List<double[]> getAllToiletsLocation(){
