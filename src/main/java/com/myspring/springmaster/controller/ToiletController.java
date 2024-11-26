@@ -1,6 +1,5 @@
 package com.myspring.springmaster.controller;
 
-import com.myspring.springmaster.dataAccess.DTO.HouseDTO;
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.service.ToiletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import java.util.List;
 
 @Controller
 public class ToiletController {
