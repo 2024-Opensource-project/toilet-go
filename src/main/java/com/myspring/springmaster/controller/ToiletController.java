@@ -34,39 +34,67 @@ public class ToiletController {
 //    }
 
     @GetMapping("toilet/list")
-    public String showToiletList(
-            @RequestParam(defaultValue = "1") int page, // 기본값 1페이지
-            @RequestParam(defaultValue = "100") int size, // 한 페이지당 데이터 수
+    public String getToiletList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @ModelAttribute ToiletDTO filter,
             Model model) {
-        int zeroBasedPage = page - 1; // 1-based 페이지를 0-based로 변환
+        // 디버깅용 로그
+        System.out.println("Filter Address: " + filter.getAddress());
+
+        int zeroBasedPage = page - 1;
         Pageable pageable = PageRequest.of(zeroBasedPage, size);
 
-        Page<ToiletDTO> toilets = toiletService.getToiletsPage(pageable);
+        Page<ToiletDTO> toilets = toiletService.getToiletsByFilter(filter, pageable);
 
         int totalPages = toilets.getTotalPages();
-        int currentGroup = (page - 1) / 10; // 현재 페이지 그룹 (10개 단위)
-        int startPage = currentGroup * 10 + 1; // 해당 그룹의 시작 페이지 번호 (1부터 시작)
-        int endPage = Math.min(startPage + 9, totalPages); // 해당 그룹의 마지막 페이지 번호
+        int currentGroup = (page - 1) / 10;
+        int startPage = currentGroup * 10 + 1;
+        int endPage = Math.min(startPage + 9, totalPages);
 
         model.addAttribute("toilets", toilets.getContent());
-        model.addAttribute("currentPage", page); // 1-based 페이지
+        model.addAttribute("currentPage", page);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
-        model.addAttribute("size", size);
+        model.addAttribute("filter", filter);
+
         return "toilet/listView";
     }
-
-
 
     @PostMapping("/toilet/list")
-    public String showToiletList(Model model, @ModelAttribute ToiletDTO toiletDTO) {
-        List<ToiletDTO> toilets = toiletService.getToiletsByFilter(toiletDTO, 100);
-        model.addAttribute("toilets", toilets);
+    public String showToiletList(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam String address,
+            @RequestParam(required = false) String cityOrDistrict,
+            @ModelAttribute ToiletDTO filter,
+            Model model) {
+        // 주소 필터: 서울특별시 + 노원구 형식으로 결합
+        String fullAddress = (cityOrDistrict != null && !cityOrDistrict.isEmpty())
+                ? address + " " + cityOrDistrict
+                : address;
 
-        model.addAttribute("filter", toiletDTO);
+        filter.setAddress(fullAddress);
+
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Page<ToiletDTO> toilets = toiletService.getToiletsByFilter(filter, pageable);
+
+        int totalPages = toilets.getTotalPages();
+        int currentGroup = (page - 1) / 10;
+        int startPage = currentGroup * 10 + 1;
+        int endPage = Math.min(startPage + 9, totalPages);
+
+        model.addAttribute("toilets", toilets.getContent());
+        model.addAttribute("currentPage", page);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("startPage", startPage);
+        model.addAttribute("endPage", endPage);
+        model.addAttribute("filter", filter);
+
         return "toilet/listView";
     }
+
 
     //근처 화장실 조회
     @GetMapping("toilet/near")

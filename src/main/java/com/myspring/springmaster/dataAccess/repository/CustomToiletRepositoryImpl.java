@@ -5,6 +5,9 @@ import com.myspring.springmaster.dataAccess.entity.Toilet;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,8 +25,8 @@ public class CustomToiletRepositoryImpl implements CustomToiletRepository {
     }
 
     @Override
-    public List<Toilet> findAllByFilter(ToiletDTO filter) {
-        return jpaQueryFactory
+    public Page<Toilet> findAllByFilter(ToiletDTO filter, Pageable pageable) {
+        List<Toilet> results = jpaQueryFactory
                 .selectFrom(toilet)
                 .where(
                         containsAddress(filter.getAddress()),
@@ -31,16 +34,34 @@ public class CustomToiletRepositoryImpl implements CustomToiletRepository {
                         equalEntranceCctvInstalled(filter.getEntrance_cctv_installed()),
                         equalDiaperChangingStation(filter.getDiaper_changing_station())
                 )
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
+
+        // 디버깅용 로그
+        System.out.println("Filtered Results: " + results);
+
+        long total = jpaQueryFactory
+                .select(toilet.count())
+                .from(toilet)
+                .where(
+                        containsAddress(filter.getAddress()),
+                        equalEmergencyBellInstalled(filter.getEmergency_bell_installed()),
+                        equalEntranceCctvInstalled(filter.getEntrance_cctv_installed()),
+                        equalDiaperChangingStation(filter.getDiaper_changing_station())
+                )
+                .fetchOne();
+
+        return new PageImpl<>(results, pageable, total);
     }
+
 
     private BooleanExpression containsAddress(String address) {
         if (address == null || address.isEmpty()) {
             return null;
         }
-        return toilet.address.eq(address);
+        return toilet.address.containsIgnoreCase(address);
     }
-
 
     private BooleanExpression equalEmergencyBellInstalled(Boolean emergencyBellInstalled) {
         if (emergencyBellInstalled == null) {

@@ -17,8 +17,8 @@
         <div class="row mb-3">
             <!-- Conditional Address Filter -->
             <div class="col-md-6">
-                <label for="addressRegion" class="form-label">지역 선택</label>
-                <select class="form-select" id="addressRegion" name="addressRegion" onchange="updateCityOrDistrict()">
+                <label for="address" class="form-label">지역 선택</label>
+                <select class="form-select" id="address" name="address" onchange="updateCityOrDistrict()">
                     <option value="전체">전체</option>
                     <option value="경기도">경기도</option>
                     <option value="서울특별시">서울특별시</option>
@@ -78,21 +78,29 @@
         <table class="table table-bordered">
             <thead class="table-light">
             <tr>
-                <th scope="col">화장실명</th>
-                <th scope="col">주소</th>
-                <th scope="col">비상벨 설치 유무</th>
-                <th scope="col">화장실 입구 CCTV 설치 유무</th>
-                <th scope="col">기저귀 교환대 유무</th>
+                <th scope="col" class="text-center">화장실명</th>
+                <th scope="col" class="text-center">주소</th>
+                <th scope="col" class="text-center">개방시간</th>
+                <th scope="col" class="text-center">비상벨 설치 유무</th>
+                <th scope="col" class="text-center">비상벨 설치 장소</th>
+                <th scope="col" class="text-center">화장실 입구 CCTV 설치 유무</th>
+                <th scope="col" class="text-center">기저귀 교환대 유무</th>
+                <th scope="col" class="text-center">기저귀 교환대 장소</th>
             </tr>
             </thead>
             <tbody>
             <!-- Sample Data, should be dynamically populated -->
             <tr th:each="toilet : ${toilets}">
                 <td th:text="${toilet.toilet_name}">화장실명</td>
-                <td> <a th:href="@{'/toilet/detail/' + ${toilet.id}}" th:text="${toilet.address}">주택주소</a></td>
-                <td th:text="${toilet.emergency_bell_installed}">비상벨 설치 유무</td>
-                <td th:text="${toilet.entrance_cctv_installed}">화장실 입구 CCTV 설치 유무</td>
-                <td th:text="${toilet.diaper_changing_station}">기저귀 교환대 유무</td>
+                <td>
+                    <a th:href="@{'/toilet/detail/' + ${toilet.id}}" th:text="${toilet.address}">주택주소</a>
+                </td>
+                <td th:text="${toilet.opening_hours}">개방시간</td>
+                <td th:text="${toilet.emergency_bell_installed} ? 'O' : 'X'" class="text-center">비상벨 설치</td>
+                <td th:text="${toilet.emergency_bell_location}">비상벨 위치</td>
+                <td th:text="${toilet.entrance_cctv_installed} ? 'O' : 'X'" class="text-center">CCTV 설치</td>
+                <td th:text="${toilet.diaper_changing_station} ? 'O' : 'X'" class="text-center">기저귀 교환대</td>
+                <td th:text="${toilet.diaper_changing_station_location}">기저귀 교환대 위치</td>
             </tr>
             <!-- 추가 데이터 행들 -->
             </tbody>
@@ -102,18 +110,19 @@
     <!-- Pagination -->
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-            <!-- 이전 그룹 -->
+            <!-- 이전 그룹 버튼 -->
             <li class="page-item" th:classappend="${startPage == 1} ? 'disabled'">
                 <a class="page-link" th:href="@{'/toilet/list'(page=${startPage - 1}, size=${size})}">Previous</a>
             </li>
 
-            <!-- 페이지 번호 -->
-            <li class="page-item" th:each="page : ${#numbers.sequence(startPage, endPage)}"
-                th:classappend="${page == currentPage} ? 'active'">
-                <a class="page-link" th:href="@{'/toilet/list'(page=${page}, size=${size})}" th:text="${page}">1</a>
+            <!-- 페이지 번호 버튼 -->
+            <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}"
+                th:classappend="${pageNumber == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{'/toilet/list'(page=${pageNumber}, size=${size})}"
+                   th:text="${pageNumber}"></a>
             </li>
 
-            <!-- 다음 그룹 -->
+            <!-- 다음 그룹 버튼 -->
             <li class="page-item" th:classappend="${endPage == totalPages} ? 'disabled'">
                 <a class="page-link" th:href="@{'/toilet/list'(page=${endPage + 1}, size=${size})}">Next</a>
             </li>
@@ -139,7 +148,7 @@
     };
 
     function updateCityOrDistrict() {
-        const regionSelect = document.getElementById("addressRegion");
+        const regionSelect = document.getElementById("address");
         const cityOrDistrictSelect = document.getElementById("cityOrDistrict");
         const selectedRegion = regionSelect.value;
 

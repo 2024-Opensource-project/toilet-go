@@ -14,6 +14,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ToiletService {
@@ -32,14 +33,10 @@ public class ToiletService {
         return ToiletMapper.Instance.toDTO(toilet);
     }
 
-    public List<ToiletDTO> getToiletsByFilter(ToiletDTO filter, int num) {
-        Pageable pageable = PageRequest.of(0, num);
-        List<Toilet> toilets = toiletRepository.findAllByFilter(filter);
-        List<ToiletDTO> toiletsDTO = new ArrayList<>();
-        for (Toilet toilet : toilets) {
-            toiletsDTO.add(ToiletMapper.Instance.toDTO(toilet));
-        }
-        return toiletsDTO;
+    // 필터링 및 페이징 지원
+    public Page<ToiletDTO> getToiletsByFilter(ToiletDTO filter, Pageable pageable) {
+        return toiletRepository.findAllByFilter(filter, pageable)
+                .map(ToiletMapper.Instance::toDTO);
     }
 
     public List<ToiletDTO> getToilets(int num) {
@@ -161,5 +158,4 @@ public class ToiletService {
                 Arrays.stream(latAndLon1).mapToDouble(BigDecimal::doubleValue).toArray(),
                 Arrays.stream(latAndLon2).mapToDouble(BigDecimal::doubleValue).toArray());
     }
-
 }
