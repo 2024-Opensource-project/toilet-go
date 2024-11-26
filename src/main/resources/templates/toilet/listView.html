@@ -5,48 +5,68 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="/static/style.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>행복주택 리스트</title>
+    <title>화장실 리스트</title>
 </head>
 <body>
 <div th:insert="fragments/nav"></div>
 <div class="container mt-5 next-nav-bar">
-    <h2 class="mb-4">House List</h2>
+    <h2 class="mb-4">Toilet List</h2>
 
     <!-- Search Form -->
     <form action="/toilet/list" method="post">
         <div class="row mb-3">
-            <!-- Status Filter -->
-            <div class="col-md-3">
-                <label for="status" class="form-label">Status</label>
-                <select class="form-select" id="status" name="status">
-                    <option value="All">All</option>
-                    <option value="공고중">공고중</option>
-                    <option value="모집중">모집중</option>
+            <!-- Conditional Address Filter -->
+            <div class="col-md-6">
+                <label for="addressRegion" class="form-label">지역 선택</label>
+                <select class="form-select" id="addressRegion" name="addressRegion" onchange="updateCityOrDistrict()">
+                    <option value="전체">전체</option>
+                    <option value="경기도">경기도</option>
+                    <option value="서울특별시">서울특별시</option>
                 </select>
             </div>
-            <!-- Application Date Range -->
+            <!-- 시/구 선택 -->
             <div class="col-md-6">
-                <label for="applicationDate" class="form-label">청약신청일</label>
-                <div class="input-group" id="applicationDate">
-                    <input type="date" class="form-control" id="applyStartDate" name="applyStartDate">
-                    <span class="input-group-text">~</span>
-                    <input type="date" class="form-control" id="applyEndDate" name="applyEndDate">
-                </div>
+                <label for="cityOrDistrict" class="form-label">시/구 선택</label>
+                <select class="form-select" id="cityOrDistrict" name="cityOrDistrict" disabled>
+                    <option value="">전체</option>
+                </select>
             </div>
         </div>
-        <div class="row mb-1">
-            <!-- House Name/Address Search -->
+        <div class="row mb-3">
+            <!-- 비상벨 설치 유무 -->
             <div class="col-md-3">
-                <select class="form-select" id="searchType" name="status" onchange="updateSearchKeyword()">
-                    <option value="name">주택이름</option>
-                    <option value="address">주택주소</option>
+                <label for="emergency_bell_installed" class="form-label">비상벨 설치 유무</label>
+                <select class="form-select" id="emergency_bell_installed" name="emergency_bell_installed">
+                    <option value="">전체</option>
+                    <option value="true">Y</option>
+                    <option value="false">N</option>
                 </select>
             </div>
-            <div class="col-md-6">
-                <div class="input-group">
-                    <label for="searchKeyword"></label><input type="text" class="form-control" id="searchKeyword" name="searchKeyword" placeholder="주택 이름 또는 주소를 입력하세요">
-                    <button type="submit" class="btn btn-primary">Search</button>
-                </div>
+        </div>
+        <div class="row mb-3">
+            <!-- 화장실 입구 CCTV 설치 유무 -->
+            <div class="col-md-3">
+                <label for="entrance_cctv_installed" class="form-label">화장실 입구 CCTV 설치 유무</label>
+                <select class="form-select" id="entrance_cctv_installed" name="entrance_cctv_installed">
+                    <option value="">전체</option>
+                    <option value="true">Y</option>
+                    <option value="false">N</option>
+                </select>
+            </div>
+            <!-- 기저귀 교환대 유무 -->
+            <div class="col-md-3">
+                <label for="diaper_changing_station" class="form-label">기저귀 교환대 유무</label>
+                <select class="form-select" id="diaper_changing_station" name="diaper_changing_station">
+                    <option value="">전체</option>
+                    <option value="true">Y</option>
+                    <option value="false">N</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <!-- Search Button -->
+            <div class="col-md-12 text-end">
+                <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </div>
     </form>
@@ -58,21 +78,21 @@
         <table class="table table-bordered">
             <thead class="table-light">
             <tr>
-                <th scope="col">주택이름</th>
-                <th scope="col">주택주소</th>
-                <th scope="col">청약신청일</th>
-                <th scope="col">입주일</th>
-                <th scope="col">Status</th>
+                <th scope="col">화장실명</th>
+                <th scope="col">주소</th>
+                <th scope="col">비상벨 설치 유무</th>
+                <th scope="col">화장실 입구 CCTV 설치 유무</th>
+                <th scope="col">기저귀 교환대 유무</th>
             </tr>
             </thead>
             <tbody>
             <!-- Sample Data, should be dynamically populated -->
             <tr th:each="toilet : ${toilets}">
-                <td th:text="${toilet.toilet_name}">화장실 이름</td>
+                <td th:text="${toilet.toilet_name}">화장실명</td>
                 <td> <a th:href="@{'/toilet/detail/' + ${toilet.id}}" th:text="${toilet.address}">주택주소</a></td>
-                <!--<td th:text="${toilet.applyStartDate}+ '~' +${toilet.applyEndDate}">청약신청일</td>
-                <td th:text="${toilet.moveInDate}">입주일</td>
-                <td th:text="${toilet.status}">공고여부</td> -->
+                <td th:text="${toilet.emergency_bell_installed}">비상벨 설치 유무</td>
+                <td th:text="${toilet.entrance_cctv_installed}">화장실 입구 CCTV 설치 유무</td>
+                <td th:text="${toilet.diaper_changing_station}">기저귀 교환대 유무</td>
             </tr>
             <!-- 추가 데이터 행들 -->
             </tbody>
@@ -80,16 +100,22 @@
     </div>
 
     <!-- Pagination -->
-    <nav aria-label="Page navigation example">
+    <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            <!-- 이전 그룹 -->
+            <li class="page-item" th:classappend="${startPage == 1} ? 'disabled'">
+                <a class="page-link" th:href="@{'/toilet/list'(page=${startPage - 1}, size=${size})}">Previous</a>
             </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#">Next</a>
+
+            <!-- 페이지 번호 -->
+            <li class="page-item" th:each="page : ${#numbers.sequence(startPage, endPage)}"
+                th:classappend="${page == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{'/toilet/list'(page=${page}, size=${size})}" th:text="${page}">1</a>
+            </li>
+
+            <!-- 다음 그룹 -->
+            <li class="page-item" th:classappend="${endPage == totalPages} ? 'disabled'">
+                <a class="page-link" th:href="@{'/toilet/list'(page=${endPage + 1}, size=${size})}">Next</a>
             </li>
         </ul>
     </nav>
@@ -97,13 +123,39 @@
 <div th:insert="fragments/footer"></div>
 
 <script>
-    function updateSearchKeyword() {
-        const searchType = document.getElementById('searchType').value;
-        const searchKeyword = document.getElementById('searchKeyword');
-        if (searchType === 'name') {
-            searchKeyword.name = 'name';
-        } else {
-            searchKeyword.name = 'address';
+    // 지역별 시/구 데이터
+    const regions = {
+        "경기도": ["가평군", "고양시", "과천시", "광명시", "광주시", "구리시",
+            "군포시", "김포시", "남양주시", "동두천시", "부천시", "성남시",
+            "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시", "양평군",
+            "여주시", "연천군", "오산시", "용인시", "의왕시", "의정부시", "이천시",
+            "파주시", "평택시", "포천시", "하남시", "화성시"
+        ],
+        "서울특별시": ["강남구", "강동구", "강북구", "강서구", "관악구", "광진구",
+            "구로구", "금천구", "노원구", "도봉구", "동대문구", "동작구", "마포구",
+            "서대문구", "서초구", "성동구", "성북구", "송파구", "양천구", "영등포구",
+            "용산구", "은평구", "종로구", "중구", "중랑구"
+        ]
+    };
+
+    function updateCityOrDistrict() {
+        const regionSelect = document.getElementById("addressRegion");
+        const cityOrDistrictSelect = document.getElementById("cityOrDistrict");
+        const selectedRegion = regionSelect.value;
+
+        // 초기화
+        cityOrDistrictSelect.innerHTML = '<option value="">전체</option>';
+        cityOrDistrictSelect.disabled = true;
+
+        // 지역 선택에 따라 시/구 옵션 추가
+        if (selectedRegion && regions[selectedRegion]) {
+            cityOrDistrictSelect.disabled = false;
+            regions[selectedRegion].forEach(cityOrDistrict => {
+                const option = document.createElement("option");
+                option.value = cityOrDistrict;
+                option.textContent = cityOrDistrict;
+                cityOrDistrictSelect.appendChild(option);
+            });
         }
     }
 </script>
