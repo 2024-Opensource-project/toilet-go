@@ -58,7 +58,7 @@ public class ToiletService {
     //근처 화장실 위치
     public List<ToiletDTO> getNearToiletList(String address, int distance){
         List<ToiletDTO> toiletDTOList = new ArrayList<>();
-        BigDecimal[] latAndLon = getLatitudeAndLongtitude(address);
+        BigDecimal[] latAndLon = getLatitudeAndLongitude(address);
         List<ToiletDTO> nearToiletDTOList = new ArrayList<>();
         if (latAndLon != null){
             nearToiletDTOList = toiletDTOList.stream()
@@ -70,7 +70,7 @@ public class ToiletService {
 
     //화장실 정보 저장
     public boolean addToilet(ToiletDTO toiletDTO){
-        BigDecimal[] latAndLon = this.getLatitudeAndLongtitude(toiletDTO.getAddress());
+        BigDecimal[] latAndLon = this.getLatitudeAndLongitude(toiletDTO.getAddress());
         if (latAndLon != null){
             toiletDTO.setLatitude(latAndLon[0]);
             toiletDTO.setLongitude(latAndLon[1]);
@@ -80,8 +80,18 @@ public class ToiletService {
         return true;
     }
 
+    //mapview용
+    public double[] getLatitudeAndLongitudeAsDouble(String address){
+        BigDecimal[] data = this.getLatitudeAndLongitude(address);
+        double[] rtnValue = new double[2];
+        if(data != null) {
+            rtnValue[0] = data[0].doubleValue();
+            rtnValue[1] = data[1].doubleValue();
+        }
+        return rtnValue;
+    }
     //지도 API에서 해당 주소의 위도, 경도 받아오기
-    private BigDecimal[] getLatitudeAndLongtitude(String address){return naverMapApi.getLatAndLng(address);}
+    private BigDecimal[] getLatitudeAndLongitude(String address){return naverMapApi.getLatAndLng(address);}
     //근처에 있는지 확인 - DTO랑 좌표 비교
     private boolean isNear(ToiletDTO toiletDTO, BigDecimal[] latAndLon2, int wantedDistance){
         BigDecimal[] latAndLon1 = {toiletDTO.getLatitude(), toiletDTO.getLongitude()};
@@ -89,6 +99,12 @@ public class ToiletService {
     }
     //불필요한 문자열 제거
     private void removeUselessWord(ToiletDTO toilet){
+        String[] uselessWords = {"소재지 :", "지도보기"};
+        String address = toilet.getAddress();
+        for(String word : uselessWords){
+            address = address.replace(word, "");
+        }
+        toilet.setAddress(address.strip());
     }
     //거리 계산
     private double calcDistance(double[] latAndLon1, double[] latAndLon2){

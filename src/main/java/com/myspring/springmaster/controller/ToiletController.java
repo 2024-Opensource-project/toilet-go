@@ -6,6 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 @Controller
 public class ToiletController {
@@ -33,5 +37,18 @@ public class ToiletController {
     public String showHouseNear(Model model, String address, int distance){
         model.addAttribute("toilets", toiletService.getNearToiletList(address,distance));
         return "toilet/nearView";
+    }
+
+    //mapview
+    @GetMapping("toilet/mapView")
+    public List<double[]> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
+
+    @PostMapping("toilet/latandlng")
+    @ResponseBody
+    public double[] getLatAndLng(@RequestParam String address){
+        if (address == null || address.isEmpty() || address.equals("null")){
+            return new double[0];
+        }
+        return toiletService.getLatitudeAndLongitudeAsDouble(address);
     }
 }
