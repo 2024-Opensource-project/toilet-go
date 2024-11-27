@@ -11,5 +11,5 @@ import java.util.List;
 public interface ToiletRepository extends JpaRepository<Toilet, Long>, CustomToiletRepository{
     @NotNull
     Page<Toilet> findAll(@NotNull Pageable pageable);
-    List<Toilet> findAll();
+    @NotNull List<Toilet> findAll();
 }

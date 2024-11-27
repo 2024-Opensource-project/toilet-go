@@ -121,7 +121,9 @@ public class ToiletService {
         return rtnValue;
     }
     //지도 API에서 해당 주소의 위도, 경도 받아오기
-    private BigDecimal[] getLatitudeAndLongitude(String address){return naverMapApi.getLatAndLng(address);}
+    private BigDecimal[] getLatitudeAndLongitude(String address){
+        return naverMapApi.getLatAndLng(address);
+    }
     //근처에 있는지 확인 - DTO랑 좌표 비교
     private boolean isNear(ToiletDTO toiletDTO, BigDecimal[] latAndLon2, int wantedDistance){
         BigDecimal[] latAndLon1 = {toiletDTO.getLatitude(), toiletDTO.getLongitude()};
