@@ -32,14 +32,10 @@ public class ToiletService {
         return ToiletMapper.Instance.toDTO(toilet);
     }
 
-    public List<ToiletDTO> getToiletsByFilter(ToiletDTO filter, int num) {
-        Pageable pageable = PageRequest.of(0, num);
-        List<Toilet> toilets = toiletRepository.findAllByFilter(filter);
-        List<ToiletDTO> toiletsDTO = new ArrayList<>();
-        for (Toilet toilet : toilets) {
-            toiletsDTO.add(ToiletMapper.Instance.toDTO(toilet));
-        }
-        return toiletsDTO;
+    // 필터링 및 페이징 지원
+    public Page<ToiletDTO> getToiletsByFilter(ToiletDTO filter, Pageable pageable) {
+        return toiletRepository.findAllByFilter(filter, pageable)
+                .map(ToiletMapper.Instance::toDTO);
     }
 
     public List<ToiletDTO> getToilets(int num) {
@@ -57,8 +53,6 @@ public class ToiletService {
         Page<Toilet> toilets = toiletRepository.findAll(pageable);
         return toilets.map(ToiletMapper.Instance::toDTO); // Page 객체에 DTO 매핑
     }
-
-
 
 //    public List<ToiletDTO> getToilets(int num){
 //        Pageable pageable = PageRequest.of(0, num);
@@ -163,5 +157,4 @@ public class ToiletService {
                 Arrays.stream(latAndLon1).mapToDouble(BigDecimal::doubleValue).toArray(),
                 Arrays.stream(latAndLon2).mapToDouble(BigDecimal::doubleValue).toArray());
     }
-
 }

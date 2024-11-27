@@ -29,4 +29,34 @@ public class ToiletDTO {
     private Boolean entrance_cctv_installed;
     private Boolean diaper_changing_station;
     private String diaper_changing_station_location;
+    private String cityOrDistrict;
+
+    // Getter와 Setter
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCityOrDistrict() {
+        return cityOrDistrict;
+    }
+
+    public void setCityOrDistrict(String cityOrDistrict) {
+        this.cityOrDistrict = cityOrDistrict;
+    }
+
+    public Boolean getEmergency_bell_installed() {
+        return emergency_bell_installed;
+    }
+
+    public Boolean getEntrance_cctv_installed() {
+        return entrance_cctv_installed;
+    }
+
+    public Boolean getDiaper_changing_station() {
+        return diaper_changing_station;
+    }
 }
