@@ -81,6 +81,7 @@ public class ToiletController {
     @GetMapping("toilet/mapView")
     public String showToiletMapView(){return "toilet/mapView";}
     @PostMapping("toilet/mapView")
+    @ResponseBody
     public List<double[]> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
 
     @PostMapping("toilet/latandlng")
