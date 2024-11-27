@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
@@ -37,20 +36,32 @@ public class ToiletController {
     public String getToiletList(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
-            @ModelAttribute ToiletDTO filter,
+            @RequestParam(required = false, defaultValue = "전체") String address,
+            @RequestParam(required = false) String cityOrDistrict,
+            @RequestParam(required = false) Boolean emergency_bell_installed,
+            @RequestParam(required = false) Boolean entrance_cctv_installed,
+            @RequestParam(required = false) Boolean diaper_changing_station,
             Model model) {
-        // 디버깅용 로그
-        System.out.println("Filter Address: " + filter.getAddress());
 
-        int zeroBasedPage = page - 1;
-        Pageable pageable = PageRequest.of(zeroBasedPage, size);
+        ToiletDTO filter = new ToiletDTO();
 
+        filter.setAddress(address);
+        filter.setCityOrDistrict(cityOrDistrict);
+        filter.setEmergency_bell_installed(emergency_bell_installed);
+        filter.setEntrance_cctv_installed(entrance_cctv_installed);
+        filter.setDiaper_changing_station(diaper_changing_station);
+
+        Pageable pageable = PageRequest.of(page - 1, size);
         Page<ToiletDTO> toilets = toiletService.getToiletsByFilter(filter, pageable);
 
         int totalPages = toilets.getTotalPages();
-        int currentGroup = (page - 1) / 10;
-        int startPage = currentGroup * 10 + 1;
-        int endPage = Math.min(startPage + 9, totalPages);
+        totalPages = (totalPages == 0) ? 1 : totalPages;
+
+        // 페이지 그룹 계산 (10개씩 그룹화)
+        int pageGroupSize = 10; // 페이지 그룹 크기
+        int currentGroup = (page - 1) / pageGroupSize;
+        int startPage = currentGroup * pageGroupSize + 1;
+        int endPage = Math.min(startPage + pageGroupSize - 1, totalPages);
 
         model.addAttribute("toilets", toilets.getContent());
         model.addAttribute("currentPage", page);
@@ -68,6 +79,9 @@ public class ToiletController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam String address,
             @RequestParam(required = false) String cityOrDistrict,
+            @RequestParam(required = false) Boolean emergency_bell_installed,
+            @RequestParam(required = false) Boolean entrance_cctv_installed,
+            @RequestParam(required = false) Boolean diaper_changing_station,
             @ModelAttribute ToiletDTO filter,
             Model model) {
         // 주소 필터: 서울특별시 + 노원구 형식으로 결합
@@ -76,8 +90,13 @@ public class ToiletController {
                 : address;
 
         filter.setAddress(fullAddress);
+        filter.setEmergency_bell_installed(emergency_bell_installed);
+        filter.setEntrance_cctv_installed(entrance_cctv_installed);
+        filter.setDiaper_changing_station(diaper_changing_station);
 
-        Pageable pageable = PageRequest.of(page - 1, size);
+        int zeroBasedPage = page - 1;
+        Pageable pageable = PageRequest.of(zeroBasedPage, size);
+
         Page<ToiletDTO> toilets = toiletService.getToiletsByFilter(filter, pageable);
 
         int totalPages = toilets.getTotalPages();

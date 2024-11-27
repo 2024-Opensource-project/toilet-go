@@ -19,16 +19,16 @@
             <div class="col-md-6">
                 <label for="address" class="form-label">지역 선택</label>
                 <select class="form-select" id="address" name="address" onchange="updateCityOrDistrict()">
-                    <option value="전체">전체</option>
-                    <option value="경기도">경기도</option>
-                    <option value="서울특별시">서울특별시</option>
+                    <option value="전체" th:selected="${filter.address == '전체'}">전체</option>
+                    <option value="경기도" th:selected="${filter.address == '경기도'}">경기도</option>
+                    <option value="서울특별시" th:selected="${filter.address == '서울특별시'}">서울특별시</option>
                 </select>
             </div>
             <!-- 시/구 선택 -->
             <div class="col-md-6">
                 <label for="cityOrDistrict" class="form-label">시/구 선택</label>
-                <select class="form-select" id="cityOrDistrict" name="cityOrDistrict" disabled>
-                    <option value="">전체</option>
+                <select class="form-select" id="cityOrDistrict" name="cityOrDistrict">
+                    <option value="전체" th:selected="${filter.cityOrDistrict == null || filter.cityOrDistrict == '전체'}">전체</option>
                 </select>
             </div>
         </div>
@@ -37,9 +37,9 @@
             <div class="col-md-3">
                 <label for="emergency_bell_installed" class="form-label">비상벨 설치 유무</label>
                 <select class="form-select" id="emergency_bell_installed" name="emergency_bell_installed">
-                    <option value="">전체</option>
-                    <option value="true">Y</option>
-                    <option value="false">N</option>
+                    <option value="" th:selected="${filter.emergency_bell_installed == null}">전체</option>
+                    <option value="true" th:selected="${filter.emergency_bell_installed == true}">Y</option>
+                    <option value="false" th:selected="${filter.emergency_bell_installed == false}">N</option>
                 </select>
             </div>
         </div>
@@ -48,18 +48,18 @@
             <div class="col-md-3">
                 <label for="entrance_cctv_installed" class="form-label">화장실 입구 CCTV 설치 유무</label>
                 <select class="form-select" id="entrance_cctv_installed" name="entrance_cctv_installed">
-                    <option value="">전체</option>
-                    <option value="true">Y</option>
-                    <option value="false">N</option>
+                    <option value="" th:selected="${filter.entrance_cctv_installed == null}">전체</option>
+                    <option value="true" th:selected="${filter.entrance_cctv_installed == true}">Y</option>
+                    <option value="false" th:selected="${filter.entrance_cctv_installed == false}">N</option>
                 </select>
             </div>
             <!-- 기저귀 교환대 유무 -->
             <div class="col-md-3">
                 <label for="diaper_changing_station" class="form-label">기저귀 교환대 유무</label>
                 <select class="form-select" id="diaper_changing_station" name="diaper_changing_station">
-                    <option value="">전체</option>
-                    <option value="true">Y</option>
-                    <option value="false">N</option>
+                    <option value="" th:selected="${filter.diaper_changing_station == null}">전체</option>
+                    <option value="true" th:selected="${filter.diaper_changing_station == true}">Y</option>
+                    <option value="false" th:selected="${filter.diaper_changing_station == false}">N</option>
                 </select>
             </div>
         </div>
@@ -111,29 +111,54 @@
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             <!-- 이전 그룹 버튼 -->
-            <li class="page-item" th:classappend="${startPage == 1} ? 'disabled'">
-                <a class="page-link" th:href="@{'/toilet/list'(page=${startPage - 1}, size=${size})}">Previous</a>
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{'/toilet/list'(page=${currentPage > 1 ? currentPage - 1 : 1}, size=${size},
+                                     address=${filter.address},
+                                     cityOrDistrict=${filter.cityOrDistrict},
+                                     emergency_bell_installed=${filter.emergency_bell_installed},
+                                     entrance_cctv_installed=${filter.entrance_cctv_installed},
+                                     diaper_changing_station=${filter.diaper_changing_station})}">
+                    Previous
+                </a>
             </li>
 
             <!-- 페이지 번호 버튼 -->
             <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}"
                 th:classappend="${pageNumber == currentPage} ? 'active'">
-                <a class="page-link" th:href="@{'/toilet/list'(page=${pageNumber}, size=${size})}"
-                   th:text="${pageNumber}"></a>
+                <a class="page-link"
+                   th:href="@{'/toilet/list'(page=${pageNumber}, size=${size},
+                                     address=${filter.address},
+                                     cityOrDistrict=${filter.cityOrDistrict},
+                                     emergency_bell_installed=${filter.emergency_bell_installed},
+                                     entrance_cctv_installed=${filter.entrance_cctv_installed},
+                                     diaper_changing_station=${filter.diaper_changing_station})}"
+                   th:text="${pageNumber}">
+                </a>
             </li>
 
             <!-- 다음 그룹 버튼 -->
-            <li class="page-item" th:classappend="${endPage == totalPages} ? 'disabled'">
-                <a class="page-link" th:href="@{'/toilet/list'(page=${endPage + 1}, size=${size})}">Next</a>
+            <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                <a class="page-link"
+                   th:href="@{'/toilet/list'(page=${currentPage < totalPages ? currentPage + 1 : totalPages}, size=${size},
+                                     address=${filter.address},
+                                     cityOrDistrict=${filter.cityOrDistrict},
+                                     emergency_bell_installed=${filter.emergency_bell_installed},
+                                     entrance_cctv_installed=${filter.entrance_cctv_installed},
+                                     diaper_changing_station=${filter.diaper_changing_station})}">
+                    Next
+                </a>
             </li>
         </ul>
     </nav>
+
 </div>
 <div th:insert="fragments/footer"></div>
 
 <script>
     // 지역별 시/구 데이터
     const regions = {
+        "전체": [],
         "경기도": ["가평군", "고양시", "과천시", "광명시", "광주시", "구리시",
             "군포시", "김포시", "남양주시", "동두천시", "부천시", "성남시",
             "수원시", "시흥시", "안산시", "안성시", "안양시", "양주시", "양평군",
@@ -146,27 +171,26 @@
             "용산구", "은평구", "종로구", "중구", "중랑구"
         ]
     };
+    const addressSelect = document.getElementById('address');
+    const cityOrDistrictSelect = document.getElementById('cityOrDistrict');
 
     function updateCityOrDistrict() {
-        const regionSelect = document.getElementById("address");
-        const cityOrDistrictSelect = document.getElementById("cityOrDistrict");
-        const selectedRegion = regionSelect.value;
-
-        // 초기화
+        const selectedRegion = addressSelect.value;
         cityOrDistrictSelect.innerHTML = '<option value="">전체</option>';
-        cityOrDistrictSelect.disabled = true;
 
-        // 지역 선택에 따라 시/구 옵션 추가
         if (selectedRegion && regions[selectedRegion]) {
-            cityOrDistrictSelect.disabled = false;
-            regions[selectedRegion].forEach(cityOrDistrict => {
-                const option = document.createElement("option");
-                option.value = cityOrDistrict;
-                option.textContent = cityOrDistrict;
+            regions[selectedRegion].forEach(district => {
+                const option = document.createElement('option');
+                option.value = district;
+                option.textContent = district;
                 cityOrDistrictSelect.appendChild(option);
             });
         }
     }
+
+    // 초기화 및 이벤트 바인딩
+    addressSelect.addEventListener('change', updateCityOrDistrict);
+    updateCityOrDistrict();
 </script>
 </body>
 </html>

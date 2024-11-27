@@ -14,7 +14,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ToiletService {
@@ -54,8 +53,6 @@ public class ToiletService {
         Page<Toilet> toilets = toiletRepository.findAll(pageable);
         return toilets.map(ToiletMapper.Instance::toDTO); // Page 객체에 DTO 매핑
     }
-
-
 
 //    public List<ToiletDTO> getToilets(int num){
 //        Pageable pageable = PageRequest.of(0, num);
