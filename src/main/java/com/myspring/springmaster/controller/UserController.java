@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLException;
@@ -50,5 +51,37 @@ public class UserController {
     public String signOut(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    // 아이디 찾기 요청 처리
+    @GetMapping("/find-id")
+    public String findUserId() {
+        return "user/find-id";
+    }
+    @PostMapping("/find-id")
+    public String findUserId(@RequestParam String email, RedirectAttributes redirectAttributes) {
+        String userId = userService.findUserIdByEmail(email);
+        if (userId != null) {
+            redirectAttributes.addFlashAttribute("message", "Your UserId: " + userId);
+        } else {
+            redirectAttributes.addFlashAttribute("message", "No account found with the provided information.");
+        }
+        return "redirect:/find-id";
+    }
+
+    // 비밀번호 찾기 요청 처리
+    @GetMapping("/find-password")
+    public String findPassword() {
+        return "user/find-password";
+    }
+    @PostMapping("/find-password")
+    public String findPassword(@RequestParam String userId, @RequestParam String email, RedirectAttributes redirectAttributes) {
+        String password = userService.findPassword(userId, email);
+        if (password != null) {
+            redirectAttributes.addFlashAttribute("message", "Your Password: " + password);
+        } else {
+            redirectAttributes.addFlashAttribute("message", "No account found with the provided information.");
+        }
+        return "redirect:/find-password";
     }
 }
