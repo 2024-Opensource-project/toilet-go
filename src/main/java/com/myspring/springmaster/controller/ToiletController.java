@@ -4,10 +4,7 @@ import com.myspring.springmaster.service.ToiletService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,8 @@ public class ToiletController {
 
     //mapview
     @GetMapping("toilet/mapView")
+    public String showToiletMapView(){return "toilet/mapView";}
+    @PostMapping("toilet/mapView")
     public List<double[]> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
 
     @PostMapping("toilet/latandlng")
@@ -51,4 +50,5 @@ public class ToiletController {
         }
         return toiletService.getLatitudeAndLongitudeAsDouble(address);
     }
+
 }
