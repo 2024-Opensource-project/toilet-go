@@ -2,9 +2,9 @@ package com.myspring.springmaster.dataAccess.repository;
 
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface CustomToiletRepository {
-    List<Toilet> findAllByFilter(ToiletDTO filter);
+    Page<Toilet> findAllByFilter(ToiletDTO filter, Pageable pageable);
 }
