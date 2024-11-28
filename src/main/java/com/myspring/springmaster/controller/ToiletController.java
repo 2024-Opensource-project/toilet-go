@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -82,7 +84,7 @@ public class ToiletController {
     public String showToiletMapView(){return "toilet/mapView";}
     @PostMapping("toilet/mapView")
     @ResponseBody
-    public List<double[]> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
+    public List<Map<String, Object>> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
 
     @PostMapping("toilet/latandlng")
     @ResponseBody
