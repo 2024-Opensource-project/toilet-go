@@ -136,10 +136,43 @@
 
     // 화장실 위치 마커 만들기
     function makeMarker(location) {
-        let latAndLng = new naver.maps.LatLng(location[0], location[1]);
-        new naver.maps.Marker({
+        let latAndLng = new naver.maps.LatLng(location.latitude, location.longitude);
+        console.log(location);
+        let marker = new naver.maps.Marker({
             position: latAndLng,
-            map: map
+            map: map,
+            clickable: true
+        });
+
+
+         let contentString = `
+            <div class="iw_inner" style="width: 250px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
+                <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.name}</h3>
+                <h4 style="font-size: 14px; color: #777; margin-bottom: 15px;">${location.address}</h4>
+                <a href="https://map.naver.com/v5/search/${location.latitude},${location.longitude}" target="_blank"
+                    style="display: inline-block; padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; text-align: center; font-size: 14px; transition: background-color 0.3s;">
+                    지도에서 보기
+                </a>
+            </div>`;
+
+
+
+
+
+        let infowindow = new naver.maps.InfoWindow({
+            content: contentString,
+            borderWidth: 2,
+            backgroundColor: "#ffffff",
+            disableAutoPan: true
+        });
+
+        // 마커 클릭 시 정보 창 열기
+        naver.maps.Event.addListener(marker, "click", function () {
+            if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+            }
         });
     }
 

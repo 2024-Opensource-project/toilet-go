@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.Map;
 
 @Controller
 public class ToiletController {
@@ -129,7 +129,7 @@ public class ToiletController {
     public String showToiletMapView(){return "toilet/mapView";}
     @PostMapping("toilet/mapView")
     @ResponseBody
-    public List<double[]> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
+    public List<Map<String, Object>> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
 
     @PostMapping("toilet/latandlng")
     @ResponseBody

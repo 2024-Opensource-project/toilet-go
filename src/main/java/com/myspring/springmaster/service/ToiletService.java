@@ -11,9 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class ToiletService {
@@ -64,20 +62,26 @@ public class ToiletService {
 //        return rtnValue;
 //    }
 
-    //모든 화장실 위치 반환(리스트)
-    public List<double[]> getAllToiletsLocation(){
-        List<double[]> locationList = new ArrayList<>();
-        List<Toilet> t = toiletRepository.findAll();
-        List<ToiletDTO> toilets = new ArrayList<>();
-        for (Toilet toilet : t){
-            toilets.add(ToiletMapper.Instance.toDTO(toilet));
-        }
+    public List<Map<String, Object>> getAllToiletsLocation() {
+        List<Map<String, Object>> locationList = new ArrayList<>();
+        List<Toilet> toilets = toiletRepository.findAll();
+
         toilets.forEach(toilet -> {
-            double[] location = {toilet.getLatitude().doubleValue(), toilet.getLongitude().doubleValue()};
+            ToiletDTO toiletDTO = ToiletMapper.Instance.toDTO(toilet);
+
+            // 화장실 정보와 위치를 Map에 저장
+            Map<String, Object> location = new HashMap<>();
+            location.put("latitude", toiletDTO.getLatitude().doubleValue());
+            location.put("longitude", toiletDTO.getLongitude().doubleValue());
+            location.put("name", toiletDTO.getToilet_name());
+            location.put("address", toiletDTO.getAddress());
+
             locationList.add(location);
         });
+
         return locationList;
     }
+
 
     //근처 화장실 위치
     public List<ToiletDTO> getNearToiletList(String address, int distance){
