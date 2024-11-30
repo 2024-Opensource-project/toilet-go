@@ -146,7 +146,7 @@ public class ToiletController {
             ToiletDTO toiletDTO = toiletService.getToilet(id);
             if (toiletDTO != null) {
                 model.addAttribute("toilet", toiletDTO);
-                return "toilet/detailView2";
+                return "toilet/mapDetailView";
             } else {
                 model.addAttribute("errorMessage", "해당 화장실 정보를 찾을 수 없습니다.");
                 return "error"; // 사용자 정의 에러 페이지
