@@ -155,7 +155,7 @@ public class ToiletController {
         return toiletService.getLatitudeAndLongitudeAsDouble(address);
     }
 
-    @GetMapping("/toilet/detail2/{id}")
+    @GetMapping("/toilet/detail/{id}")
     public String showHouse(Model model, @PathVariable int id) {
         try {
             ToiletDTO toiletDTO = toiletService.getToilet(id);

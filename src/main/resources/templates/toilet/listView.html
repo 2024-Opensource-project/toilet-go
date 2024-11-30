@@ -93,7 +93,8 @@
             <tr th:each="toilet : ${toilets}">
                 <td th:text="${toilet.toilet_name}">화장실명</td>
                 <td>
-                    <a th:href="@{'/toilet/detail/' + ${toilet.id}}" th:text="${toilet.address}">주택주소</a>
+                    <!-- 주소 클릭 시 mapDetailView로 이동 -->
+                    <a th:href="@{'/toilet/detail/' + ${toilet.id}}" th:text="${toilet.address}">주소</a>
                 </td>
                 <td th:text="${toilet.opening_hours}">개방시간</td>
                 <td th:text="${toilet.emergency_bell_installed} ? 'O' : 'X'" class="text-center">비상벨 설치</td>
