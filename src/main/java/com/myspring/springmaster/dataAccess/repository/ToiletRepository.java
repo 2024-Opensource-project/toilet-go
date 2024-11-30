@@ -1,6 +1,7 @@
 package com.myspring.springmaster.dataAccess.repository;
 
 import com.myspring.springmaster.dataAccess.entity.Toilet;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

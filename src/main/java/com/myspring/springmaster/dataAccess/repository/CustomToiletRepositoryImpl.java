@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static com.myspring.springmaster.dataAccess.entity.QToilet.toilet;
@@ -49,6 +50,15 @@ public class CustomToiletRepositoryImpl implements CustomToiletRepository {
                 .fetchOne();
 
         return new PageImpl<>(results, pageable, total);
+    }
+
+    @Override
+    public List<Toilet> findNears(double[] lat, double[] lng) {
+        BooleanExpression latitudeRange = toilet.latitude.between(lat[0], lat[1]);
+        BooleanExpression longitudeRange = toilet.longitude.between(lng[0], lng[1]);
+        return jpaQueryFactory.select(toilet).from(toilet)
+                .where(latitudeRange.and(longitudeRange))
+                .fetch();
     }
 
     // 조건 결합 메서드 추가

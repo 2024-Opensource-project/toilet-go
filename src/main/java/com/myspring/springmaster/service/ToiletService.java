@@ -3,6 +3,7 @@ package com.myspring.springmaster.service;
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
 import com.myspring.springmaster.dataAccess.mapper.ToiletMapper;
+import com.myspring.springmaster.dataAccess.mapper.ToiletMapperImpl;
 import com.myspring.springmaster.dataAccess.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,11 +18,13 @@ import java.util.*;
 public class ToiletService {
     private final ToiletRepository toiletRepository;
     private final NaverMapApi naverMapApi;
+    private final ToiletMapperImpl toiletMapperImpl;
 
     @Autowired
-    public ToiletService(ToiletRepository toiletRepository, NaverMapApi naverMapApi) {
+    public ToiletService(ToiletRepository toiletRepository, NaverMapApi naverMapApi, ToiletMapperImpl toiletMapperImpl) {
         this.toiletRepository = toiletRepository;
         this.naverMapApi = naverMapApi;
+        this.toiletMapperImpl = toiletMapperImpl;
     }
 
     //화장실 정보 DTO로 반환
@@ -80,6 +83,7 @@ public class ToiletService {
         toilets.forEach(toilet -> {
             ToiletDTO toiletDTO = ToiletMapper.Instance.toDTO(toilet);
 
+
             // 화장실 정보와 위치를 Map에 저장
             Map<String, Object> location = new HashMap<>();
             location.put("latitude", toiletDTO.getLatitude().doubleValue());
@@ -95,17 +99,18 @@ public class ToiletService {
     }
 
 
+
     //근처 화장실 위치
     public List<ToiletDTO> getNearToiletList(String address, int distance){
-        List<ToiletDTO> toiletDTOList = new ArrayList<>();
-        BigDecimal[] latAndLon = getLatitudeAndLongitude(address);
-        List<ToiletDTO> nearToiletDTOList = new ArrayList<>();
-        if (latAndLon != null){
-            nearToiletDTOList = toiletDTOList.stream()
-                    .filter(toilet -> isNear(toilet,latAndLon, distance))
-                    .toList();
-        }
-        return nearToiletDTOList;
+        distance = 0; // 임시로 해둠. 나중에 이거 위도, 경도로 변환해서 해당 값만큼 차이나는걸로 바꿀거.
+
+        //List<Toilet> toilets = toiletRepository.findNears(getLatitudeAndLongitudeAsDouble(address));
+        return null;
+    }
+
+    public List<ToiletDTO> getNearToiletList(double[] lat, double[] lng){
+        List<Toilet> toilets = toiletRepository.findNears(lat, lng);
+        return toiletMapperImpl.toDTO(toilets);
     }
 
     //화장실 정보 저장

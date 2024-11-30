@@ -30,7 +30,7 @@ public class IndexController {
         String userName = (String) session.getAttribute("name");
 
         // HOUSE_COUNT만큼 미리보기 집 목록을 가져옵니다.
-        List<PreviewHouseDTO> houseList = houseService.getPreviewHouses(HOUSE_COUNT);
+        //List<PreviewHouseDTO> houseList = houseService.getPreviewHouses(HOUSE_COUNT);
 
         // 로그인 상태일 때
         if (userId != null) {
@@ -41,7 +41,7 @@ public class IndexController {
         }
 
         // 집 목록을 모델에 추가
-        model.addAttribute("houseList", houseList);
+        //model.addAttribute("houseList", houseList);
 
         return "index";  // index.html로 리턴
     }

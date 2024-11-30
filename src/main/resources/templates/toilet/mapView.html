@@ -87,12 +87,25 @@
 
     // 화장실 위치 가져오기
     function getToiletsLocation() {
-    let url = '/toilet/mapView';
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
+        let url = '/toilet/mapView';
+        let bounds = map.getBounds();
+        let location = {
+            "min": {
+                "latitude": bounds._min.y,
+                "longitude": bounds._min.x
+            },
+            "max": {
+                "latitude": bounds._max.y,
+                "longitude": bounds._max.x
+            }
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ location })
     })
     .then(response => {
         console.log("응답 상태:", response.status);  // 응답 상태 코드 로그

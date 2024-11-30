@@ -1,5 +1,6 @@
 package com.myspring.springmaster.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.service.ToiletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -129,7 +131,20 @@ public class ToiletController {
     public String showToiletMapView(){return "toilet/mapView";}
     @PostMapping("toilet/mapView")
     @ResponseBody
-    public List<Map<String, Object>> getAllToiletsLocation(){return toiletService.getAllToiletsLocation();}
+    public List<ToiletDTO> getAllToiletsLocation(@RequestBody JsonNode requestBody) {
+        JsonNode location = requestBody.path("location");
+        JsonNode min = location.path("min");
+        JsonNode max = location.path("max");
+
+        double minLat = min.path("latitude").asDouble();
+        double minLng = min.path("longitude").asDouble();
+        double maxLat = max.path("latitude").asDouble();
+        double maxLng = max.path("longitude").asDouble();
+
+        double[] lat = {minLat, maxLat};
+        double[] lng = {minLng, maxLng};
+        return toiletService.getNearToiletList(lat, lng);
+    }
 
     @PostMapping("toilet/latandlng")
     @ResponseBody
