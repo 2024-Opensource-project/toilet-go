@@ -45,6 +45,23 @@
                                             Contact
                                         </a>
                                     </li>
+                                    <!-- 로그인하지 않은 경우 -->
+                                    <li th:if="${isLoggedIn == null or !isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="/signin">Sign In</a>
+                                    </li>
+                                    <li th:if="${isLoggedIn == null or !isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="/signup">Sign Up</a>
+                                    </li>
+
+                                    <!-- 로그인한 경우 -->
+                                    <li th:if="${isLoggedIn != null and isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="#" th:text="${userName}+' 님'"></a>
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            <li>
+                                                <a class="sb-link sb-nav__link" href="/signout" >Sign Out</a>
+                                            </li>
+                                        </ul>
+                                    </li>
                                 </ul>
                             </nav>
                         </div>

@@ -32,11 +32,24 @@ public class UserService {
     }
 
     public String signUp(UserDTO userDTO) {
-        if(userRepository.findByUserId(userDTO.getUserId()) == null){
-            userRepository.save(UserMapper.INSTANCE.toEntity(userDTO));
-            return "가입에 성공했습니다";
+        // userId 중복 확인
+        if (userRepository.findByUserId(userDTO.getUserId()) != null) {
+            return "이미 생성된 Id 입니다.";
         }
-        return "이미 생성된 Id 입니다.";
+
+        // email 중복 확인
+        if (userRepository.findByEmail(userDTO.getEmail()) != null) {
+            return "이미 사용 중인 이메일 입니다.";
+        }
+
+        // phoneNumber 중복 확인
+        if (userRepository.findByPhoneNumber(userDTO.getPhoneNumber()) != null) {
+            return "이미 사용 중인 전화번호 입니다.";
+        }
+
+        // 중복이 없으면 가입 진행
+        userRepository.save(UserMapper.INSTANCE.toEntity(userDTO));
+        return "가입에 성공했습니다";
     }
 
     public boolean isAdmin(HttpSession session){
@@ -46,4 +59,22 @@ public class UserService {
         }
         return false;
     }
+
+    // 아이디 찾기
+    public String findUserIdByEmail(String email) {
+        if (userRepository.findByEmail(email) != null) {
+            return userRepository.findByEmail(email).getUserId();
+        }
+        return null;
+    }
+
+
+    // 비밀번호 찾기 (예: 새 비밀번호를 반환하거나 메일로 전송)
+    public String findPassword(String userId, String email) {
+        if (userRepository.findByUserIdAndEmail(userId, email) != null) {
+            return userRepository.findByUserIdAndEmail(userId, email).getPassword();
+        }
+        return null;
+    }
+
 }
