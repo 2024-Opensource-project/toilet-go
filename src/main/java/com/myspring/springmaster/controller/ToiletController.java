@@ -140,4 +140,24 @@ public class ToiletController {
         return toiletService.getLatitudeAndLongitudeAsDouble(address);
     }
 
+    @GetMapping("/toilet/detail2/{id}")
+    public String showHouse(Model model, @PathVariable int id) {
+        try {
+            ToiletDTO toiletDTO = toiletService.getToilet(id);
+            if (toiletDTO != null) {
+                model.addAttribute("toilet", toiletDTO);
+                return "toilet/detailView2";
+            } else {
+                model.addAttribute("errorMessage", "해당 화장실 정보를 찾을 수 없습니다.");
+                return "error"; // 사용자 정의 에러 페이지
+            }
+        } catch (Exception e) {
+            // 예외 발생 시 로그 출력 및 에러 페이지로 이동
+            System.err.println("Error fetching toilet details: " + e.getMessage());
+            model.addAttribute("errorMessage", "서버 내부 오류가 발생했습니다.");
+            return "error";
+        }
+    }
+
+
 }

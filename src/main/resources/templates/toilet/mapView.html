@@ -145,15 +145,22 @@
         });
 
 
-         let contentString = `
-            <div class="iw_inner" style="width: 250px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-                <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.name}</h3>
-                <h4 style="font-size: 14px; color: #777; margin-bottom: 15px;">${location.address}</h4>
+     let contentString = `
+        <div class="iw_inner" style="width: 250px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.name}</h3>
+            <h4 style="font-size: 14px; color: #777; margin-bottom: 15px;">${location.address}</h4>
+            <div style="display: flex; justify-content: center; gap: 10px;">
                 <a href="https://map.naver.com/v5/search/${location.latitude},${location.longitude}" target="_blank"
-                    style="display: inline-block; padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; text-align: center; font-size: 14px; transition: background-color 0.3s;">
+                    style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
                     지도에서 보기
                 </a>
-            </div>`;
+                <a href="/toilet/detail2/${location.id}"
+                    style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                    상세보기
+                </a>
+            </div>
+        </div>`;
+
 
 
 
