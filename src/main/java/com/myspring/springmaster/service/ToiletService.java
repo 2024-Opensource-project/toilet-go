@@ -25,10 +25,21 @@ public class ToiletService {
     }
 
     //화장실 정보 DTO로 반환
-    public ToiletDTO getToilet(int id){
-        Toilet toilet = toiletRepository.findById((long)id).orElse(null);
-        return ToiletMapper.Instance.toDTO(toilet);
+    public ToiletDTO getToilet(int id) {
+        // Optional에서 값이 없을 때 null 반환 처리
+        try {
+            Toilet toilet = toiletRepository.findById((long) id).orElse(null);
+            if (toilet != null) {
+                return ToiletMapper.Instance.toDTO(toilet);
+            } else {
+                throw new NoSuchElementException("해당 ID(" + id + ")의 화장실 정보를 찾을 수 없습니다.");
+            }
+        } catch (Exception e) {
+            System.err.println("Error retrieving toilet information: " + e.getMessage());
+            throw new RuntimeException("화장실 정보 조회 중 오류 발생", e);
+        }
     }
+
 
     // 필터링 및 페이징 지원
     public Page<ToiletDTO> getToiletsByFilter(ToiletDTO filter, Pageable pageable) {
@@ -75,6 +86,7 @@ public class ToiletService {
             location.put("longitude", toiletDTO.getLongitude().doubleValue());
             location.put("name", toiletDTO.getToilet_name());
             location.put("address", toiletDTO.getAddress());
+            location.put("id",toiletDTO.getId());
 
             locationList.add(location);
         });
