@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig  {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -25,8 +25,13 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/static/**", "/error", "/favicon.ico","/", "/signin", "/signup").permitAll()
+                                .requestMatchers("/static/**", "/error", "/favicon.ico","/", "/signin", "/signup", "/guest-login").permitAll()
                                 .anyRequest().authenticated()
+                )
+                .formLogin(formLogin -> formLogin
+                        .loginPage("/signin")
+                        .defaultSuccessUrl("/", true)
+                        .permitAll()
                 )
                 .oauth2Login(oauth2Login ->
                         oauth2Login
