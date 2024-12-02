@@ -54,7 +54,7 @@
     <span th:text="'⭐ ' + ${averageRating} + ' (' + ${reviewCount} + ' 리뷰)'"></span>
     <a th:href="@{'/reviews/toilet/' + ${toilet.id}}" class="btn btn-link">전체 리뷰 보기</a>
   </div>
-  <a href="#" onclick="handleReviewClick([[${toilet.id}]])" class="btn btn-primary mt-3">리뷰 작성</a>
+  <a href="#" onclick="handleReviewClick('[[${toilet.id}]]')" class="btn btn-primary mt-3">리뷰 작성</a>
 
   <div class="mt-5">
     <table class="table table-bordered" style="table-layout: auto; width: 100%;">
