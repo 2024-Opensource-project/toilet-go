@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.UUID;
 import java.util.Collections;
 import java.util.Map;
 
@@ -30,20 +32,38 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // 소셜 제공자에서 반환된 사용자 정보 가져오기
         Map<String, Object> attributes = oAuth2User.getAttributes();
 
+        Map<String, Object> mutableAttributes = new HashMap<>(attributes);
+
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 소셜 제공자 이름 (Google, Naver, Kakao)
         String email = (String) attributes.get("email");
         String name = (String) attributes.get("name");
-//        String userId = email.length() > 16 ? email.substring(0,16) : email;
+
+        // 이메일 값이 없는 경우 기본 이메일 설정
+        if (email == null || email.isEmpty()) {
+            email = registrationId + "_user_" + UUID.randomUUID() + "@toilet.com";
+            mutableAttributes.put("email", email);
+        }
+        // 이름 값이 없는 경우 기본 이름 설정
+        if (name == null || name.isEmpty()) {
+            name = "Anonymous User";
+            mutableAttributes.put("name", name);
+        }
+
+
+        String userId = email.length() > 16 ? email.substring(0,16) : email;
         //건아야 혹시 몰라서 오류 뜰까봐 이거 안지웠어
         //만약 이거 지우면 아래 userId(email)로 수정해야해
+
         // 사용자 정보 데이터베이스에 저장 (없는 경우에만 저장)
+        String finalEmail = email;
+        String finalName = name;
         User user = userRepository.findByEmail(email)
                 .orElseGet(() -> {
                     // 새 사용자 저장
                     User newUser = User.builder()
-                            .userId(email) // 소셜 로그인에서는 이메일을 userId로 사용
-                            .email(email)
-                            .name(name)
+                            .userId(userId) // 소셜 로그인에서는 이메일을 userId로 사용
+                            .email(finalEmail)
+                            .name(finalName)
                             .phoneNumber("N/A")
                             .password("") // 소셜 로그인 사용자는 비밀번호 필요 없음
                             .registrationId(registrationId)
@@ -55,7 +75,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         // OAuth2User 반환
         return new DefaultOAuth2User(
                 Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")),
-                attributes,
+                mutableAttributes,
                 "email"); // OAuth2User 기본 식별자로 email 사용
     }
 }
