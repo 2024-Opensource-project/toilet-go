@@ -9,7 +9,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig  {
+public class SecurityConfig {
 
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -20,23 +20,20 @@ public class SecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf
-                        .disable()
-                )
-                .authorizeHttpRequests(authorizeRequests ->
-                        authorizeRequests
-                                .requestMatchers("/static/**", "/error", "/favicon.ico","/", "/signin", "/signup", "/guest-login").permitAll()
-                                .anyRequest().authenticated()
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/signin")
-                        .defaultSuccessUrl("/", true)
+                        .defaultSuccessUrl("/", true) // 로그인 성공 시 메인 페이지로 리디렉션
                         .permitAll()
                 )
-                .oauth2Login(oauth2Login ->
-                        oauth2Login
-                                .loginPage("/signin")
-                                .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .loginPage("/signin")
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                        .defaultSuccessUrl("/") // 소셜 로그인 성공 시 리디렉션할 페이지 설정
                 );
 
         return http.build();

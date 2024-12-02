@@ -30,9 +30,10 @@ public class UserController {
         model.addAttribute("naverLoginUrl", "/oauth2/authorization/naver");
         return "user/signin";
     }
-    @PostMapping("signin")
+
+    @PostMapping("/signin")
     public String signin(@ModelAttribute UserDTO user, HttpSession session, RedirectAttributes redirect) {
-        if(userService.login(user, session)){
+        if (userService.login(user, session)) {
             session.setAttribute("userRole", "USER");
             session.setAttribute("userId", user.getUserId());
             return "redirect:/";
@@ -40,6 +41,7 @@ public class UserController {
         redirect.addFlashAttribute("message", "Invalid username or password");
         return "redirect:/signin";
     }
+
 
 
     @GetMapping("/signup")

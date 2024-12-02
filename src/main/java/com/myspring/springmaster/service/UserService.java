@@ -4,10 +4,12 @@ import com.myspring.springmaster.dataAccess.DAO.UserDAO;
 import com.myspring.springmaster.dataAccess.DTO.UserDTO;
 import com.myspring.springmaster.dataAccess.mapper.UserMapper;
 import com.myspring.springmaster.dataAccess.repository.UserRepository;
+import com.myspring.springmaster.dataAccess.entity.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.sql.SQLException;
 
 
@@ -62,11 +64,11 @@ public class UserService {
 
     // 아이디 찾기
     public String findUserIdByEmail(String email) {
-        if (userRepository.findByEmail(email) != null) {
-            return userRepository.findByEmail(email).getUserId();
-        }
-        return null;
+        return userRepository.findByEmail(email)
+                .map(User::getUserId) // Optional에서 User의 userId 필드를 추출
+                .orElse(null); // 이메일에 해당하는 사용자가 없을 경우 null 반환
     }
+
 
 
     // 비밀번호 찾기 (예: 새 비밀번호를 반환하거나 메일로 전송)
