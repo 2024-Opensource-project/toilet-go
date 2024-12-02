@@ -54,29 +54,20 @@
             background-color: gold;
             color: #000000;
         }
+        .navbar-brand {
+            font-size: 3rem;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
 <!-- 네비게이션 바 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">MySpring</a>
+        <a class="navbar-brand mx-auto text-center" href="/">TOILET-GO</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/signin">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link " href="/signup" >Sign Up</a>
-                </li>
-            </ul>
-        </div>
     </div>
 </nav>
 
@@ -116,6 +107,10 @@
             <img src="https://img.icons8.com/color/24/github.png" alt="Github Logo">
             GitHub로 로그인
         </a>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="/guest-login" class="btn btn-outline-secondary w-100 mt-3">비회원으로 계속하기</a>
     </div>
 
     <div class="text-center mt-3">
