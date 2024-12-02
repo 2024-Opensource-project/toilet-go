@@ -1,7 +1,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link href="/static/style.css" rel="stylesheet">
-    <title>MyHome | Home</title>
+    <title>TOILET-GO | Home</title>
 </head>
 
 <body>
@@ -13,7 +13,7 @@
                     <div class="sb-column-content">
                         <div class="wrapper sb-top-header items-can-collapse">
                             <a class="sb-top-header__brand brand" href="/">
-                                MyHome
+                                TOILET-GO
                             </a>
                             <button aria-label="Show navigation" class="sb-mobile-nav-btn" id="sb-mobile-nav-btn" type="button">
                                 <span class="sb-mobile-nav-btn__line"></span>
@@ -24,11 +24,6 @@
                                     <li class="sb-nav__item   ">
                                         <a class=" sb-link sb-nav__link " href="/#list" target="">
                                             List
-                                        </a>
-                                    </li>
-                                    <li class="sb-nav__item   ">
-                                        <a class=" sb-link sb-nav__link " href="/#near" target="">
-                                            Near
                                         </a>
                                     </li>
                                     <li class="sb-nav__item   ">
@@ -44,6 +39,22 @@
                                         <a class=" sb-link sb-button sb-button--nav " href="/#contact" target="">
                                             Contact
                                         </a>
+                                    </li>
+                                    <!-- 로그인하지 않은 경우 -->
+                                    <li th:if="${session.isLoggedIn == null or !session.isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="/signin">Sign In</a>
+                                    </li>
+                                    <li th:if="${session.isLoggedIn == null or !session.isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="/signup">Sign Up</a>
+                                    </li>
+                                    <!-- 로그인한 경우 -->
+                                    <li th:if="${session.isLoggedIn != null and session.isLoggedIn}" class="sb-nav__item">
+                                        <a class="sb-link sb-nav__link" href="#" th:text="${session.userName} + ' 님'"></a>
+                                        <ul style="list-style-type: none; padding-left: 0;">
+                                            <li>
+                                                <a class="sb-link sb-nav__link" href="/signout" >Sign Out</a>
+                                            </li>
+                                        </ul>
                                     </li>
                                 </ul>
                             </nav>
@@ -68,8 +79,8 @@
                     <div class="sb-column-content">
                         <div class="sb-content sb-hero option-width sb-section-alienable has-sb-hero__paragraph">
                             <div class="sb-hero__content-wrapper">
-                                <h1 class="sb-title sb-hero__title aos-init aos-animate">MyHome</h1>
-                                    <div class="sb-subtitle sb-hero__subtitle aos-init aos-animate">Discover Your Future Home with Public Housing</div>
+                                <h1 class="sb-title sb-hero__title aos-init aos-animate">TOILET-GO</h1>
+                                    <div class="sb-subtitle sb-hero__subtitle aos-init aos-animate">Find Public Toilets Near You</div>
                                 <div class="sb-hero__paragraph aos-init aos-animate"></div>
                             </div>
                             <div class="sb-cta-wrapper sb-section-alienable">
@@ -92,9 +103,9 @@
                         <div class="sb-items-grid">
                             <div class="sb-items-grid__content option-width sb-section-alienable">
                                 <div class="sb-section-title aos-init aos-animate">Explore your options</div>
-                                <div class="sb-section-subtitle aos-init aos-animate">Discover diverse living spaces</div>
+                                <div class="sb-section-subtitle aos-init aos-animate">Explore public toilets available in your area</div>
                                 <div class="sb-paragraph aos-init aos-animate">
-                                    <p>In this state, there should be more houses where you can utilize the slide function.</p>
+                                    <p>In this state, there should be more toilets where you can utilize the slide function.</p>
                                 </div>
                             </div>
                             <ul class="sb-items-grid__items items-grid sb-section-alienable">
@@ -137,43 +148,12 @@
                                         </div>
                                     </a>
                                 </li>
-                                <button style="background-color: white;margin: auto;border: none;" onclick="location.href='/house/list'">
+                                <button style="background-color: white;margin: auto;border: none;" onclick="location.href='/toilet/list'">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#7193A7" class="bi bi-arrow-right-circle-fill position-absolute" viewBox="0 0 16 16">
                                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                     </svg>
                                 </button>
                             </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="near" class="sb-section sb-section-opt-light option-section-background-image-fixed option-image-align-center option-width-6col option-image-width-5col option-imagesize-mobile-lg option-align-left option-image-align-mobile-left option-link-decoration-border-bottom-static option-imagecrop-rectangle-portrait option-button-none option-imagesize-lg">
-        <div class="container sb-container-fixed sb-container">
-            <div class="row sb-row sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-row-opt-center">
-                <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-text-image">
-                    <div class="sb-column-content">
-                        <div class="sb-text-image sb-section-alienable">
-                            <div class="sb-text-image__content option-width">
-                                <div class="sb-title sb-text-image__content-title aos-init aos-animate">Near</div>
-                                <div class="sb-subtitle sb-text-image__content-subtitle aos-init aos-animate">가까운 곳의 행복주택을 찾아보세요</div>
-                                <div class="sb-text-image__content-paragraph aos-init aos-animate">지정한 위치 주변의 행복주택 리스트를 볼 수 있어요.</div>
-                                <div class="sb-text-image__content-cta">
-                                    <div class="sb-cta-wrapper sb-section-alienable">
-                                            <span class="aos-init aos-animate">
-                                                <a class="sb-cta-wrapper__btn sb-button sb-button--secondary" href="/house/near">집 보러가기</a>
-                                            </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="sb-text-image__image aos-init aos-animate">
-                                <figure class="option-image" style="background-image: url('/static/image/list.png')">
-                                    <img src="/static/image/list.png" alt="Explore public housing">
-                                </figure>
-                                <div class="sb-text-image__image-caption"></div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -195,12 +175,12 @@
                             </div>
                             <div class="sb-text-image__content option-width">
                                 <div class="sb-title sb-text-image__content-title aos-init aos-animate">Map view</div>
-                                <div class="sb-subtitle sb-text-image__content-subtitle aos-init aos-animate">행복주택을 지도에서 선택해보세요</div>
-                                <div class="sb-text-image__content-paragraph aos-init aos-animate">불편한 검색 없이 경기도에 있는 모든 행복주택을 지도에서 찾을 수 있습니다.</div>
+                                <div class="sb-subtitle sb-text-image__content-subtitle aos-init aos-animate">공중 화장실을 지도에서 선택해보세요</div>
+                                <div class="sb-text-image__content-paragraph aos-init aos-animate">불편한 검색 없이 경기도에 있는 모든 공중 화장실을 지도에서 찾을 수 있습니다.</div>
                                 <div class="sb-text-image__content-cta">
                                     <div class="sb-cta-wrapper sb-section-alienable">
                                             <span class="aos-init aos-animate">
-                                                <a class="sb-cta-wrapper__btn sb-button sb-button--secondary" href="/house/mapview">집 보러가기</a>
+                                                <a class="sb-cta-wrapper__btn sb-button sb-button--secondary" href="/toilet/mapview">화장실 찾기</a>
                                             </span>
                                     </div>
                                 </div>
@@ -348,7 +328,7 @@
                                     <div class="sb-footer-simple-social__nav-wrapper">
                                         <h2 class="sb-title sb-footer__branding">
                                             <a class="brand sb-brand-default org" href="/">
-                                                MyHome
+                                                TOILET-GO
                                             </a>
                                         </h2>
                                         <nav aria-label="Secondary" class="sb-footer__nav">
@@ -388,25 +368,25 @@
 </body>
 
 <script th:inline="javascript">
-    let list = [[${houseList}]]
-    let house_images = list.map(function (item){return makeImageUrl(item.imageUrl)})
-    let house_names = list.map(function(item){return item.name})
-    let house_descriptions = list.map(function(item){return item.address});
-    let house_url = list.map(function (item){return item.id});
+    let list = [[${toiletList}]]
+    let toilet_images = list.map(function (item){return makeImageUrl(item.imageUrl)})
+    let toilet_names = list.map(function(item){return item.name})
+    let toilet_descriptions = list.map(function(item){return item.address});
+    let toilet_url = list.map(function (item){return item.id});
 
-    const houses = document.querySelectorAll('.sb-items-grid__items li');
-    houses.forEach((house, index) => {
-        const url = house.querySelector('.items-grid__item-body');
-        url.href = "/house/detail/"+house_url[index];
+    const toilets = document.querySelectorAll('.sb-items-grid__items li');
+    toilets.forEach((toilet, index) => {
+        const url = toilet.querySelector('.items-grid__item-body');
+        url.href = "/toilet/detail/"+toilet_url[index];
 
-        const img = house.querySelector('.option-image');
-        img.style.backgroundImage = house_images[index]; // 이미지 경로 설정
+        const img = toilet.querySelector('.option-image');
+        img.style.backgroundImage = toilet_images[index]; // 이미지 경로 설정
 
-        const header = house.querySelector('.items-grid__header');
-        header.textContent = house_names[index]; // 헤더 텍스트 설정
+        const header = toilet.querySelector('.items-grid__header');
+        header.textContent = toilet_names[index]; // 헤더 텍스트 설정
 
-        const description = house.querySelector('.items-grid__description');
-        description.textContent = house_descriptions[index];  // 설명 텍스트 설정
+        const description = toilet.querySelector('.items-grid__description');
+        description.textContent = toilet_descriptions[index];  // 설명 텍스트 설정
     });
 
     function makeImageUrl(url){

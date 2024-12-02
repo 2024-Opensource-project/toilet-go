@@ -5,9 +5,11 @@ import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.sql.SQLException;
@@ -22,17 +24,24 @@ public class UserController {
     }
 
     @GetMapping("/signin")
-    public String signin() {
+    public String signin(Model model) {
+        model.addAttribute("githubLoginUrl", "/oauth2/authorization/github");
+        model.addAttribute("kakaoLoginUrl", "/oauth2/authorization/kakao");
+        model.addAttribute("naverLoginUrl", "/oauth2/authorization/naver");
         return "user/signin";
     }
-    @PostMapping("signin")
+
+    @PostMapping("/signin")
     public String signin(@ModelAttribute UserDTO user, HttpSession session, RedirectAttributes redirect) {
-        if(userService.login(user, session)){
+        if (userService.login(user, session)) {
+            session.setAttribute("userRole", "USER");
+            session.setAttribute("userId", user.getUserId());
             return "redirect:/";
         }
         redirect.addFlashAttribute("message", "Invalid username or password");
         return "redirect:/signin";
     }
+
 
 
     @GetMapping("/signup")
@@ -50,5 +59,37 @@ public class UserController {
     public String signOut(HttpSession session) {
         session.invalidate();
         return "redirect:/";
+    }
+
+    // 아이디 찾기 요청 처리
+    @GetMapping("/find-id")
+    public String findUserId() {
+        return "user/find-id";
+    }
+    @PostMapping("/find-id")
+    public String findUserId(@RequestParam String email, RedirectAttributes redirectAttributes) {
+        String userId = userService.findUserIdByEmail(email);
+        if (userId != null) {
+            redirectAttributes.addFlashAttribute("message", "Your UserId: " + userId);
+        } else {
+            redirectAttributes.addFlashAttribute("message", "No account found with the provided information.");
+        }
+        return "redirect:/find-id";
+    }
+
+    // 비밀번호 찾기 요청 처리
+    @GetMapping("/find-password")
+    public String findPassword() {
+        return "user/find-password";
+    }
+    @PostMapping("/find-password")
+    public String findPassword(@RequestParam String userId, @RequestParam String email, RedirectAttributes redirectAttributes) {
+        String password = userService.findPassword(userId, email);
+        if (password != null) {
+            redirectAttributes.addFlashAttribute("message", "Your Password: " + password);
+        } else {
+            redirectAttributes.addFlashAttribute("message", "No account found with the provided information.");
+        }
+        return "redirect:/find-password";
     }
 }
