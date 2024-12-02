@@ -25,7 +25,7 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers("/static/**", "/error", "/favicon.ico","/", "/signin", "/signup").permitAll()
+                                .requestMatchers("/static/**", "/error", "/favicon.ico","/", "/signin", "/signup","/toilet/**","/favorites/**").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .oauth2Login(oauth2Login ->

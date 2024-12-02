@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Getter;
 import org.hibernate.annotations.ColumnDefault;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Table(name = "users")
@@ -31,6 +33,9 @@ public class User {
     @Column(name = "role_id")
     @ColumnDefault("1")
     private Integer roleId;
+
+    @OneToMany(mappedBy = "user")
+    private List<Favorite> favorites;
 
     @Builder
     public User(Long id, String userId, String password, String name, String email, String phoneNumber, Integer roleId) {
