@@ -58,7 +58,7 @@ public class FavoriteController {
             try {
                 favoriteService.addFavorite(favorite);  // 즐겨찾기 추가 로직
                 Map<String, String> response = new HashMap<>();
-                response.put("message", "Favorite added successfully");
+                response.put("message", "즐겨찾기가 추가되었습니다.");
                 return ResponseEntity.ok(response); // JSON 형식으로 응답
             } catch (Exception e) {
                 Map<String, String> response = new HashMap<>();
@@ -67,7 +67,7 @@ public class FavoriteController {
             }
         }
         Map<String, String> response = new HashMap<>();
-        response.put("message", "You need to be logged in to add to favorites.");
+        response.put("message", "로그인이 필요한 서비스 입니다.");
         return ResponseEntity.status(403).body(response); // JSON 형식으로 응답
     }
 
@@ -86,7 +86,7 @@ public class FavoriteController {
             try {
                 favoriteService.removeFavorite(favorite); // 즐겨찾기 삭제 로직
                 Map<String, String> response = new HashMap<>();
-                response.put("message", "Favorite removed successfully");
+                response.put("message", "즐겨찾기가 취소되었습니다.");
                 return ResponseEntity.ok(response); // JSON 형식으로 응답
             } catch (Exception e) {
                 Map<String, String> response = new HashMap<>();
@@ -95,7 +95,7 @@ public class FavoriteController {
             }
         }
         Map<String, String> response = new HashMap<>();
-        response.put("message", "You need to be logged in to remove to favorites.");
+        response.put("message", "로그인이 필요한 서비스입니다.");
         return ResponseEntity.status(403).body(response); // JSON 형식으로 응답
     }
 
