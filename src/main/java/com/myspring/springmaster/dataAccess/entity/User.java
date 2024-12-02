@@ -15,19 +15,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "user_id", nullable = false, unique = true, length = 16)
+    @Column(name = "user_id", nullable = false, unique = true, length = 50)
     private String userId;
 
-    @Column(name = "password", nullable = false, length = 256)
+    @Column(name = "password", nullable = true, length = 256)
     private String password;
 
     @Column(name = "name", nullable = false, length = 32)
     private String name;
 
-    @Column(name = "email", nullable = false, length = 255)
+    @Column(name = "email", nullable = false, length = 255, unique = true)
     private String email;
 
-    @Column(name = "phone_number", nullable = false, length = 16)
+    @Column(name = "phone_number", nullable = true, length = 16)
+    @ColumnDefault("'N/A'")
     private String phoneNumber;
 
     @Column(name = "role_id")
@@ -37,8 +38,11 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Favorite> favorites;
 
+    @Column(name = "registration_id", length = 255)
+    private String registrationId;
+
     @Builder
-    public User(Long id, String userId, String password, String name, String email, String phoneNumber, Integer roleId) {
+    public User(Long id, String userId, String password, String name, String email, String phoneNumber, Integer roleId, String registrationId) {
         this.id = id;
         this.userId = userId;
         this.password = password;
@@ -46,9 +50,9 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.roleId = roleId;
+        this.registrationId = registrationId;
     }
 
     public User() {
-
     }
 }
