@@ -205,10 +205,12 @@
                     style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
                     상세보기
                 </a>
-                <a href="/reviews/toilet/${location.id}/new"
-                    style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                <a href="#"
+                   onclick="handleReviewClick(${location.id})"
+                   style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
                     리뷰 작성
                 </a>
+
             </div>
             <button onclick="toggleFavorite(${location.id})" style="margin-top: 15px; padding: 10px 20px; background-color: #ff9800; color: white; border: none; border-radius: 4px; font-size: 14px; cursor: pointer;">
                     ${isFavorite ? '즐겨찾기 삭제' : '즐겨찾기 추가'}
@@ -232,6 +234,31 @@
         });
 
     }
+
+    // 리뷰 등록 로그인 여부 확인
+    function handleReviewClick(toiletId) {
+        const currentPage = window.location.href; // 현재 페이지 URL
+        const reviewUrl = `/reviews/toilet/${toiletId}/new?referer=${encodeURIComponent(currentPage)}`;
+
+        // 로그인 상태 확인 API 호출
+        fetch('/reviews/toilet/check-login', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    // 로그인 상태라면 리뷰 작성 페이지로 이동
+                    window.location.href = reviewUrl;
+                } else {
+                    // 로그인 상태가 아니라면 alert 표시
+                    alert('리뷰를 작성하려면 로그인이 필요합니다.');
+                }
+            })
+            .catch(error => {
+                console.error('로그인 상태 확인 중 오류:', error);
+                alert('로그인 상태를 확인할 수 없습니다. 다시 시도해주세요.');
+            });
+    }
+
+
 
     //즐겨찾기 목록 불러오기
     let favoriteToilets = new Set();

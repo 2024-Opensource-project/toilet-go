@@ -4,13 +4,17 @@ import com.myspring.springmaster.dataAccess.DTO.ReviewDTO;
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
 import com.myspring.springmaster.service.ReviewService;
 import com.myspring.springmaster.service.ToiletService;
+import com.myspring.springmaster.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/reviews/toilet")
@@ -18,11 +22,13 @@ public class ReviewController {
 
     private final ReviewService reviewService;
     private final ToiletService toiletService;
+    private final UserService userService;
 
     @Autowired
-    public ReviewController(ReviewService reviewService, ToiletService toiletService) {
+    public ReviewController(ReviewService reviewService, ToiletService toiletService, UserService userService) {
         this.reviewService = reviewService;
         this.toiletService = toiletService;
+        this.userService = userService;
     }
 
     @GetMapping("/{toiletId}")
@@ -50,45 +56,78 @@ public class ReviewController {
     }
 
     @GetMapping("/{toiletId}/new")
-    public String showReviewForm(@PathVariable Long toiletId, Model model) {
-        ToiletDTO toilet = toiletService.getToilet(toiletId.intValue()); // ToiletService에서 화장실 정보 가져오기
-        model.addAttribute("toiletName", toilet.getToilet_name()); // 화장실 이름 전달
-        model.addAttribute("toiletId", toiletId); // 화장실 ID 전달
+    public String showReviewForm(@PathVariable Long toiletId,
+                                 @RequestParam(value = "referer", required = false) String referer,
+                                 Model model, HttpSession session) {
+        // 인증 확인
+        if (!userService.isLoggedIn(session)) {
+            model.addAttribute("error", "리뷰를 작성하려면 로그인이 필요합니다.");
+            if (referer != null) {
+                // 원래 페이지로 돌아가기
+                return "redirect:" + referer;
+            }
+            return "redirect:/"; // referer가 없으면 홈으로 이동
+        }
+
+        ToiletDTO toilet = toiletService.getToilet(toiletId.intValue()); // 화장실 정보 가져오기
+        model.addAttribute("toiletName", toilet.getToilet_name());
+        model.addAttribute("toiletId", toiletId);
         return "reviews/reviewForm"; // 리뷰 작성 페이지 반환
     }
 
 
     @PostMapping("/{toiletId}/add")
-    public String addReview(@PathVariable Long toiletId, @ModelAttribute ReviewDTO reviewDTO, HttpSession session, Model model) {
-        String userId = (String) session.getAttribute("userId");
-        if (userId == null) {
-            userId = "t";
-//            model.addAttribute("error", "로그인 후 리뷰를 작성할 수 있습니다.");
-//            return "redirect:/signin"; // 로그인 페이지로 리다이렉트
+    @ResponseBody
+    public ResponseEntity<Map<String, String>> addReview(@PathVariable Long toiletId, @RequestBody ReviewDTO reviewDTO, HttpSession session) {
+        String userId = null;
+        Object sessionId = session.getAttribute("userId");
+        if (sessionId instanceof Long) {
+            userId = String.valueOf(sessionId); // Long -> String 변환
+        } else if (sessionId instanceof Integer) {
+            userId = String.valueOf(sessionId); // Integer -> String 변환
         }
-
-        // userId와 toiletId를 설정
         reviewDTO.setUserId(userId);
-        reviewDTO.setToiletId(toiletId); // ReviewDTO에 toiletId가 필요하다면 설정
+        reviewDTO.setToiletId(toiletId);
 
-        try {
-            // 리뷰 추가 서비스 호출
-            reviewService.addReview(reviewDTO);
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("error", "리뷰를 추가하는 동안 오류가 발생했습니다: " + e.getMessage());
-            return "redirect:/reviews/toilet/" + toiletId;
+        if (userService.isLoggedIn(session)) {  // 인증된 사용자만 추가 가능
+            try {
+                reviewService.addReview(reviewDTO);  // 리뷰 추가 로직
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "리뷰가 성공적으로 추가되었습니다.");
+                return ResponseEntity.ok(response); // JSON 형식으로 응답
+            } catch (Exception e) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "리뷰를 추가하는 중 오류가 발생했습니다: " + e.getMessage());
+                return ResponseEntity.status(500).body(response); // JSON 형식으로 응답
+            }
         }
-
-        // 성공 메시지 설정 및 화장실 리뷰 페이지로 리다이렉트
-        model.addAttribute("success", "리뷰가 성공적으로 추가되었습니다!");
-        return "redirect:/reviews/toilet/" + toiletId;
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "로그인이 필요한 서비스입니다.");
+        return ResponseEntity.status(403).body(response); // JSON 형식으로 응답
     }
+
 
     // 정렬 API 추가
     @GetMapping("/sort")
     @ResponseBody
     public List<ReviewDTO> sortReviews(@RequestParam String option, @RequestParam Long toiletId) {
         return reviewService.getSortedReviews(toiletId, option);
+    }
+
+    //로그인 여부 확인 엔드포인트
+    @GetMapping("/check-login")
+    public ResponseEntity<Map<String, Object>> checkLogin(HttpSession session) {
+        boolean isLoggedIn = userService.isLoggedIn(session);
+        Map<String, Object> response = new HashMap<>();
+        response.put("loggedIn", isLoggedIn);
+
+        if (isLoggedIn) {
+            response.put("message", "로그인 상태입니다.");
+        } else {
+            response.put("message", "로그인이 필요합니다.");
+        }
+
+        return ResponseEntity.ok(response);
     }
 
 }
