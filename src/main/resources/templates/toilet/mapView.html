@@ -161,8 +161,8 @@
         console.log(location);
         const isFavorite = favoriteToilets.has(location.id);
         const iconUrl = isFavorite
-            ? './resources/static/img/favorite-on.png'
-            : './resources/static/img/favorite-off.png';
+            ? '/static/image/favorite-on.png'
+            : '/static/image/favorite-off.png';
 
         let marker = new naver.maps.Marker({
             position: latAndLng,
@@ -246,7 +246,7 @@
             })
             .catch(error => {
                 console.error("즐겨찾기 정보를 불러오는 중 오류:", error);
-                alert('즐겨찾기 정보를 불러오는 중 오류가 발생했습니다.');  // 사용자에게 오류 메시지 표시
+                getToiletsLocation();
             });
     }
 
@@ -267,7 +267,7 @@
             if (!response.ok) {
                 return response.json().then(data => {
                     console.error("서버 응답:", data.message);  // 서버에서 반환한 메시지 출력
-                    throw new Error(`서버 오류: ${data.message}`);
+                    throw new Error(`${data.message}`);
                 });
             }
             return response.json();  // 응답을 JSON으로 반환
@@ -279,7 +279,7 @@
         })
         .catch(error => {
             console.error('즐겨찾기 추가 오류:', error);
-            alert("즐겨찾기 추가 중 오류가 발생했습니다: " + error.message); // 오류 메시지 출력
+            alert(error.message);
         });
     }
 

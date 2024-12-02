@@ -3,7 +3,6 @@ package com.myspring.springmaster.service;
 import com.myspring.springmaster.dataAccess.entity.Favorite;
 import com.myspring.springmaster.dataAccess.entity.User;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
-import com.myspring.springmaster.dataAccess.mapper.FavoriteMapper;
 import com.myspring.springmaster.dataAccess.repository.FavoriteRepository;
 import com.myspring.springmaster.dataAccess.repository.UserRepository;
 import com.myspring.springmaster.dataAccess.repository.ToiletRepository;
@@ -20,14 +19,12 @@ public class FavoriteService {
     private final FavoriteRepository favoriteRepository;
     private final UserRepository userRepository;
     private final ToiletRepository toiletRepository;
-    private final FavoriteMapper favoriteMapper;
 
     @Autowired
-    public FavoriteService(FavoriteRepository favoriteRepository, UserRepository userRepository, ToiletRepository toiletRepository, FavoriteMapper favoriteMapper) {
+    public FavoriteService(FavoriteRepository favoriteRepository, UserRepository userRepository, ToiletRepository toiletRepository) {
         this.favoriteRepository = favoriteRepository;
         this.userRepository = userRepository;
         this.toiletRepository = toiletRepository;
-        this.favoriteMapper = favoriteMapper;
     }
 
     // 즐겨찾기 추가
