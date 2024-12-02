@@ -1,8 +1,6 @@
 package com.myspring.springmaster.dataAccess.module;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.myspring.springmaster.dataAccess.entity.HouseDetail;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;

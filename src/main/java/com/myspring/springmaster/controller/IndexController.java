@@ -1,26 +1,15 @@
 package com.myspring.springmaster.controller;
 
-import com.myspring.springmaster.dataAccess.DTO.PreviewHouseDTO;
-import com.myspring.springmaster.service.HouseService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/")
 public class IndexController {
-    private final HouseService houseService;
-
-    @Autowired
-    public IndexController(HouseService houseService) {
-        this.houseService = houseService;
-    }
 
     @GetMapping("/")
     public String homePage(Model model, HttpSession session) {
@@ -34,6 +23,7 @@ public class IndexController {
 
         // 로그인 상태일 때
         if (userId != null) {
+            System.out.println("rterqwewqeq");
             model.addAttribute("isLoggedIn", true);
             model.addAttribute("userName", userName); // 세션에서 가져온 사용자 이름
         } else {

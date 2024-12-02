@@ -1,6 +1,5 @@
 package com.myspring.springmaster.service;
 
-import com.myspring.springmaster.dataAccess.DAO.UserDAO;
 import com.myspring.springmaster.dataAccess.DTO.UserDTO;
 import com.myspring.springmaster.dataAccess.mapper.UserMapper;
 import com.myspring.springmaster.dataAccess.repository.UserRepository;
@@ -41,7 +40,7 @@ public class UserService {
         }
 
         // email 중복 확인
-        if (userRepository.findByEmail(userDTO.getEmail()) != null) {
+        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
             return "이미 사용 중인 이메일 입니다.";
         }
 

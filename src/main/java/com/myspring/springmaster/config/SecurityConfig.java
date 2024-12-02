@@ -26,8 +26,9 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/signin")
-                        .defaultSuccessUrl("/", true) // 로그인 성공 시 메인 페이지로 리디렉션
+                        .loginPage("/signin")        // 로그인 폼 경로
+                        .loginProcessingUrl("/signin/authenticate")  // 로그인 인증 처리 URL을 별도로 설정
+                        .defaultSuccessUrl("/", true)
                         .permitAll()
                 )
                 .oauth2Login(oauth2Login -> oauth2Login
