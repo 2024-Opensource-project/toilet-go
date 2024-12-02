@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Entity
@@ -65,6 +66,9 @@ public class Toilet {
 
     @Column(name = "diaper_changing_station_location", length = 255)  //기저귀 교환대 장소
     private String diaper_changing_station_location;
+
+    @OneToMany(mappedBy = "toilet")
+    private List<Favorite> favorites;
 
     @Builder
     public Toilet(Long id, String toilet_name, String address, BigDecimal latitude, BigDecimal longitude

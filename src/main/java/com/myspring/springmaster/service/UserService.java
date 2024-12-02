@@ -1,6 +1,5 @@
 package com.myspring.springmaster.service;
 
-import com.myspring.springmaster.dataAccess.DAO.UserDAO;
 import com.myspring.springmaster.dataAccess.DTO.UserDTO;
 import com.myspring.springmaster.dataAccess.mapper.UserMapper;
 import com.myspring.springmaster.dataAccess.repository.UserRepository;
@@ -28,6 +27,7 @@ public class UserService {
             session.setAttribute("userId", userDTO.getUserId());
             session.setAttribute("name", userDTO.getName());
             session.setAttribute("role", userDTO.getRoleId());
+            session.setAttribute("id", userDTO.getId());
             return true;
         }
         return false;
@@ -40,7 +40,7 @@ public class UserService {
         }
 
         // email 중복 확인
-        if (userRepository.findByEmail(userDTO.getEmail()) != null) {
+        if (userRepository.findByEmail(userDTO.getEmail()).isPresent()) {
             return "이미 사용 중인 이메일 입니다.";
         }
 
@@ -61,6 +61,14 @@ public class UserService {
         }
         return false;
     }
+
+    //로그인 여부
+    public boolean isLoggedIn(HttpSession session) {
+        // 세션에서 사용자 정보가 존재하는지 확인 (예: 사용자 ID 또는 이메일 정보)
+        Object user = session.getAttribute("id");  // "user"는 세션에 저장된 사용자 객체나 사용자 ID일 수 있음
+        return user != null;  // 사용자 정보가 존재하면 로그인 상태, null이면 로그인하지 않음
+    }
+
 
     // 아이디 찾기
     public String findUserIdByEmail(String email) {

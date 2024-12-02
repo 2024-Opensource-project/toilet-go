@@ -22,7 +22,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (필요 시 활성화)
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password", "/toilet/**", "/reviews/toilet/**").permitAll()
+                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password", "/toilet/**", "/reviews/toilet/**", "/favorites/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
@@ -30,6 +30,7 @@ public class SecurityConfig {
                         .loginProcessingUrl("/signin") // 로그인 폼 제출 경로
                         .defaultSuccessUrl("/", true) // 로그인 성공 시 이동할 페이지
                         .failureUrl("/signin?error=true") // 로그인 실패 시 이동할 페이지
+
                         .permitAll()
                 )
                 .oauth2Login(oauth2Login -> oauth2Login

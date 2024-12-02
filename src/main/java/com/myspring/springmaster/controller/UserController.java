@@ -34,8 +34,8 @@ public class UserController {
     @PostMapping("/signin")
     public String signin(@ModelAttribute UserDTO user, HttpSession session, RedirectAttributes redirect) {
         if (userService.login(user, session)) {
-            session.setAttribute("userRole", "USER");
-            session.setAttribute("userId", user.getUserId());
+            //session.setAttribute("userRole", "USER");
+            //session.setAttribute("userId", user.getUserId());
             return "redirect:/";
         }
         redirect.addFlashAttribute("message", "Invalid username or password");

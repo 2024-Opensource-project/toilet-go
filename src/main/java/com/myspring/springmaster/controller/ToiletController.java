@@ -113,7 +113,6 @@ public class ToiletController {
         return "toilet/listView";
     }
 
-
     //근처 화장실 조회
     @GetMapping("toilet/near")
     public String showHouseNear(Model model){
