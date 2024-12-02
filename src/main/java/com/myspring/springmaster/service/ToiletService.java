@@ -1,9 +1,11 @@
 package com.myspring.springmaster.service;
 
 import com.myspring.springmaster.dataAccess.DTO.ToiletDTO;
+import com.myspring.springmaster.dataAccess.entity.Review;
 import com.myspring.springmaster.dataAccess.entity.Toilet;
 import com.myspring.springmaster.dataAccess.mapper.ToiletMapper;
 import com.myspring.springmaster.dataAccess.mapper.ToiletMapperImpl;
+import com.myspring.springmaster.dataAccess.repository.ReviewRepository;
 import com.myspring.springmaster.dataAccess.repository.ToiletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,12 +20,14 @@ import java.util.*;
 public class ToiletService {
     private final ToiletRepository toiletRepository;
     private final NaverMapApi naverMapApi;
+    private final ReviewRepository reviewRepository;
     private final ToiletMapperImpl toiletMapperImpl;
 
     @Autowired
-    public ToiletService(ToiletRepository toiletRepository, NaverMapApi naverMapApi, ToiletMapperImpl toiletMapperImpl) {
+    public ToiletService(ToiletRepository toiletRepository, NaverMapApi naverMapApi, ReviewRepository reviewRepository, ToiletMapperImpl toiletMapperImpl) {
         this.toiletRepository = toiletRepository;
         this.naverMapApi = naverMapApi;
+        this.reviewRepository = reviewRepository;
         this.toiletMapperImpl = toiletMapperImpl;
     }
 
@@ -178,4 +182,19 @@ public class ToiletService {
                 Arrays.stream(latAndLon1).mapToDouble(BigDecimal::doubleValue).toArray(),
                 Arrays.stream(latAndLon2).mapToDouble(BigDecimal::doubleValue).toArray());
     }
+
+    public Map<String, Object> getRatingAndReviewCount(Long toiletId) {
+        double averageRating = reviewRepository.findByToiletId(toiletId).stream()
+                .mapToInt(Review::getRating)
+                .average()
+                .orElse(0.0);
+
+        int reviewCount = reviewRepository.findByToiletId(toiletId).size();
+
+        return Map.of(
+                "averageRating", averageRating,
+                "reviewCount", reviewCount
+        );
+    }
+
 }

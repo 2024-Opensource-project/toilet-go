@@ -9,6 +9,20 @@
   <title>Toilet-Go | detailView</title>
 
   <style>
+    /* 평점 스타일 */
+    .rating-summary {
+      font-size: 1.5em;
+      color: #ffc107;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .rating-summary span {
+      color: #6c757d;
+      font-size: 0.9em;
+    }
+
     /* 테이블 스타일 수정 */
     table {
       width: 60%;
@@ -37,6 +51,11 @@
   <div id="map" style="width:50%;height:30%;"></div>
   <br>
   <h5 th:text="${toilet.address}">주소</h5>
+  <div class="rating-summary">
+    <span th:text="'⭐ ' + ${averageRating} + ' (' + ${reviewCount} + ' 리뷰)'"></span>
+    <a th:href="@{'/reviews/toilet/' + ${toilet.id}}" class="btn btn-link">전체 리뷰 보기</a>
+  </div>
+  <a th:href="@{'/reviews/toilet/' + ${toilet.id} + '/new'}" class="btn btn-primary mt-3">리뷰 작성</a>
   <div class="mt-5">
     <table class="table table-bordered" style="table-layout: auto; width: 100%;">
       <thead>
