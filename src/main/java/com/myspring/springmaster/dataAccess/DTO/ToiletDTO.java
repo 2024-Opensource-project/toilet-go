@@ -30,6 +30,8 @@ public class ToiletDTO {
     private Boolean diaper_changing_station;
     private String diaper_changing_station_location;
     private String cityOrDistrict;
+    private double averageRating; // 평균 평점
+    private int reviewCount;      // 리뷰 개수
 
     // Getter와 Setter
     public String getAddress() {
@@ -58,5 +60,21 @@ public class ToiletDTO {
 
     public Boolean getDiaper_changing_station() {
         return diaper_changing_station;
+    }
+
+    public double getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(double averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public int getReviewCount() {
+        return reviewCount;
+    }
+
+    public void setReviewCount(int reviewCount) {
+        this.reviewCount = reviewCount;
     }
 }
