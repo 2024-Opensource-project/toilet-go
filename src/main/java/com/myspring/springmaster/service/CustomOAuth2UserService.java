@@ -10,6 +10,8 @@ import org.springframework.security.oauth2.core.user.DefaultOAuth2User;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.UUID;
 import java.util.Collections;
@@ -19,10 +21,12 @@ import java.util.Map;
 public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
     private final UserRepository userRepository;
-
+    private final HttpServletRequest request;
     @Autowired
-    public CustomOAuth2UserService(UserRepository userRepository) {
+    public CustomOAuth2UserService(UserRepository userRepository,  HttpServletRequest request) {
         this.userRepository = userRepository;
+        this.request = request;
+
     }
 
     @Override
@@ -31,7 +35,6 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
         // 소셜 제공자에서 반환된 사용자 정보 가져오기
         Map<String, Object> attributes = oAuth2User.getAttributes();
-
         Map<String, Object> mutableAttributes = new HashMap<>(attributes);
 
         String registrationId = userRequest.getClientRegistration().getRegistrationId(); // 소셜 제공자 이름 (Google, Naver, Kakao)
@@ -51,8 +54,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
 
 
         String userId = email.length() > 16 ? email.substring(0,16) : email;
-        //건아야 혹시 몰라서 오류 뜰까봐 이거 안지웠어
-        //만약 이거 지우면 아래 userId(email)로 수정해야해
+
 
         // 사용자 정보 데이터베이스에 저장 (없는 경우에만 저장)
         String finalEmail = email;
@@ -71,6 +73,10 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                             .build();
                     return userRepository.save(newUser);
                 });
+
+        HttpSession httpSession = request.getSession();
+        httpSession.setAttribute("isLoggedIn", true);
+        httpSession.setAttribute("userName", user.getName());
 
         // OAuth2User 반환
         return new DefaultOAuth2User(
