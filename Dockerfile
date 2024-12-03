@@ -4,7 +4,8 @@ FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy built JAR file
-COPY target/*.jar app.jar
+COPY build/libs/*.jar app.jar
+# Gradle로 빌드된 JAR 파일을 복사
 
 # Expose the port and run the app
 EXPOSE 54080
