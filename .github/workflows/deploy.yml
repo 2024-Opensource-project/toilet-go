@@ -23,23 +23,23 @@ jobs:
       # 3. Build Python Docker image
       - name: Build Python image
         run: |
-          docker build -t my-dockerhub-username/python-api:latest ./dataAPI
-          docker push my-dockerhub-username/python-api:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/python-api:latest ./dataAPI
+          docker push ${{ secrets.DOCKER_USERNAME }}/python-api:latest
 
       # 4. Build Spring Docker image
       - name: Build Spring image
         run: |
-          docker build -t my-dockerhub-username/spring-api:latest ./
-          docker push my-dockerhub-username/spring-api:latest
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/spring-api:latest ./
+          docker push ${{ secrets.DOCKER_USERNAME }}/spring-api:latest
 
       # 5. Deploy Python container
       - name: Deploy Python server
         run: |
-          docker pull my-dockerhub-username/python-api:latest
-          docker run -d --name python-server -p 54090:54090 my-dockerhub-username/python-api:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/python-api:latest
+          docker run -d --name python-server -p 54090:54090 ${{ secrets.DOCKER_USERNAME }}/python-api:latest
 
       # 6. Deploy Spring container
       - name: Deploy Spring server
         run: |
-          docker pull my-dockerhub-username/spring-api:latest
-          docker run -d --name spring-server -p 54080:54080 my-dockerhub-username/spring-api:latest
+          docker pull ${{ secrets.DOCKER_USERNAME }}/spring-api:latest
+          docker run -d --name spring-server -p 54080:54080 ${{ secrets.DOCKER_USERNAME }}/spring-api:latest
