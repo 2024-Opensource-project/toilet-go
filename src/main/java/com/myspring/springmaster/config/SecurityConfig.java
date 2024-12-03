@@ -27,7 +27,7 @@ public class SecurityConfig {
                 )
                 .formLogin(formLogin -> formLogin
                         .loginPage("/signin") // 로그인 페이지 경로
-                        .loginProcessingUrl("/signin") // 로그인 폼 제출 경로
+                        .loginProcessingUrl("/signin/authenticate") // 로그인 폼 제출 경로
                         .defaultSuccessUrl("/", true) // 로그인 성공 시 이동할 페이지
                         .failureUrl("/signin?error=true") // 로그인 실패 시 이동할 페이지
 
