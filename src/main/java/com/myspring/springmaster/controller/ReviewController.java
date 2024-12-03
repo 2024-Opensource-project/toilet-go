@@ -44,6 +44,9 @@ public class ReviewController {
                 .average()
                 .orElse(0.0);
 
+        // 소수점 둘째 자리 반올림
+        averageRating = Math.round(averageRating * 100.0) / 100.0;
+
         int reviewCount = reviews.size();
 
         // 화장실 이름 가져오기 (예: toiletService 사용)

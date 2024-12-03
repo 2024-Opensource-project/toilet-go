@@ -177,7 +177,9 @@
         });
 
         // 기본값 설정
-        const averageRating = location.averageRating ?? 0.0;
+        const averageRating = location.averageRating
+            ? Math.round(location.averageRating * 100) / 100
+            : 0.0; // 소수점 둘째 자리까지 반올림
         const reviewCount = location.reviewCount ?? 0;
 
 
