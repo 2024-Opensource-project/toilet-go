@@ -1,0 +1,316 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link href="/static/style.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=1vq6oly1eb"></script>
+    <title>Toilet-Go | MapView</title>
+</head>
+
+<body>
+<div th:insert="fragments/nav"></div>
+<div class="container mt-5 next-nav-bar">
+    <div class="col-md-12">
+        <div class="input-group">
+            <label class="form-label" for="addressInput"></label>
+            <input type="text" class="form-control" id="addressInput" placeholder="도로명 주소를 입력하세요.">
+            <button type="submit" class="btn btn-primary" onclick="getLatAndLng()">Search</button>
+        </div>
+    </div>
+    <hr>
+    <section>
+        <div id="map" style="width:100%;height:600px;"></div>
+    </section>
+    <hr>
+</div>
+<div th:insert="fragments/footer"></div>
+
+<script>
+
+    let map = new naver.maps.Map(document.getElementById('map'), {
+        zoom: 16
+    });
+
+    let scrollTimeout;
+
+    //현재 위치 기본값
+    let currentMyLocation = { lat: 37.5666103, lng: 126.9783882 };
+
+    // 내 현재 위치 값을 반환받았을 때 실행되는 함수
+    function success(location) {
+        currentMyLocation = {
+            lat: location.coords.latitude,
+            lng: location.coords.longitude
+        };
+        // 내 위치를 지도 중심으로 설정
+        moveLocation(currentMyLocation);
+        loadFavorites();
+    }
+
+    // 위치를 불러오지 못했을 때
+    function error() {
+        currentMyLocation = { lat: 37.5666103, lng: 126.9783882 };
+        moveLocation(currentMyLocation);
+    }
+
+    // 내 현재 위치 값을 가져오는 함수
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+    }
+
+    // 주소로부터 위도, 경도를 찾아 지도 위치를 변경
+    function moveLocation(data) {
+        let latAndLng = new naver.maps.LatLng(data.lat, data.lng);
+        map.setCenter(latAndLng);
+        map.setZoom(16);
+
+        // 현재 위치에 마커 표시
+        new naver.maps.Marker({
+            position: latAndLng,
+            map: map,
+            icon: {
+                url: '/static/image/ico_pin.jpg', // 현재 위치 아이콘 이미지 경로
+                size: new naver.maps.Size(50, 68), // 원본 크기
+                scaledSize: new naver.maps.Size(25, 34), // 원본 비율 유지한 축소 크기
+                anchor: new naver.maps.Point(12.5, 34), // 마커의 중심점을 아래쪽에 맞춤
+            }
+        });
+    }
+
+    // 스크롤 끝났을 때 함수 실행
+    function handleScrollEnd() {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+            getToiletsLocation();
+        }, 500);
+    }
+
+    map.addListener('dragend', function () {
+        getToiletsLocation();
+    });
+
+    map.addListener('mousewheel', function () {
+        handleScrollEnd();
+    });
+
+    // 화장실 위치 가져오기
+    function getToiletsLocation() {
+        let url = '/toilet/mapView';
+        let bounds = map.getBounds();
+        let location = {
+            "min": {
+                "latitude": bounds._min.y,
+                "longitude": bounds._min.x
+            },
+            "max": {
+                "latitude": bounds._max.y,
+                "longitude": bounds._max.x
+            }
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ location })
+        })
+        .then(response => {
+            console.log("응답 상태:", response.status);  // 응답 상태 코드 로그
+            if (!response.ok) {
+                throw new Error('응답 실패');
+            }
+            return response.json();
+        })
+        .then(json => {
+            console.log("서버에서 받은 데이터:", json);  // 데이터 로그
+            json.forEach(location => {
+                makeMarker(location);
+            });
+        })
+        .catch(error => {
+            console.error("오류 발생:", error);  // 오류 로그
+            alert("서버에서 데이터를 받지 못했습니다. 다시 시도해주세요.");
+        });
+    }
+
+
+    // 주소로부터 위도, 경도 찾기
+    function getLatAndLng() {
+        let address = document.getElementById('addressInput').value;
+        let url = '/toilet/latandlng';
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `address=${encodeURIComponent(address)}`
+        })
+        .then(response => response.json())
+        .then(data => moveLocation(data));
+    }
+
+    // 잘못된 주소 입력 처리
+    function invalidAddress() {
+        alert("잘못된 주소입니다.");
+    }
+
+    // 화장실 위치 마커 만들기
+    function makeMarker(location) {
+        let latAndLng = new naver.maps.LatLng(location.latitude, location.longitude);
+        console.log(location);
+        const isFavorite = favoriteToilets.has(location.id);
+        const iconUrl = isFavorite
+            ? '/static/image/favorite-on.png'
+            : '/static/image/favorite-off.png';
+
+        let marker = new naver.maps.Marker({
+            position: latAndLng,
+            map: map,
+            clickable: true,
+            icon: {
+                url: iconUrl,
+                size: new naver.maps.Size(40, 40),
+                scaledSize: new naver.maps.Size(30, 30),
+                anchor: new naver.maps.Point(15, 15)
+            }
+        });
+
+        // 기본값 설정
+        const averageRating = location.averageRating ?? 0.0;
+        const reviewCount = location.reviewCount ?? 0;
+
+
+     let contentString = `
+        <div class="iw_inner" style="width: 250px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.toilet_name}</h3>
+            <h4 style="font-size: 14px; color: #777; margin-bottom: 15px;">${location.address}</h4>
+            <p style="font-size: 14px; margin-bottom: 10px;">
+            ⭐
+            <strong>
+                <a href="/reviews/toilet/${location.id}" style="text-decoration: none; color: #1a73e8;">
+                    ${averageRating}
+                </a>
+            </strong>
+            (<a href="/reviews/toilet/${location.id}" style="text-decoration: none; color: #1a73e8;">
+                ${reviewCount} 리뷰
+            </a>)
+            </p>
+            <div style="display: flex; justify-content: center; gap: 10px;">
+                <a href="https://map.naver.com/v5/search/${location.latitude},${location.longitude}" target="_blank"
+                    style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                    지도에서 보기
+                </a>
+                <a href="/toilet/detail/${location.id}"
+                    style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                    상세보기
+                </a>
+                <a href="#"
+                   onclick="handleReviewClick(${location.id})"
+                   style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                    리뷰 작성
+                </a>
+
+            </div>
+            <button onclick="toggleFavorite(${location.id})" style="margin-top: 15px; padding: 10px 20px; background-color: #ff9800; color: white; border: none; border-radius: 4px; font-size: 14px; cursor: pointer;">
+                    ${isFavorite ? '즐겨찾기 삭제' : '즐겨찾기 추가'}
+            </button>
+        </div>`;
+
+        let infowindow = new naver.maps.InfoWindow({
+            content: contentString,
+            borderWidth: 2,
+            backgroundColor: "#ffffff",
+            disableAutoPan: true
+        });
+
+        // 마커 클릭 시 정보 창 열기
+        naver.maps.Event.addListener(marker, "click", function () {
+            if (infowindow.getMap()) {
+                infowindow.close();
+            } else {
+                infowindow.open(map, marker);
+            }
+        });
+
+    }
+
+    // 리뷰 등록 로그인 여부 확인
+    function handleReviewClick(toiletId) {
+        const currentPage = window.location.href; // 현재 페이지 URL
+        const reviewUrl = `/reviews/toilet/${toiletId}/new?referer=${encodeURIComponent(currentPage)}`;
+
+        // 로그인 상태 확인 API 호출
+        fetch('/reviews/toilet/check-login', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    // 로그인 상태라면 리뷰 작성 페이지로 이동
+                    window.location.href = reviewUrl;
+                } else {
+                    // 로그인 상태가 아니라면 alert 표시
+                    alert('리뷰를 작성하려면 로그인이 필요합니다.');
+                }
+            })
+            .catch(error => {
+                console.error('로그인 상태 확인 중 오류:', error);
+                alert('로그인 상태를 확인할 수 없습니다. 다시 시도해주세요.');
+            });
+    }
+
+
+
+    //즐겨찾기 목록 불러오기
+    let favoriteToilets = new Set();
+    function loadFavorites() {
+        fetch('/favorites/load')
+            .then(response => response.json())
+            .then(data => {
+                console.log("받은 데이터:", data); // 데이터 로그 출력
+                favoriteToilets = new Set(data.filter(fav => fav.toiletId != null).map(fav => fav.toiletId));
+                console.log(favoriteToilets); // 처리된 데이터 확인
+                getToiletsLocation(); // 화장실 위치 불러오기
+            })
+            .catch(error => {
+                console.error("즐겨찾기 정보를 불러오는 중 오류:", error);
+                getToiletsLocation();
+            });
+    }
+
+    //즐겨찾기 추가
+    function toggleFavorite(toiletId) {
+        let url = favoriteToilets.has(toiletId) ? '/favorites/remove' : '/favorites/add';
+        let method = favoriteToilets.has(toiletId) ? 'DELETE' : 'POST';
+        let favoriteData = { "toiletId": toiletId };
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: method === 'POST' ? JSON.stringify(favoriteData) : JSON.stringify({ toiletId })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    console.error("서버 응답:", data.message);  // 서버에서 반환한 메시지 출력
+                    throw new Error(`${data.message}`);
+                });
+            }
+            return response.json();  // 응답을 JSON으로 반환
+        })
+        .then(data => {
+            console.log('서버 응답:', data.message); // JSON 응답 처리
+            alert(data.message);  // 서버에서 반환한 메시지 출력
+            loadFavorites();
+        })
+        .catch(error => {
+            console.error('즐겨찾기 추가 오류:', error);
+            alert(error.message);
+        });
+    }
+
+
+</script>
+</body>
+</html>
