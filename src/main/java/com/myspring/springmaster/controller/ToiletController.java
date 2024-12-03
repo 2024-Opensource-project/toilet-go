@@ -113,7 +113,6 @@ public class ToiletController {
         return "toilet/listView";
     }
 
-
     //근처 화장실 조회
     @GetMapping("toilet/near")
     public String showHouseNear(Model model){
@@ -143,7 +142,18 @@ public class ToiletController {
 
         double[] lat = {minLat, maxLat};
         double[] lng = {minLng, maxLng};
-        return toiletService.getNearToiletList(lat, lng);
+
+        // 화장실 위치 목록 가져오기
+        List<ToiletDTO> toilets = toiletService.getNearToiletList(lat, lng);
+
+        // 평균 평점 및 리뷰 개수 추가
+        toilets.forEach(toilet -> {
+            Map<String, Object> ratingData = toiletService.getRatingAndReviewCount(toilet.getId());
+            toilet.setAverageRating((double) ratingData.getOrDefault("averageRating", 0.0));
+            toilet.setReviewCount((int) ratingData.getOrDefault("reviewCount", 0));
+        });
+
+        return toilets;
     }
 
     @PostMapping("toilet/latandlng")
@@ -156,11 +166,16 @@ public class ToiletController {
     }
 
     @GetMapping("/toilet/detail/{id}")
-    public String showHouse(Model model, @PathVariable int id) {
+    public String showToiletDetail(Model model, @PathVariable int id) {
         try {
             ToiletDTO toiletDTO = toiletService.getToilet(id);
             if (toiletDTO != null) {
+                // 평균 평점 및 리뷰 갯수 가져오기
+                Map<String, Object> ratingData = toiletService.getRatingAndReviewCount((long) id);
+
                 model.addAttribute("toilet", toiletDTO);
+                model.addAttribute("averageRating", ratingData.getOrDefault("averageRating", 0.0));
+                model.addAttribute("reviewCount", ratingData.getOrDefault("reviewCount", 0));
                 return "toilet/mapDetailView";
             } else {
                 model.addAttribute("errorMessage", "해당 화장실 정보를 찾을 수 없습니다.");
@@ -173,6 +188,5 @@ public class ToiletController {
             return "error";
         }
     }
-
 
 }

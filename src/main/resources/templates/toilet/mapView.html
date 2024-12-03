@@ -26,6 +26,7 @@
 <div th:insert="fragments/footer"></div>
 
 <script>
+
     let map = new naver.maps.Map(document.getElementById('map'), {
         zoom: 16
     });
@@ -43,6 +44,7 @@
         };
         // 내 위치를 지도 중심으로 설정
         moveLocation(currentMyLocation);
+        loadFavorites();
     }
 
     // 위치를 불러오지 못했을 때
@@ -67,7 +69,7 @@
             position: latAndLng,
             map: map,
             icon: {
-                url: '/static/naverAPI/img/example/ico_pin.jpg', // 현재 위치 아이콘 이미지 경로
+                url: '/static/image/ico_pin.jpg', // 현재 위치 아이콘 이미지 경로
                 size: new naver.maps.Size(50, 68), // 원본 크기
                 scaledSize: new naver.maps.Size(25, 34), // 원본 비율 유지한 축소 크기
                 anchor: new naver.maps.Point(12.5, 34), // 마커의 중심점을 아래쪽에 맞춤
@@ -112,25 +114,25 @@
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ location })
-    })
-    .then(response => {
-        console.log("응답 상태:", response.status);  // 응답 상태 코드 로그
-        if (!response.ok) {
-            throw new Error('응답 실패');
-        }
-        return response.json();
-    })
-    .then(json => {
-        console.log("서버에서 받은 데이터:", json);  // 데이터 로그
-        json.forEach(location => {
-            makeMarker(location);
+        })
+        .then(response => {
+            console.log("응답 상태:", response.status);  // 응답 상태 코드 로그
+            if (!response.ok) {
+                throw new Error('응답 실패');
+            }
+            return response.json();
+        })
+        .then(json => {
+            console.log("서버에서 받은 데이터:", json);  // 데이터 로그
+            json.forEach(location => {
+                makeMarker(location);
+            });
+        })
+        .catch(error => {
+            console.error("오류 발생:", error);  // 오류 로그
+            alert("서버에서 데이터를 받지 못했습니다. 다시 시도해주세요.");
         });
-    })
-    .catch(error => {
-        console.error("오류 발생:", error);  // 오류 로그
-        alert("서버에서 데이터를 받지 못했습니다. 다시 시도해주세요.");
-    });
-}
+    }
 
 
     // 주소로부터 위도, 경도 찾기
@@ -157,17 +159,43 @@
     function makeMarker(location) {
         let latAndLng = new naver.maps.LatLng(location.latitude, location.longitude);
         console.log(location);
+        const isFavorite = favoriteToilets.has(location.id);
+        const iconUrl = isFavorite
+            ? '/static/image/favorite-on.png'
+            : '/static/image/favorite-off.png';
+
         let marker = new naver.maps.Marker({
             position: latAndLng,
             map: map,
-            clickable: true
+            clickable: true,
+            icon: {
+                url: iconUrl,
+                size: new naver.maps.Size(40, 40),
+                scaledSize: new naver.maps.Size(30, 30),
+                anchor: new naver.maps.Point(15, 15)
+            }
         });
+
+        // 기본값 설정
+        const averageRating = location.averageRating ?? 0.0;
+        const reviewCount = location.reviewCount ?? 0;
 
 
      let contentString = `
         <div class="iw_inner" style="width: 250px; padding: 20px; background-color: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-family: Arial, sans-serif; display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.name}</h3>
+            <h3 style="font-size: 18px; color: #333; font-weight: bold; margin-bottom: 10px;">${location.toilet_name}</h3>
             <h4 style="font-size: 14px; color: #777; margin-bottom: 15px;">${location.address}</h4>
+            <p style="font-size: 14px; margin-bottom: 10px;">
+            ⭐
+            <strong>
+                <a href="/reviews/toilet/${location.id}" style="text-decoration: none; color: #1a73e8;">
+                    ${averageRating}
+                </a>
+            </strong>
+            (<a href="/reviews/toilet/${location.id}" style="text-decoration: none; color: #1a73e8;">
+                ${reviewCount} 리뷰
+            </a>)
+            </p>
             <div style="display: flex; justify-content: center; gap: 10px;">
                 <a href="https://map.naver.com/v5/search/${location.latitude},${location.longitude}" target="_blank"
                     style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
@@ -177,13 +205,17 @@
                     style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
                     상세보기
                 </a>
+                <a href="#"
+                   onclick="handleReviewClick(${location.id})"
+                   style="padding: 8px 15px; background-color: #1a73e8; color: white; text-decoration: none; border-radius: 4px; font-size: 14px; transition: background-color 0.3s;">
+                    리뷰 작성
+                </a>
+
             </div>
+            <button onclick="toggleFavorite(${location.id})" style="margin-top: 15px; padding: 10px 20px; background-color: #ff9800; color: white; border: none; border-radius: 4px; font-size: 14px; cursor: pointer;">
+                    ${isFavorite ? '즐겨찾기 삭제' : '즐겨찾기 추가'}
+            </button>
         </div>`;
-
-
-
-
-
 
         let infowindow = new naver.maps.InfoWindow({
             content: contentString,
@@ -200,7 +232,84 @@
                 infowindow.open(map, marker);
             }
         });
+
     }
+
+    // 리뷰 등록 로그인 여부 확인
+    function handleReviewClick(toiletId) {
+        const currentPage = window.location.href; // 현재 페이지 URL
+        const reviewUrl = `/reviews/toilet/${toiletId}/new?referer=${encodeURIComponent(currentPage)}`;
+
+        // 로그인 상태 확인 API 호출
+        fetch('/reviews/toilet/check-login', { method: 'GET' })
+            .then(response => response.json())
+            .then(data => {
+                if (data.loggedIn) {
+                    // 로그인 상태라면 리뷰 작성 페이지로 이동
+                    window.location.href = reviewUrl;
+                } else {
+                    // 로그인 상태가 아니라면 alert 표시
+                    alert('리뷰를 작성하려면 로그인이 필요합니다.');
+                }
+            })
+            .catch(error => {
+                console.error('로그인 상태 확인 중 오류:', error);
+                alert('로그인 상태를 확인할 수 없습니다. 다시 시도해주세요.');
+            });
+    }
+
+
+
+    //즐겨찾기 목록 불러오기
+    let favoriteToilets = new Set();
+    function loadFavorites() {
+        fetch('/favorites/load')
+            .then(response => response.json())
+            .then(data => {
+                console.log("받은 데이터:", data); // 데이터 로그 출력
+                favoriteToilets = new Set(data.filter(fav => fav.toiletId != null).map(fav => fav.toiletId));
+                console.log(favoriteToilets); // 처리된 데이터 확인
+                getToiletsLocation(); // 화장실 위치 불러오기
+            })
+            .catch(error => {
+                console.error("즐겨찾기 정보를 불러오는 중 오류:", error);
+                getToiletsLocation();
+            });
+    }
+
+    //즐겨찾기 추가
+    function toggleFavorite(toiletId) {
+        let url = favoriteToilets.has(toiletId) ? '/favorites/remove' : '/favorites/add';
+        let method = favoriteToilets.has(toiletId) ? 'DELETE' : 'POST';
+        let favoriteData = { "toiletId": toiletId };
+
+        fetch(url, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: method === 'POST' ? JSON.stringify(favoriteData) : JSON.stringify({ toiletId })
+        })
+        .then(response => {
+            if (!response.ok) {
+                return response.json().then(data => {
+                    console.error("서버 응답:", data.message);  // 서버에서 반환한 메시지 출력
+                    throw new Error(`${data.message}`);
+                });
+            }
+            return response.json();  // 응답을 JSON으로 반환
+        })
+        .then(data => {
+            console.log('서버 응답:', data.message); // JSON 응답 처리
+            alert(data.message);  // 서버에서 반환한 메시지 출력
+            loadFavorites();
+        })
+        .catch(error => {
+            console.error('즐겨찾기 추가 오류:', error);
+            alert(error.message);
+        });
+    }
+
 
 </script>
 </body>
