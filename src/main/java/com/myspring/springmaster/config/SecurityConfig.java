@@ -1,11 +1,17 @@
 package com.myspring.springmaster.config;
 
 import com.myspring.springmaster.service.CustomOAuth2UserService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -20,31 +26,37 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf(csrf -> csrf.disable()) // CSRF 비활성화 (필요 시 활성화)
-                .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password", "/toilet/**", "/reviews/toilet/**", "/favorites/**").permitAll()
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("/signin") // 로그인 페이지 경로
-                        .loginProcessingUrl("/signin/authenticate") // 로그인 폼 제출 경로
-                        .defaultSuccessUrl("/", true) // 로그인 성공 시 이동할 페이지
-                        .failureUrl("/signin?error=true") // 로그인 실패 시 이동할 페이지
-
+                        .loginPage("/signin")        // 로그인 폼 경로
+                        .loginProcessingUrl("/signin/authenticate")  // 로그인 인증 처리 URL을 별도로 설정
+                        .defaultSuccessUrl("/", true)
+                        .successHandler(customSuccessHandler())
                         .permitAll()
                 )
                 .oauth2Login(oauth2Login -> oauth2Login
-                        .loginPage("/signin") // 소셜 로그인 페이지
-                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService)) // 사용자 정보 처리 서비스
-                        .defaultSuccessUrl("/") // 소셜 로그인 성공 후 이동할 경로
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/signout") // 로그아웃 경로
-                        .logoutSuccessUrl("/") // 로그아웃 성공 후 이동 경로
-                        .invalidateHttpSession(true) // 세션 무효화
+                        .loginPage("/signin")
+                        .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
+                        .successHandler(customSuccessHandler())  // 소셜 로그인 성공 시 리디렉션할 페이지 설정
                 );
 
         return http.build();
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler customSuccessHandler() {
+        return new AuthenticationSuccessHandler() {
+            @Override
+            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+                                                org.springframework.security.core.Authentication authentication) throws IOException, ServletException {
+                // 여기에서 추가적인 로직 수행 가능
+                response.sendRedirect("/");  // 홈 화면 대신 다른 경로로 리다이렉트할 수 있음
+            }
+        };
     }
 
 }
