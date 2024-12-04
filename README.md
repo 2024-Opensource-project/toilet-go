@@ -23,6 +23,9 @@ git clone https://github.com/2024-Opensource-project/toilet-go.git
 
 ### 2. 애플리케이션 실행
 SpringMasterApplication.java 실행.
+```bash
+src/main/java/com/myspring/springmaster/SpringMasterApplication.java
+```
 
 ### 3. 웹 접속
 브라우저에서 http://localhost:54080를 입력하여 애플리케이션에 접속.
