@@ -48,7 +48,7 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
         }
         // 이름 값이 없는 경우 기본 이름 설정
         if (name == null || name.isEmpty()) {
-            name = "Anonymous User";
+            name = registrationId + "_user_" + UUID.randomUUID().toString().substring(0, 8);
             mutableAttributes.put("name", name);
         }
 
