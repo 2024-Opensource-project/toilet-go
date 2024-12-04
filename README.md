@@ -23,7 +23,17 @@ git clone https://github.com/2024-Opensource-project/toilet-go.git
 ```
 
 ### 2. 애플리케이션 실행
-k8s로 서버 실행
+1. docker로 실행
+```bash
+cd toilet-go
+chmod +x gradlew
+./gradlew build -x test
+docker build -t python-api ./dataAPI
+docker run -d --name python-api-container -p 54090:54090 python-api
+docker build -t spring ./
+docker run -d --name spring-container -p 54080:54080 spring
+```
+2. k8s로 실행
 ```bash
 kubectl apply -f ./toilet-go/deploy.yaml 
 kubectl port-forward pod/toilet-go 54080:54080
