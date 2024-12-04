@@ -40,9 +40,5 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         .defaultSuccessUrl("/", true)// 소셜 로그인 성공 시 리디렉션할 페이지 설정
-                );
-
-        return http.build();
-    }
-
-}
+                )
+                .logout(logout -> logout
