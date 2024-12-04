@@ -28,5 +28,5 @@ src/main/java/com/myspring/springmaster/SpringMasterApplication.java
 ```
 
 ### 3. 웹 접속
-브라우저에서 http://localhost:54080를 입력하여 애플리케이션에 접속.
+브라우저에서 http://localhost:54080 를 입력하여 애플리케이션에 접속.
 
