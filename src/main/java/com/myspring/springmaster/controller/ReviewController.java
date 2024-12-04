@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +43,9 @@ public class ReviewController {
                 .mapToInt(ReviewDTO::getRating)
                 .average()
                 .orElse(0.0);
+
+        // 소수점 둘째 자리 반올림
+        averageRating = Math.round(averageRating * 100.0) / 100.0;
 
         int reviewCount = reviews.size();
 
@@ -77,34 +83,34 @@ public class ReviewController {
 
 
     @PostMapping("/{toiletId}/add")
-    @ResponseBody
-    public ResponseEntity<Map<String, String>> addReview(@PathVariable Long toiletId, @RequestBody ReviewDTO reviewDTO, HttpSession session) {
+    public ModelAndView addReview(@PathVariable Long toiletId,
+                                  @ModelAttribute ReviewDTO reviewDTO,
+                                  HttpSession session,
+                                  RedirectAttributes redirectAttributes) {
         String userId = null;
-        Object sessionId = session.getAttribute("userId");
+        Object sessionId = session.getAttribute("id");
         if (sessionId instanceof Long) {
-            userId = String.valueOf(sessionId); // Long -> String 변환
+            userId = String.valueOf(sessionId);
         } else if (sessionId instanceof Integer) {
-            userId = String.valueOf(sessionId); // Integer -> String 변환
+            userId = String.valueOf(sessionId);
         }
         reviewDTO.setUserId(userId);
         reviewDTO.setToiletId(toiletId);
 
-        if (userService.isLoggedIn(session)) {  // 인증된 사용자만 추가 가능
+        if (userService.isLoggedIn(session)) {
             try {
-                reviewService.addReview(reviewDTO);  // 리뷰 추가 로직
-                Map<String, String> response = new HashMap<>();
-                response.put("message", "리뷰가 성공적으로 추가되었습니다.");
-                return ResponseEntity.ok(response); // JSON 형식으로 응답
+                reviewService.addReview(reviewDTO);
+                redirectAttributes.addFlashAttribute("message", "리뷰가 성공적으로 추가되었습니다.");
+                return new ModelAndView("redirect:/reviews/toilet/" + toiletId); // 원하는 경로로 리디렉션
             } catch (Exception e) {
-                Map<String, String> response = new HashMap<>();
-                response.put("message", "리뷰를 추가하는 중 오류가 발생했습니다: " + e.getMessage());
-                return ResponseEntity.status(500).body(response); // JSON 형식으로 응답
+                redirectAttributes.addFlashAttribute("error", "리뷰를 추가하는 중 오류가 발생했습니다: " + e.getMessage());
+                return new ModelAndView("redirect:/reviews/toilet/" + toiletId);
             }
         }
-        Map<String, String> response = new HashMap<>();
-        response.put("message", "로그인이 필요한 서비스입니다.");
-        return ResponseEntity.status(403).body(response); // JSON 형식으로 응답
+        redirectAttributes.addFlashAttribute("error", "로그인이 필요한 서비스입니다.");
+        return new ModelAndView("redirect:/login");
     }
+
 
 
     // 정렬 API 추가

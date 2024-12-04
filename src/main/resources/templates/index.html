@@ -368,16 +368,19 @@
 </body>
 
 <script th:inline="javascript">
-    let list = [[${toiletList}]]
-    let toilet_images = list.map(function (item){return makeImageUrl(item.imageUrl)})
-    let toilet_names = list.map(function(item){return item.name})
-    let toilet_descriptions = list.map(function(item){return item.address});
-    let toilet_url = list.map(function (item){return item.id});
+    let toilet_images = [
+        "url('/static/image/defaultToilet.png')",
+        "url('/static/image/defaultToilet.png')",
+        "url('/static/image/defaultToilet.png')"
+    ];
+    let toilet_names = ["진원프라자", "웨스턴돔 타워", "호수빌딩"];
+    let toilet_descriptions = ["경기도 고양시 일산동구 정발산로 27", "경기도 고양시 일산동구 정발산로 24 (장항동, 웨스턴돔1)", "경기도 고양시 일산동구 정발산로 23"];
+    let toilet_url = [1, 2, 3]; // 화장실 번호
 
     const toilets = document.querySelectorAll('.sb-items-grid__items li');
     toilets.forEach((toilet, index) => {
         const url = toilet.querySelector('.items-grid__item-body');
-        url.href = "/toilet/detail/"+toilet_url[index];
+        url.href = "/toilet/detail/" + toilet_url[index];
 
         const img = toilet.querySelector('.option-image');
         img.style.backgroundImage = toilet_images[index]; // 이미지 경로 설정
@@ -388,12 +391,6 @@
         const description = toilet.querySelector('.items-grid__description');
         description.textContent = toilet_descriptions[index];  // 설명 텍스트 설정
     });
-
-    function makeImageUrl(url){
-        if(url === null || url === ''){
-            return "url('/static/image/defaultHouse.png')";
-        }
-        return "url('" + url + "')";
-    }
 </script>
+
 </html>

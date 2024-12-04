@@ -73,11 +73,11 @@ public class CustomOAuth2UserService extends DefaultOAuth2UserService {
                             .build();
                     return userRepository.save(newUser);
                 });
-
         HttpSession httpSession = request.getSession();
         httpSession.setAttribute("isLoggedIn", true);
+        httpSession.setAttribute("id", user.getId());
         httpSession.setAttribute("userId", user.getUserId());
-        httpSession.setAttribute("userName", user.getName());
+        httpSession.setAttribute("name", user.getName());
         httpSession.setAttribute("role", user.getRoleId()); // 필요시 역할도 추가
 
 

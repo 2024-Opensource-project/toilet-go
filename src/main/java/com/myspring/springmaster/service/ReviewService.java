@@ -33,21 +33,35 @@ public class ReviewService {
     }
 
     public void addReview(ReviewDTO reviewDTO) {
-        Toilet toilet = toiletRepository.findById(reviewDTO.getToiletId())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid toilet ID"));
+        try {
+            // 1. Toilet 정보 조회
+            Toilet toilet = toiletRepository.findById(reviewDTO.getToiletId())
+                    .orElseThrow(() -> new IllegalArgumentException("Invalid toilet ID: " + reviewDTO.getToiletId()));
 
-        User user = userRepository.findByUserId(reviewDTO.getUserId());
-        if (user == null) {
-            throw new IllegalArgumentException("Invalid user ID");
+            // 2. User 정보 조회
+            User user = userRepository.findById(Integer.valueOf(reviewDTO.getUserId()));
+            if (user == null) {
+                throw new IllegalArgumentException("Invalid user ID: " + reviewDTO.getUserId());
+            }
+
+            // 3. Review 객체 생성 및 저장
+            Review review = new Review();
+            review.setToilet(toilet);
+            review.setUser(user);
+            review.setRating(reviewDTO.getRating());
+            review.setReviewText(reviewDTO.getReviewText());
+
+            // 4. Review 데이터 저장
+            reviewRepository.save(review);
+        } catch (IllegalArgumentException e) {
+            // 예외 발생 시, 잘못된 입력값이나 데이터에 대한 명확한 메시지 로깅
+            System.out.println("Error adding review: " + e.getMessage());
+            throw e; // 클라이언트에 에러 메시지를 전달할 수 있도록 예외 재발생
+        } catch (Exception e) {
+            // 기타 예기치 않은 오류 처리
+            System.out.println("Unexpected error: " + e.getMessage());
+            throw new RuntimeException("Unexpected error occurred while adding review", e);
         }
-
-        Review review = new Review();
-        review.setToilet(toilet);
-        review.setUser(user);
-        review.setRating(reviewDTO.getRating());
-        review.setReviewText(reviewDTO.getReviewText());
-
-        reviewRepository.save(review);
     }
 
     // Review 엔티티에 User 필드가 추가된 상태에서 정상 작동

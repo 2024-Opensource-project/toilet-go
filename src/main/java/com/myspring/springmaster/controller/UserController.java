@@ -25,9 +25,6 @@ public class UserController {
 
     @GetMapping("/signin")
     public String signin(Model model) {
-        model.addAttribute("githubLoginUrl", "/oauth2/authorization/github");
-        model.addAttribute("kakaoLoginUrl", "/oauth2/authorization/kakao");
-        model.addAttribute("naverLoginUrl", "/oauth2/authorization/naver");
         return "user/signin";
     }
 

@@ -54,7 +54,8 @@
     <span th:text="'⭐ ' + ${averageRating} + ' (' + ${reviewCount} + ' 리뷰)'"></span>
     <a th:href="@{'/reviews/toilet/' + ${toilet.id}}" class="btn btn-link">전체 리뷰 보기</a>
   </div>
-  <a href="#" onclick="handleReviewClick('[[${toilet.id}]]')" class="btn btn-primary mt-3">리뷰 작성</a>
+  <a href="#" onclick="handleReviewClick()" class="btn btn-primary mt-3">리뷰 작성</a>
+
 
   <div class="mt-5">
     <table class="table table-bordered" style="table-layout: auto; width: 100%;">
@@ -141,27 +142,29 @@
   })
 
   // 리뷰 작성 버튼 클릭 시 로그인 여부 확인
-  function handleReviewClick(toiletId) {
+  function handleReviewClick() {
+    const toiletId = [[${toilet.id}]]
     const currentPage = window.location.href; // 현재 페이지 URL
     const reviewUrl = `/reviews/toilet/${toiletId}/new?referer=${encodeURIComponent(currentPage)}`;
 
     // 로그인 상태 확인 API 호출
     fetch('/reviews/toilet/check-login', { method: 'GET' })
-            .then(response => response.json())
-            .then(data => {
-              if (data.loggedIn) {
+        .then(response => response.json())
+        .then(data => {
+            if (data.loggedIn) {
                 // 로그인 상태라면 리뷰 작성 페이지로 이동
                 window.location.href = reviewUrl;
-              } else {
+            } else {
                 // 로그인 상태가 아니라면 alert 표시
                 alert('리뷰를 작성하려면 로그인이 필요합니다.');
-              }
-            })
-            .catch(error => {
-              console.error('로그인 상태 확인 중 오류:', error);
-              alert('로그인 상태를 확인할 수 없습니다. 다시 시도해주세요.');
-            });
-  }
+            }
+        })
+        .catch(error => {
+            console.error('로그인 상태 확인 중 오류:', error);
+            alert('로그인 상태를 확인할 수 없습니다. 다시 시도해주세요.');
+        });
+}
+
 
 </script>
 </html>

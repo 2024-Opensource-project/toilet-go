@@ -173,10 +173,17 @@ public class ToiletController {
                 // 평균 평점 및 리뷰 갯수 가져오기
                 Map<String, Object> ratingData = toiletService.getRatingAndReviewCount((long) id);
 
+                // 평점 반올림 처리 (소수점 둘째 자리까지)
+                double averageRating = (double) ratingData.getOrDefault("averageRating", 0.0);
+                averageRating = Math.round(averageRating * 100.0) / 100.0;
+
+                int reviewCount = (int) ratingData.getOrDefault("reviewCount", 0);
+
                 model.addAttribute("toilet", toiletDTO);
-                model.addAttribute("averageRating", ratingData.getOrDefault("averageRating", 0.0));
-                model.addAttribute("reviewCount", ratingData.getOrDefault("reviewCount", 0));
-                return "toilet/mapDetailView";
+                model.addAttribute("averageRating", averageRating); // 반올림된 평점
+                model.addAttribute("reviewCount", reviewCount);
+
+                return "toilet/detailView";
             } else {
                 model.addAttribute("errorMessage", "해당 화장실 정보를 찾을 수 없습니다.");
                 return "error"; // 사용자 정의 에러 페이지

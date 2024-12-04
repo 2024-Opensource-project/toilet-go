@@ -27,7 +27,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password").permitAll()
+                        .requestMatchers("/static/**", "/error", "/favicon.ico", "/", "/signin", "/signup", "/guest-login", "/find-id", "/find-password", "/toilet/**", "/reviews/**", "/favorites/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(formLogin -> formLogin
@@ -40,6 +40,12 @@ public class SecurityConfig {
                         .loginPage("/signin")
                         .userInfoEndpoint(userInfo -> userInfo.userService(customOAuth2UserService))
                         .defaultSuccessUrl("/", true)// 소셜 로그인 성공 시 리디렉션할 페이지 설정
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/signout")  // 로그아웃 URL 설정
+                        .logoutSuccessUrl("/")  // 로그아웃 성공 후 리디렉션 경로 설정
+                        .invalidateHttpSession(true)  // 세션 무효화
+                        .deleteCookies("JSESSIONID")  // 쿠키 삭제
                 );
 
         return http.build();
