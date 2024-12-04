@@ -23,9 +23,10 @@ git clone https://github.com/2024-Opensource-project/toilet-go.git
 ```
 
 ### 2. 애플리케이션 실행
-SpringMasterApplication.java 실행.
+k8s로 서버 실행
 ```bash
-src/main/java/com/myspring/springmaster/SpringMasterApplication.java
+kubectl apply -f ./toilet-go/deploy.yaml 
+kubectl port-forward pod/toilet-go 54080:54080
 ```
 
 ### 3. 웹 접속
