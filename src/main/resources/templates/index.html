@@ -2,11 +2,82 @@
 <head>
     <link href="/static/style.css" rel="stylesheet">
     <title>TOILET-GO | Home</title>
+
+    <style>
+        /* 메인 섹션 스타일 */
+        #home {
+            display: flex;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            align-items: center;
+            height: 80vh; /* 섹션 높이 */
+            position: relative;
+            padding-left: 50px; /* 왼쪽 패딩 추가 */
+            background-image: url('/static/image/toilet-background.jpg'); /* 배경 이미지 경로 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+        }
+
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* 배경 오버레이 */
+            z-index: 0;
+        }
+
+        #home .sb-hero__content-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* 왼쪽 정렬 */
+            align-items: flex-start; /* 왼쪽 정렬 */
+            text-align: left; /* 텍스트 왼쪽 정렬 */
+            gap: 10px; /* 요소 간 간격 조정 */
+            z-index: 1; /* 오버레이 위에 표시 */
+        }
+
+        #home .sb-title {
+            margin-bottom: 5px; /* 제목과 부제목 간격 조정 */
+            font-size: 3.5rem; /* 제목 크기 */
+            font-weight: bold;
+        }
+
+        #home .sb-subtitle {
+            margin-bottom: 10px; /* 부제목과 버튼 간격 조정 */
+            font-size: 1.5rem; /* 부제목 크기 */
+        }
+
+        #home .sb-cta-wrapper {
+            margin-top: 10px; /* 버튼과 부제목 간격 조정 */
+        }
+
+        #home .sb-cta-wrapper__btn {
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        #home .sb-cta-wrapper__btn:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+    </style>
+
 </head>
 
 <body>
 <div id="sb-navigation" class="sb-nav--fixed">
-    <section class="sb-section sb-section-opt-light option-section-background-image-fixed option-nav-links-display-right option-link-decoration-border-bottom-static option-nav-link-hover-underline-fade-in option-nav-fixed" style="transform: none;">
+    <section
+            class="sb-section sb-section-opt-light option-section-background-image-fixed option-nav-links-display-right option-link-decoration-border-bottom-static option-nav-link-hover-underline-fade-in option-nav-fixed"
+            style="transform: none;">
         <div class="container sb-container-fixed sb-container">
             <div class="row sb-row sb-row-opt-padding-top-none sb-row-opt-padding-bottom-none sb-row-opt-center">
                 <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-simple-top-nav">
@@ -15,7 +86,8 @@
                             <a class="sb-top-header__brand brand" href="/">
                                 TOILET-GO
                             </a>
-                            <button aria-label="Show navigation" class="sb-mobile-nav-btn" id="sb-mobile-nav-btn" type="button">
+                            <button aria-label="Show navigation" class="sb-mobile-nav-btn" id="sb-mobile-nav-btn"
+                                    type="button">
                                 <span class="sb-mobile-nav-btn__line"></span>
                             </button>
                             <nav aria-label="Main" class="sb-top-header__nav sb-nav">
@@ -32,7 +104,8 @@
                                         </a>
                                     </li>
                                     <li class="sb-nav__item sb-nav__list-hidden is-hidden">
-                                        <a aria-label="Show more navigation links" class="sb-nav__link sb-link" href="#">More <span class="sb-nav__sub-toggle"></span></a>
+                                        <a aria-label="Show more navigation links" class="sb-nav__link sb-link"
+                                           href="#">More <span class="sb-nav__sub-toggle"></span></a>
                                         <ul class="sb-nav__sub sb-nav__list-hidden-links"></ul>
                                     </li>
                                     <li class="sb-nav__item sb-nav__btn  ">
@@ -52,7 +125,7 @@
                                         <a class="sb-link sb-nav__link" href="#" th:text="${userName} + ' 님'"></a>
                                         <ul style="list-style-type: none; padding-left: 0;">
                                             <li>
-                                                <a class="sb-link sb-nav__link" href="/signout" >Sign Out</a>
+                                                <a class="sb-link sb-nav__link" href="/signout">Sign Out</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -67,7 +140,9 @@
 </div>
 
 <div id="sb-page-structure">
-    <section id="home" class="sb-section sb-section-opt-dark has-background option-section-background-image-fixed option-align-left option-link-decoration-border-bottom-static option-width-default option-section-hero" style="min-height: 80vh;">
+    <section id="home"
+             class="sb-section sb-section-opt-dark has-background option-section-background-image-fixed option-align-left option-link-decoration-border-bottom-static option-width-default option-section-hero"
+             style="min-height: 80vh;">
         <div class="sb-background" style="
             background-image:
                 linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.3)),
@@ -80,13 +155,16 @@
                         <div class="sb-content sb-hero option-width sb-section-alienable has-sb-hero__paragraph">
                             <div class="sb-hero__content-wrapper">
                                 <h1 class="sb-title sb-hero__title aos-init aos-animate">TOILET-GO</h1>
-                                    <div class="sb-subtitle sb-hero__subtitle aos-init aos-animate">Find Public Toilets Near You</div>
+                                <div class="sb-subtitle sb-hero__subtitle aos-init aos-animate">Find Public Toilets Near
+                                    You
+                                </div>
                                 <div class="sb-hero__paragraph aos-init aos-animate"></div>
-                            </div>
-                            <div class="sb-cta-wrapper sb-section-alienable">
+                                <div class="sb-cta-wrapper sb-section-alienable">
                                     <span class="aos-init aos-animate">
-                                        <a class="sb-cta-wrapper__btn sb-button sb-button--primary" href="/#list" rel=" " target="">View services</a>
+                                        <a class="sb-cta-wrapper__btn sb-button sb-button--primary" href="/#list"
+                                           rel=" " target="">View services</a>
                                     </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -95,7 +173,8 @@
         </div>
     </section>
 
-    <section id="list" class="sb-section sb-section-opt-light option-columns-3col option-card-hover-animation-grow option-section-background-image-fixed option-image-color-hover-revert option-align-content-left option-link-decoration-border-bottom-static option-grid-align-default option-imagecrop-rectangle-landscape option-items-shadow option-imagesize-lg option-items-shadow-on-hover option-collection-title-decoration-arrow">
+    <section id="list"
+             class="sb-section sb-section-opt-light option-columns-3col option-card-hover-animation-grow option-section-background-image-fixed option-image-color-hover-revert option-align-content-left option-link-decoration-border-bottom-static option-grid-align-default option-imagecrop-rectangle-landscape option-items-shadow option-imagesize-lg option-items-shadow-on-hover option-collection-title-decoration-arrow">
         <div class="container sb-container-fixed sb-container">
             <div class="row sb-row sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-row-opt-center">
                 <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-items-grid">
@@ -103,9 +182,12 @@
                         <div class="sb-items-grid">
                             <div class="sb-items-grid__content option-width sb-section-alienable">
                                 <div class="sb-section-title aos-init aos-animate">Explore your options</div>
-                                <div class="sb-section-subtitle aos-init aos-animate">Explore public toilets available in your area</div>
+                                <div class="sb-section-subtitle aos-init aos-animate">Explore public toilets available
+                                    in your area
+                                </div>
                                 <div class="sb-paragraph aos-init aos-animate">
-                                    <p>In this state, there should be more toilets where you can utilize the slide function.</p>
+                                    <p>In this state, there should be more toilets where you can utilize the slide
+                                        function.</p>
                                 </div>
                             </div>
                             <ul class="sb-items-grid__items items-grid sb-section-alienable">
@@ -148,8 +230,10 @@
                                         </div>
                                     </a>
                                 </li>
-                                <button style="background-color: white;margin: auto;border: none;" onclick="location.href='/toilet/list'">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#7193A7" class="bi bi-arrow-right-circle-fill position-absolute" viewBox="0 0 16 16">
+                                <button style="background-color: white;margin: auto;border: none;"
+                                        onclick="location.href='/toilet/list'">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#7193A7"
+                                         class="bi bi-arrow-right-circle-fill position-absolute" viewBox="0 0 16 16">
                                         <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"></path>
                                     </svg>
                                 </button>
@@ -161,7 +245,8 @@
         </div>
     </section>
 
-    <section id="mapview" class="sb-section sb-section-opt-light option-section-background-image-fixed option-image-align-center option-width-6col option-image-width-5col option-imagesize-mobile-lg option-align-left option-image-align-mobile-left option-link-decoration-border-bottom-static option-imagecrop-rectangle-portrait option-button-none option-imagesize-lg">
+    <section id="mapview"
+             class="sb-section sb-section-opt-light option-section-background-image-fixed option-image-align-center option-width-6col option-image-width-5col option-imagesize-mobile-lg option-align-left option-image-align-mobile-left option-link-decoration-border-bottom-static option-imagecrop-rectangle-portrait option-button-none option-imagesize-lg">
         <div class="container sb-container-fixed sb-container">
             <div class="row sb-row sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-row-opt-center">
                 <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-text-image">
@@ -175,12 +260,17 @@
                             </div>
                             <div class="sb-text-image__content option-width">
                                 <div class="sb-title sb-text-image__content-title aos-init aos-animate">Map view</div>
-                                <div class="sb-subtitle sb-text-image__content-subtitle aos-init aos-animate">공중 화장실을 지도에서 선택해보세요</div>
-                                <div class="sb-text-image__content-paragraph aos-init aos-animate">불편한 검색 없이 경기도와 서울특별시에 있는 모든 공중 화장실을 지도에서 찾을 수 있습니다.</div>
+                                <div class="sb-subtitle sb-text-image__content-subtitle aos-init aos-animate">공중 화장실을
+                                    지도에서 선택해보세요
+                                </div>
+                                <div class="sb-text-image__content-paragraph aos-init aos-animate">불편한 검색 없이 경기도와 서울특별시에
+                                    있는 모든 공중 화장실을 지도에서 찾을 수 있습니다.
+                                </div>
                                 <div class="sb-text-image__content-cta">
                                     <div class="sb-cta-wrapper sb-section-alienable">
                                             <span class="aos-init aos-animate">
-                                                <a class="sb-cta-wrapper__btn sb-button sb-button--secondary" href="/toilet/mapView">화장실 찾기</a>
+                                                <a class="sb-cta-wrapper__btn sb-button sb-button--secondary"
+                                                   href="/toilet/mapView">화장실 찾기</a>
                                             </span>
                                     </div>
                                 </div>
@@ -192,7 +282,8 @@
         </div>
     </section>
 
-    <section id="contact" class="sb-section sb-section-opt-light option-section-background-image-fixed appointment-inline-view option-align-left option-link-decoration-border-bottom-static half-width-contact-form">
+    <section id="contact"
+             class="sb-section sb-section-opt-light option-section-background-image-fixed appointment-inline-view option-align-left option-link-decoration-border-bottom-static half-width-contact-form">
         <div class="container sb-container-fixed sb-container">
             <div class="row sb-row sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-row-opt-center">
                 <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-contact-full">
@@ -201,41 +292,74 @@
                             <div class="row">
                                 <div class="col-xs-12 col-sm-12 col-md-5">
                                     <div class="contact-full__form">
-                                        <div class="sb-section-title sb-section-alienable aos-init aos-animate">Get in touch</div>
-                                        <div class="sb-section-subtitle sb-section-alienable aos-init aos-animate">We're here to assist you!</div>
+                                        <div class="sb-section-title sb-section-alienable aos-init aos-animate">Get in
+                                            touch
+                                        </div>
+                                        <div class="sb-section-subtitle sb-section-alienable aos-init aos-animate">We're
+                                            here to assist you!
+                                        </div>
                                         <div class="sb-paragraph sb-section-alienable aos-init aos-animate">
                                             <p>Reach out for any inquiries or support.</p>
                                         </div>
-                                        <form class="form js-form aos-init aos-animate" method="POST" action="https://b12.io/contact/send/">
+                                        <form class="form js-form aos-init aos-animate" method="POST"
+                                              action="https://b12.io/contact/send/">
                                             <div class="form__group  form__group--required">
-                                                <label class="form__label contact-form__label">Name <span class="form__label-required" title="This field is required">*</span></label>
-                                                <input required="" class="form__input contact-form__input" name="name" placeholder="Jane Smith" type="text" value="">
+                                                <label class="form__label contact-form__label">Name <span
+                                                        class="form__label-required"
+                                                        title="This field is required">*</span></label>
+                                                <input required="" class="form__input contact-form__input" name="name"
+                                                       placeholder="Kim Kyonggi" type="text" value="">
                                             </div>
                                             <div class="form__group  form__group--required">
-                                                <label class="form__label contact-form__label">Email address <span class="form__label-required" title="This field is required">*</span></label>
-                                                <input required="" class="form__input contact-form__input" name="from_email" placeholder="email@website.com" type="email" value="">
+                                                <label class="form__label contact-form__label">Email address <span
+                                                        class="form__label-required"
+                                                        title="This field is required">*</span></label>
+                                                <input required="" class="form__input contact-form__input"
+                                                       name="from_email" placeholder="email@website.com" type="email"
+                                                       value="">
                                             </div>
                                             <div class="form__group  form__group--required">
-                                                <label class="form__label contact-form__label">Phone number <span class="form__label-required" title="This field is required">*</span></label>
-                                                <input required="" class="form__input contact-form__input" name="from_phone" placeholder="555-555-5555" type="tel" value="">
+                                                <label class="form__label contact-form__label">Phone number <span
+                                                        class="form__label-required"
+                                                        title="This field is required">*</span></label>
+                                                <input required="" class="form__input contact-form__input"
+                                                       name="from_phone" placeholder="000-0000-0000" type="tel"
+                                                       value="">
                                             </div>
                                             <div class="form__group">
                                                 <label class="form__label contact-form__label">Message </label>
-                                                <textarea class="form__input form__input--textarea contact-form__textarea" name="message" placeholder="" rows="4"></textarea>
+                                                <textarea
+                                                        class="form__input form__input--textarea contact-form__textarea"
+                                                        name="message" placeholder="" rows="4"></textarea>
                                             </div>
                                             <div class="form__group form__group--checkbox form__group--required">
-                                                <div class="form__checkbox-error" id="checkbox-error-message-gdpr_consent-">
+                                                <div class="form__checkbox-error"
+                                                     id="checkbox-error-message-gdpr_consent-">
                                                     Please select at least one option.
                                                 </div>
                                                 <div class="form__input-checkbox-wrapper">
-                                                    <input class="form__input form__input--checkbox" id="3e040677-855d-47d0-a6c5-972b2d518a3d-" name="I allow this website to store my submission so they can respond to my inquiry." type="checkbox" value="Checked">
-                                                    <label class="form__label contact-form__label " for="3e040677-855d-47d0-a6c5-972b2d518a3d-">
-                                                        I allow this website to store my submission so they can respond to my inquiry. <span class="form__label-required" title="This field is required">*</span>
+                                                    <input class="form__input form__input--checkbox"
+                                                           id="3e040677-855d-47d0-a6c5-972b2d518a3d-"
+                                                           name="I allow this website to store my submission so they can respond to my inquiry."
+                                                           type="checkbox" value="Checked">
+                                                    <label class="form__label contact-form__label "
+                                                           for="3e040677-855d-47d0-a6c5-972b2d518a3d-">
+                                                        I allow this website to store my submission so they can respond
+                                                        to my inquiry. <span class="form__label-required"
+                                                                             title="This field is required">*</span>
                                                     </label>
                                                 </div>
                                             </div>
-                                            <button class="sb-button sb-button--form contact-form__btn" type="submit">Submit</button>
-                                            <input type="hidden" name="form_id" value=""><input type="hidden" name="next_page" value="https://myhome-fojd.b12sites.com/#success_UL_FORM_"><input type="text" name="sweet_auth_token" aria-hidden="true" aria-label="Auth token" style="display: none;"><input type="hidden" name="ajax" value="true">
+                                            <button class="sb-button sb-button--form contact-form__btn" type="submit">
+                                                Submit
+                                            </button>
+                                            <input type="hidden" name="form_id" value=""><input type="hidden"
+                                                                                                name="next_page"
+                                                                                                value="https://myhome-fojd.b12sites.com/#success_UL_FORM_"><input
+                                                type="text" name="sweet_auth_token" aria-hidden="true"
+                                                aria-label="Auth token" style="display: none;"><input type="hidden"
+                                                                                                      name="ajax"
+                                                                                                      value="true">
                                         </form>
                                     </div>
                                 </div>
@@ -245,14 +369,32 @@
                                             <div class="contact-details__row contact-details__contact">
                                                 <div class="h3 contact-details__title">Get in touch</div>
                                                 <div class="contact-details__email">
-                                                    <a aria-label="Email us at l33gn21@gmail.com" class="email" href="mailto:l33gn21@gmail.com">l33gn21@gmail.com</a>
+                                                    <ul style="list-style: none; padding: 0; margin: 0;">
+                                                        <li><a aria-label="Email us at kjsskkh01@kyonggi.ac.kr"
+                                                               class="email" href="mailto:kjsskkh01@kyonggi.ac.kr">kjsskkh01@kyonggi.ac.kr</a>
+                                                        </li>
+                                                        <li><a aria-label="Email us at dlrjsdk105@kyonggi.ac.kr"
+                                                               class="email" href="mailto:dlrjsdk105@kyonggi.ac.kr">dlrjsdk105@kyonggi.ac.kr</a>
+                                                        </li>
+                                                        <li><a aria-label="Email us at dlthdbs03@kyonggi.ac.kr"
+                                                               class="email" href="mailto:dlthdbs03@kyonggi.ac.kr">dlthdbs03@kyonggi.ac.kr</a>
+                                                        </li>
+                                                        <li><a aria-label="Email us at pong3029@kyonggi.ac.kr"
+                                                               class="email" href="mailto:pong3029@kyonggi.ac.kr">pong3029@kyonggi.ac.kr</a>
+                                                        </li>
+                                                        <li><a aria-label="Email us at heeuncho@kyonggi.ac.kr"
+                                                               class="email" href="mailto:heeuncho@kyonggi.ac.kr">heeuncho@kyonggi.ac.kr</a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </div>
                                             <div class="contact-details__row contact-details__location">
                                                 <div class="h3 contact-details__title">Location</div>
                                                 <p class="adr contact-details__address">
-                                                    <a aria-label="Our location at Hwaseong-si, 41 KR" href="https://www.google.com/maps/place/+Hwaseong-si+41+KR" rel="noreferrer" target="_blank">
-                                                        <span>Hwaseong-si</span><span>, 41</span><span> KR</span>
+                                                    <a aria-label="Our location at 경기도 수원시 영통구 광교산로 154-42 경기대학교"
+                                                       href="https://map.naver.com/v5/search/%EA%B2%BD%EA%B8%B0%EB%8C%80%ED%95%99%EA%B5%90"
+                                                       target="_blank">
+                                                        <span>경기도 수원시 영통구 광교산로 154-42</span>
                                                     </a>
                                                 </p>
                                             </div>
@@ -260,43 +402,57 @@
                                                 <div class="h3 contact-details__title">Hours</div>
                                                 <ol aria-label="Working hours" class="hours-list">
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Mon<span class="hidden-xs-down hidden-sm-down hidden-md-down">day</span></div>
+                                                        <div class="hours-list__day">Mon<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">day</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">10:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Tue<span class="hidden-xs-down hidden-sm-down hidden-md-down">sday</span></div>
+                                                        <div class="hours-list__day">Tue<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">sday</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">10:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Wed<span class="hidden-xs-down hidden-sm-down hidden-md-down">nesday</span></div>
+                                                        <div class="hours-list__day">Wed<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">nesday</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">10:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Thu<span class="hidden-xs-down hidden-sm-down hidden-md-down">rsday</span></div>
+                                                        <div class="hours-list__day">Thu<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">rsday</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">10:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Fri<span class="hidden-xs-down hidden-sm-down hidden-md-down">day</span></div>
+                                                        <div class="hours-list__day">Fri<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">day</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">10:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Sat<span class="hidden-xs-down hidden-sm-down hidden-md-down">urday</span></div>
+                                                        <div class="hours-list__day">Sat<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">urday</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">6:00pm</div>
                                                     </li>
                                                     <li class="hours-list__item">
-                                                        <div class="hours-list__day">Sun<span class="hidden-xs-down hidden-sm-down hidden-md-down">day</span></div>
+                                                        <div class="hours-list__day">Sun<span
+                                                                class="hidden-xs-down hidden-sm-down hidden-md-down">day</span>
+                                                        </div>
                                                         <div class="hours-list__from">9:00am</div>
                                                         <div class="hours-list__dash">–</div>
                                                         <div class="hours-list__to">12:00pm</div>
@@ -315,7 +471,8 @@
     </section>
 </div>
 <div id="sb-footer">
-    <section class="sb-section sb-section-opt-dark option-logo-brand-name-hide option-section-background-image-fixed option-nav-link-hover-underline option-align-left option-link-decoration-border-bottom-static option-button-none option-footer-icons-show option-animate-icons-grow option-icons-size-md option-icons-color-accent">
+    <section
+            class="sb-section sb-section-opt-dark option-logo-brand-name-hide option-section-background-image-fixed option-nav-link-hover-underline option-align-left option-link-decoration-border-bottom-static option-button-none option-footer-icons-show option-animate-icons-grow option-icons-size-md option-icons-color-accent">
         <div class="container sb-container-fixed sb-container">
             <div class="row sb-row sb-row-opt-padding-top-large sb-row-opt-padding-bottom-large sb-row-opt-center">
                 <div class="sb-column col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xs-offset-0 col-sm-offset-0 col-md-offset-0 col-lg-offset-0 col-xl-offset-0 sb-component-footer-simple-social">
