@@ -1,5 +1,6 @@
 
 # Toilet-Go 프로젝트
+<img width="1132" alt="image" src="https://github.com/user-attachments/assets/774a42b9-28a0-4fda-b024-78e1a121812e">
 
 **Toilet-Go**는 사용자가 주변 화장실 위치를 확인하고 리뷰를 남길 수 있는 오픈소스 웹 애플리케이션입니다. 
 
